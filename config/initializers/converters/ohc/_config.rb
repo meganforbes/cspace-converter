@@ -6,6 +6,7 @@ module CollectionSpace
         [
           "CollectionObject",
           "Media",
+          "Movement",
         ]
       end
 
@@ -15,7 +16,7 @@ module CollectionSpace
             "Procedures" => {
               "CollectionObject" => {
                 "identifier_field" => "objectNumber",
-                "identifier" => "object_number_catalog",
+                "identifier" => "object_number",
                 "title" => "title",
               },
             },
@@ -42,12 +43,32 @@ module CollectionSpace
              "Relationships" => [
                {
                  "procedure1_type" => "CollectionObject",
-                 "data1_field" => "object_number_catalog",
+                 "data1_field" => "object_number",
                  "procedure2_type" => "Media",
                  "data2_field" => "star_system_id",
                },
              ],
            },
+          "movement" => {
+              "Procedures" => {
+                  "Movement" => {
+                      "identifier_field" => "movementReferenceNumber",
+                      "identifier" => "reference_number",
+                      "title" => "reference_number",
+                  },
+              },
+              "Authorities" => {
+                  "Person" => ["inventory_contact"],
+              },
+              "Relationships" => [
+                  {
+                      "procedure1_type" => "CollectionObject",
+                      "data1_field" => "object_number",
+                      "procedure2_type" => "Movement",
+                      "data2_field" => "reference_number",
+                  },
+              ],
+          },
 
         }
       end

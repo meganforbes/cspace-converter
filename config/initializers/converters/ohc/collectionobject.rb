@@ -13,7 +13,7 @@ module CollectionSpace
 
           run do |xml|
             # objectNumber
-            CSXML.add xml, 'objectNumber', attributes["object_number_catalog"]
+            CSXML.add xml, 'objectNumber', attributes["object_number"]
 
             # numberOfObjects
             CSXML.add xml, 'numberOfObjects', attributes["number_of_objects"]

@@ -16,12 +16,14 @@ module CollectionSpace
       end
 
       def self.get_vocabulary(vocabulary_id)
+        puts "Vocab ID is #{vocabulary_id}"
         get_vocabularies[vocabulary_id]
       end
 
       def self.setup(converter_module)
         begin
-          file = File.join(Rails.root, 'config', 'initializers', 'converters', converter_module, 'auth_cache.json')
+          file = File.join(Rails.root, 'config', 'initializers', 'converters', converter_module.downcase, 'auth_cache.json')
+          puts "The file name is #{file}."
           authorities_cache = JSON.parse(File.read(file))
           # Use Rails to cache the authorities/vocabularies and terms 
           Rails.cache.write(AuthCache::AUTHORITIES_CACHE, authorities_cache)

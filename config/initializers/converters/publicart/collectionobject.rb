@@ -211,15 +211,23 @@ module CollectionSpace
 
               # publicartProductionPersonGroupList
               prodpersongroups = []
+
+              prodpersons_urns = []
               prodpersons = split_mvf attributes, 'objectproductionperson'
+              prodpersons.each do |person, index|
+                prodpersons_urns << CSXML::Helpers.get_authority_urn('personauthorities', 'person', person)
+              end
+
               role_urns = []
               roles = split_mvf attributes, 'objectproductionpersonrole'
               roles.each do |role, index|
                 role_urns << CSXML::Helpers.get_vocab_urn('prodpersonrole', role)
               end
               types = split_mvf attributes, 'objectproductionpersontype'
-              prodpersons.each_with_index do |name, index|
-                prodpersongroups << { "publicartProductionPerson" => name, "publicartProductionPersonRole" => role_urns[index], "publicartProductionPersonType" => types[index] }
+
+              # Build the multi-valued group
+              prodpersons_urns.each_with_index do |person_urn, index|
+                prodpersongroups << { "publicartProductionPerson" => person_urn, "publicartProductionPersonRole" => role_urns[index], "publicartProductionPersonType" => types[index] }
               end
               CSXML.add_group_list xml, 'publicartProductionPerson', prodpersongroups
             end

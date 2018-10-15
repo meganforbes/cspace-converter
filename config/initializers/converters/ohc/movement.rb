@@ -1,29 +1,38 @@
 module CollectionSpace
   module Converter
-    module PublicArt
+    module OHC
       include Default
 
-      class PublicArtMovement < Movement
+      class OHCMovement < Movement
 
         def convert
           run do |xml|
-            CSXML.add xml, 'movementReferenceNumber', attributes["movementreferencenumber"]
+            CSXML.add xml, 'movementReferenceNumber', attributes["reference_number"]
 
             # location, currentLocation
-            current_location = attributes['currentlocation']
+            current_location = attributes['current_location']
             if current_location
-              CSXML::Helpers.add_place xml, 'currentLocation', current_location
+              CSXML::Helpers.add_location xml, 'currentLocation', current_location
             end
-            
-            CSXML.add xml, 'locationDate', attributes["location_date"]
 
-            CSXML::Helpers.add_persons xml, 'borrowersAuthorizer', [attributes["movement_contact"]]
+            structured_date = CSDTP::parse attributes["location_date"] if attributes["location_date"]
+            parsedDate = structured_date.parsed_datetime.strftime('%m/%d/%Y')
+            CSXML.add xml, 'locationDate', parsedDate
 
-            CSXML.add xml, 'reasonForMove', attributes["reason_for_move"]
+            normal_location = attributes['normal_location']
+            if normal_location
+              CSXML::Helpers.add_location xml, 'normalLocation', normal_location
+            end
 
-            CSXML.add xml, 'movementNote', scrub_fields([attributes["movement_information_note"]])
+            # inventoryContactList
+            tgs = []
+            contacts = split_mvf attributes, 'inventory_contact'
+            contacts.each do |t|
+              tgs << { "inventoryContact" => CSXML::Helpers.get_authority_urn('personauthorities', 'person', t) }
+            end
+            CSXML.add_repeat xml, 'inventoryContact', tgs, 'List'
 
-        end
+          end
 
         end
       end

@@ -21,9 +21,10 @@ module CollectionSpace
 
             CSXML.add xml, 'reasonForMove', attributes["reason_for_move"]
 
-            CSXML.add xml, 'movementNote', scrub_fields([attributes["movement_information_note"]])
+            CSXML.add xml, 'movementNote', scrub_fields([attributes["movementnote"]])
 
-        end
+            CSXML.add xml, 'currentLocationNote', scrub_fields([attributes["currentlocationnote"]])
+          end
 
         end
       end

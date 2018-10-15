@@ -3,6 +3,7 @@ require 'active_support/core_ext/date_time'
 module CollectionSpace
 
   StructuredDate = Struct.new(
+      :parsed_datetime,
       :date_string,
       :display_date,
       :earliest_day,
@@ -28,6 +29,7 @@ module CollectionSpace
       parsed_latest_date = DateTime.parse((parsed_earliest_date + daysInYear).to_s)
 
       d = CollectionSpace::StructuredDate.new
+      d.parsed_datetime = parsed_earliest_date
       d.date_string = date_string
       d.display_date = date_string
 
@@ -158,8 +160,8 @@ module CollectionSpace
       }
     end
 
-    def self.add_repeat(xml, key, elements = [])
-      xml.send(key.to_sym) {
+    def self.add_repeat(xml, key, elements = [], key_suffix = '')
+      xml.send("#{key}#{key_suffix}".to_sym) {
         elements.each do |element|
           element.each {|k, v| xml.send(k.to_sym, v)}
         end
