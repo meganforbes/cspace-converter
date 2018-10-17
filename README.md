@@ -124,6 +124,14 @@ p = DataObject.first
 puts p.to_procedure_xml("CollectionObject")
 ```
 
+**Clearing out data**
+
+```bash
+bundle exec rake db:nuke
+```
+
+Or use 'Nuke' in the ui. Warning: this deletes all data including failed jobs.
+
 ## (Optional) Test environment
 
 ```bash
