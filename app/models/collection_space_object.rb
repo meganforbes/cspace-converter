@@ -7,6 +7,7 @@ class CollectionSpaceObject
 
   after_validation :log_errors, :if => Proc.new { |object| object.errors.any? }
 
+  field :import_batch,     type: String
   field :category,         type: String # Authority, Procedure
   field :type,             type: String
   field :subtype,          type: String # used for Authorities
