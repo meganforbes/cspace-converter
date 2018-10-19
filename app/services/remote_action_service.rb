@@ -10,28 +10,29 @@ class RemoteActionService
   end
 
   def remote_delete
-    ok, message = true, 'ok'
+    ok, message = true, ''
     if object.has_csid_and_uri?
-      log.debug("Deleting: #{object.identifier}")
+      Rails.logger.debug("Deleting: #{object.identifier}")
       begin
         response = $collectionspace_client.delete(object.uri)
         if response.status_code.to_s =~ /^2/
           object.update_attributes!( csid: nil, uri:  nil )
+          message = "Deleted: #{object.identifier}"
         end
       rescue Exception => ex
-        ok = false, message = "Error during delete: #{object.inspect}.\n#{ex.backtrace}"
-        logger.error(message)
+        ok, message = false, "Error during delete: #{object.inspect}.\n#{ex.backtrace}"
+        Rails.logger.error(message)
       end
     else
-      ok = false, message = "Delete requires existing csid and uri."
+      ok, message = false, "Delete requires existing csid and uri."
     end
     return ok, message
   end
 
   def remote_transfer
-    ok, message = true, 'ok'
+    ok, message = true, ''
     unless object.has_csid_and_uri?
-      log.debug("Transferring: #{object.identifier}")
+      Rails.logger.debug("Transferring: #{object.identifier}")
       begin
         blob_uri = object.data_object.to_hash.fetch('blob_uri', nil)
         if blob_uri.blank? == false
@@ -44,29 +45,31 @@ class RemoteActionService
           csid = response.headers["Location"].split("/")[-1]
           uri  = "#{service[:path]}/#{csid}"
           object.update_attributes!( csid: csid, uri:  uri )
+          message = "Transferred: #{object.identifier}"
         end
       rescue Exception => ex
-        ok = false, message = "Error during transfer: #{object.inspect}.\n#{ex.backtrace}"
-        logger.error(message)
+        ok, message = false, "Error during transfer: #{object.inspect}.\n#{ex.backtrace}"
+        Rails.logger.error(message)
       end
     else
-      ok = false, message = "Transfer requires no pre-existing csid and uri."
+      ok, message = false, "Transfer requires no pre-existing csid and uri."
     end
     return ok, message
   end
 
   def remote_update
-    ok, message = true, 'ok'
+    ok, message = true, ''
     if object.has_csid_and_uri?
-      log.debug("Updating: #{object.identifier}")
+      Rails.logger.debug("Updating: #{object.identifier}")
       begin
         $collectionspace_client.put(object.uri, object.content)
+        message = "Updated: #{object.identifier}"
       rescue Exception => ex
-        ok = false, message = "Error during update: #{object.inspect}.\n#{ex.backtrace}"
-        logger.error(message)
+        ok, message = false, "Error during update: #{object.inspect}.\n#{ex.backtrace}"
+        Rails.logger.error(message)
       end
     else
-      ok = false, message = "Update requires existing csid and uri."
+      ok, message = false, "Update requires existing csid and uri."
     end
     return ok, message
   end

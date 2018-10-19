@@ -4,18 +4,14 @@ module RemoteActionable
   def delete
     perform(params[:category]) do |service|
       ok, message = service.remote_delete
-      if ok
-        flash[:notice] = "Record deleted!"
-      else
-        flash[:error] = message
-      end
+      flash[flash_type_for_action(ok)] = message
     end
   end
 
   def ping
     perform(params[:category]) do |service|
       if service.remote_already_exists?
-        flash[:notice] = "Record found!"
+        flash[:notice] = 'Record found!'
       else
         flash[:warning] = "Record not found!"
       end
@@ -25,26 +21,22 @@ module RemoteActionable
   def transfer
     perform(params[:category]) do |service|
       ok, message = service.remote_transfer
-      if ok
-        flash[:notice] = "Record transferred!"
-      else
-        flash[:error] = message
-      end
+      flash[flash_type_for_action(ok)] = message
     end
   end
 
   def update
     perform(params[:category]) do |service|
       ok, message = service.remote_update
-      if ok
-        flash[:notice] = "Record updated!"
-      else
-        flash[:error] = message
-      end
+      flash[flash_type_for_action(ok)] = message
     end
   end
 
   private
+
+  def flash_type_for_action(ok)
+    ok ? :notice : :error
+  end
 
   def perform(category)
     @object  = CollectionSpaceObject.where(category: category).where(id: params[:id]).first
