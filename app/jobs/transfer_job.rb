@@ -9,13 +9,7 @@ class TransferJob < ActiveJob::Base
     is_relationship = import_type == "Relationship" ? true : false
     force_delete    = (is_relationship and action_method == :remote_delete) ? true : false
 
-    objects = CollectionSpaceObject.includes(:data_object)
-      .where(type: import_type)
-      .entries.select { |object|
-      (import_batch.nil? or object.data_object.import_batch == import_batch) ? object : nil;
-    }
-
-    objects.each do |object|
+    CollectionSpaceObject.where(type: import_type, import_batch: import_batch).each do |object|
       service = RemoteActionService.new(object)
 
       if not is_relationship and not (object.csid and object.uri)

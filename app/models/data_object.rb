@@ -196,6 +196,7 @@ class DataObject
 
     data = {}
     # check for existence or update
+    data[:import_batch]     = self.import_batch
     data[:category]         = "Authority"
     data[:type]             = authority
     data[:subtype]          = authority_subtype
@@ -209,6 +210,7 @@ class DataObject
   def add_procedure(procedure, attributes)
     data = {}
     # check for existence or update
+    data[:import_batch]     = self.import_batch
     data[:category]         = "Procedure"
     data[:type]             = procedure
     data[:subtype]          = ''
@@ -248,6 +250,7 @@ class DataObject
     to_prefix   = to_doc_type[0..2]
 
     data = {}
+    data[:import_batch]     = self.import_batch
     data[:category]         = "Relationship"
     data[:type]             = "Relationship"
     data[:subtype]             = ""
