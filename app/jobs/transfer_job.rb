@@ -12,22 +12,6 @@ class TransferJob < ActiveJob::Base
         service.remote_already_exists? # update csid and uri if object is found
       end
 
-      # UPDATES
-      if action_method == :remote_update
-        next if object.is_relationship? # not supported
-        next if ! object.has_csid_and_uri?
-      end
-
-      # TRANSFERS
-      if action_method == :remote_transfer
-        next if object.has_csid_and_uri? # don't transfer again (use update)
-      end
-
-      # DELETES
-      if action_method == :remote_delete
-        next if ! object.has_csid_and_uri?
-      end
-
       service.send(action_method)
     end
   end
