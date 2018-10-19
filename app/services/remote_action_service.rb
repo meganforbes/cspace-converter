@@ -10,51 +10,65 @@ class RemoteActionService
   end
 
   def remote_delete
-    return unless object.has_csid_and_uri?
-    log.debug("Deleting: #{object.identifier}")
-    if object.uri
+    ok, message = true, 'ok'
+    if object.has_csid_and_uri?
+      log.debug("Deleting: #{object.identifier}")
       begin
         response = $collectionspace_client.delete(object.uri)
         if response.status_code.to_s =~ /^2/
           object.update_attributes!( csid: nil, uri:  nil )
         end
       rescue Exception => ex
-        logger.error("Error during delete: #{object.inspect}.\n#{ex.backtrace}")
+        ok = false, message = "Error during delete: #{object.inspect}.\n#{ex.backtrace}"
+        logger.error(message)
       end
+    else
+      ok = false, message = "Delete requires existing csid and uri."
     end
+    return ok, message
   end
 
   def remote_transfer
-    return if object.has_csid_and_uri?
-    log.debug("Transferring: #{object.identifier}")
-    begin
-      blob_uri = object.data_object.to_hash.fetch('blob_uri', nil)
-      if blob_uri.blank? == false
-        blob_uri = URI.encode blob_uri
+    ok, message = true, 'ok'
+    unless object.has_csid_and_uri?
+      log.debug("Transferring: #{object.identifier}")
+      begin
+        blob_uri = object.data_object.to_hash.fetch('blob_uri', nil)
+        if blob_uri.blank? == false
+          blob_uri = URI.encode blob_uri
+        end
+        params   = (blob_uri and object.type == 'Media') ? { query: { 'blobUri' => blob_uri } } : {}
+        response = $collectionspace_client.post(service[:path], object.content, params)
+        if response.status_code.to_s =~ /^2/
+          # http://localhost:1980/cspace-services/collectionobjects/7e5abd18-5aec-4b7f-a10c
+          csid = response.headers["Location"].split("/")[-1]
+          uri  = "#{service[:path]}/#{csid}"
+          object.update_attributes!( csid: csid, uri:  uri )
+        end
+      rescue Exception => ex
+        ok = false, message = "Error during transfer: #{object.inspect}.\n#{ex.backtrace}"
+        logger.error(message)
       end
-      params   = (blob_uri and object.type == 'Media') ? { query: { 'blobUri' => blob_uri } } : {}
-      response = $collectionspace_client.post(service[:path], object.content, params)
-      if response.status_code.to_s =~ /^2/
-        # http://localhost:1980/cspace-services/collectionobjects/7e5abd18-5aec-4b7f-a10c
-        csid = response.headers["Location"].split("/")[-1]
-        uri  = "#{service[:path]}/#{csid}"
-        object.update_attributes!( csid: csid, uri:  uri )
-      end
-    rescue Exception => ex
-      logger.error("Error during transfer: #{object.inspect}.\n#{ex.backtrace}")
+    else
+      ok = false, message = "Transfer requires no pre-existing csid and uri."
     end
+    return ok, message
   end
 
   def remote_update
-    return unless object.has_csid_and_uri?
-    log.debug("Updating: #{object.identifier}")
-    if object.uri
+    ok, message = true, 'ok'
+    if object.has_csid_and_uri?
+      log.debug("Updating: #{object.identifier}")
       begin
         $collectionspace_client.put(object.uri, object.content)
       rescue Exception => ex
-        logger.error("Error during update: #{object.inspect}\n.#{ex.backtrace}")
+        ok = false, message = "Error during update: #{object.inspect}.\n#{ex.backtrace}"
+        logger.error(message)
       end
+    else
+      ok = false, message = "Update requires existing csid and uri."
     end
+    return ok, message
   end
 
   def remote_already_exists?

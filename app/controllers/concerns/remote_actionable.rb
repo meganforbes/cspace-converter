@@ -2,16 +2,12 @@ module RemoteActionable
   extend ActiveSupport::Concern
 
   def delete
-    force = params[:force] == "true" ? true : false
     perform(params[:category]) do |service|
-      if force or service.remote_already_exists?
-        if service.remote_delete
-          flash[:notice] = "Record deleted"
-        else
-          flash[:error] = "Failed to delete record"
-        end
+      ok, message = service.remote_delete
+      if ok
+        flash[:notice] = "Record deleted!"
       else
-        flash[:warning] = "Record does not exist"
+        flash[:error] = message
       end
     end
   end
@@ -19,28 +15,31 @@ module RemoteActionable
   def ping
     perform(params[:category]) do |service|
       if service.remote_already_exists?
-        flash[:notice] = "Record found"
+        flash[:notice] = "Record found!"
       else
-        flash[:warning] = "Record not found"
+        flash[:warning] = "Record not found!"
       end
     end
   end
 
   def transfer
     perform(params[:category]) do |service|
-      if service.remote_already_exists?
-        if service.remote_update
-          # TOOO: check update supported via config
-          flash[:notice] = "Record updated"
-        else
-          flash[:warning] = "Record was not updated"
-        end
+      ok, message = service.remote_transfer
+      if ok
+        flash[:notice] = "Record transferred!"
       else
-        if service.remote_transfer
-          flash[:notice] = "Record created"
-        else
-          flash[:warning] = "Record was not created"
-        end
+        flash[:error] = message
+      end
+    end
+  end
+
+  def update
+    perform(params[:category]) do |service|
+      ok, message = service.remote_update
+      if ok
+        flash[:notice] = "Record updated!"
+      else
+        flash[:error] = message
       end
     end
   end

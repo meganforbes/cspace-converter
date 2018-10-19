@@ -27,7 +27,8 @@
         <p class="text-muted">External actions</p>
         <%= button_to 'Ping', { action: 'ping', category: object.category }, form_class: 'external', class: 'btn btn-info' %>
         <%= button_to 'Transfer', { action: 'transfer', category: object.category }, form_class: 'external', class: 'btn btn-warning' %>
-        <%= button_to 'Delete', { action: 'delete', category: object.category, force: force_delete }, form_class: 'external', class: 'btn btn-danger' %>
+        <%= button_to 'Update', { action: 'update', category: object.category }, form_class: 'external', class: 'btn btn-warning' %>
+        <%= button_to 'Delete', { action: 'delete', category: object.category }, form_class: 'external', class: 'btn btn-danger' %>
       </div>
     </div>
 
