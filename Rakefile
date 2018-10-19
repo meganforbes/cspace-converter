@@ -73,7 +73,7 @@ namespace :db do
 
   # rake db:nuke
   task :nuke => :environment do |t|
-    [DataObject, Delayed::Job].each { |model| model.destroy_all }
+    Converter::Nuke.everything!
   end
 end
 

@@ -7,7 +7,7 @@ class SitesController < ApplicationController
   end
 
   def nuke
-    DataObject.destroy_all
+    Converter::Nuke.everything!
     flash[:notice] = "Database nuked, all records deleted!"
     redirect_to root_path
   end
