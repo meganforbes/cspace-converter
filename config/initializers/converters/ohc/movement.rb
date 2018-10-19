@@ -15,9 +15,19 @@ module CollectionSpace
               CSXML::Helpers.add_location xml, 'currentLocation', current_location
             end
 
-            structured_date = CSDTP::parse attributes["location_date"] if attributes["location_date"]
-            parsedDate = structured_date.parsed_datetime.strftime('%m/%d/%Y')
-            CSXML.add xml, 'locationDate', parsedDate
+            CSXML.add xml, 'currentLocationNote', scrub_fields([attributes["location_note"]])
+
+            if attributes["location_date"]
+              structured_date = CSDTP::parse attributes["location_date"]
+              parsedDate = structured_date.parsed_datetime.strftime('%m/%d/%Y')
+              CSXML.add xml, 'locationDate', parsedDate
+            end
+
+            if attributes["movement_date"]
+              structured_date = CSDTP::parse attributes["movement_date"]
+              parsedDate = structured_date.parsed_datetime.strftime('%m/%d/%Y')
+              CSXML.add xml, 'removalDate', parsedDate
+            end
 
             normal_location = attributes['normal_location']
             if normal_location
