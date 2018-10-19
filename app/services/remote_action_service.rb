@@ -10,7 +10,7 @@ class RemoteActionService
   end
 
   def remote_delete
-    deleted = false
+    log.debug("Deleting: #{object.identifier}")
     if @object.uri
       begin
         response = $collectionspace_client.delete(@object.uri)
@@ -18,15 +18,14 @@ class RemoteActionService
           @object.update_attributes!( csid: nil, uri:  nil )
           deleted = true
         end
-      rescue Exception
-        # eat the failure to log it
+      rescue Exception => ex
+        logger.error("Error during delete: #{@object.inspect}.\n#{ex.backtrace}")
       end
     end
-    deleted
   end
 
   def remote_transfer
-    transferred = false
+    log.debug("Transferring: #{object.identifier}")
     begin
       blob_uri = @object.data_object.to_hash.fetch('blob_uri', nil)
       if blob_uri.blank? == false
@@ -34,29 +33,28 @@ class RemoteActionService
       end
       params   = (blob_uri and @object.type == 'Media') ? { query: { 'blobUri' => blob_uri } } : {}
       response = $collectionspace_client.post(@service[:path], @object.content, params)
-      if response.status_code == 201
+      if response.status_code.to_s =~ /^2/
         # http://localhost:1980/cspace-services/collectionobjects/7e5abd18-5aec-4b7f-a10c
         csid = response.headers["Location"].split("/")[-1]
         uri  = "#{@service[:path]}/#{csid}"
         @object.update_attributes!( csid: csid, uri:  uri )
         transferred = true
       end
-    rescue Exception
-      # eat the failure to log it
+    rescue Exception => ex
+      logger.error("Error during transfer: #{@object.inspect}.\n#{ex.backtrace}")
     end
-    transferred
   end
 
   def remote_update
-    updated = false
+    log.debug("Updating: #{object.identifier}")
     if @object.uri
       begin
         response = $collectionspace_client.put(@object.uri, @object.content)
         if response.status_code.to_s =~ /^2/
           updated = true
         end
-      rescue Exception
-        # eat the failure to log it
+      rescue Exception => ex
+        logger.error("Error during update: #{@object.inspect}\n.#{ex.backtrace}")
       end
     end
     updated

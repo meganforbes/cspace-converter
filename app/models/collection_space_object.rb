@@ -23,6 +23,14 @@ class CollectionSpaceObject
 
   scope :transferred, ->{ where(csid: true) } # TODO: check
 
+  def has_csid_and_uri?
+    csid and uri
+  end
+
+  def is_relationship?
+    type == 'Relationship'
+  end
+
   def self.has_authority?(identifier)
     identifier = CollectionSpaceObject.where(category: 'Authority', identifier: identifier).first
     identifier ? true : false
