@@ -9,7 +9,7 @@ class TransferJob < ActiveJob::Base
       service = RemoteActionService.new(object)
 
       if not object.is_relationship? and not object.has_csid_and_uri?
-        service.remote_already_exists? # update csid and uri if object is found
+        service.remote_ping # update csid and uri if object is found
       end
 
       service.send(action_method)

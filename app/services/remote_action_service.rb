@@ -74,8 +74,8 @@ class RemoteActionService
     return ok, message
   end
 
-  def remote_already_exists?
-    exists      = false
+  def remote_ping
+    ok, message = false, 'Record was not found.'
     search_args = {
       path: service[:path],
       type: "#{service[:schema]}_common",
@@ -100,18 +100,18 @@ class RemoteActionService
     unless relation
       result_count = parsed_response[list_type]["totalItems"].to_i
       if result_count == 1
-        exists = true
         # set csid and uri in case they are lost (i.e. batch was deleted)
         object.update_attributes!(
           csid: parsed_response[list_type][list_item]["csid"],
           uri:  parsed_response[list_type][list_item]["uri"].gsub(/^\//, '')
         )
+        ok, message = true, 'Record was found.'
       else
         raise "Ambiguous result count (#{result_count.to_s}) for #{message_string}" if result_count > 1
         # TODO: set csid and uri to nil if 0?
       end
     end
-    exists
+    return ok, message
   end
 
 end

@@ -2,34 +2,19 @@ module RemoteActionable
   extend ActiveSupport::Concern
 
   def delete
-    perform(params[:category]) do |service|
-      ok, message = service.remote_delete
-      flash[flash_type_for_action(ok)] = message
-    end
+    perform(:remote_delete, params[:category])
   end
 
   def ping
-    perform(params[:category]) do |service|
-      if service.remote_already_exists?
-        flash[:notice] = 'Record found!'
-      else
-        flash[:warning] = "Record not found!"
-      end
-    end
+    perform(:remote_ping, params[:category])
   end
 
   def transfer
-    perform(params[:category]) do |service|
-      ok, message = service.remote_transfer
-      flash[flash_type_for_action(ok)] = message
-    end
+    perform(:remote_transfer, params[:category])
   end
 
   def update
-    perform(params[:category]) do |service|
-      ok, message = service.remote_update
-      flash[flash_type_for_action(ok)] = message
-    end
+    perform(:remote_update, params[:category])
   end
 
   private
@@ -38,12 +23,13 @@ module RemoteActionable
     ok ? :notice : :error
   end
 
-  def perform(category)
+  def perform(action_method, category)
     @object  = CollectionSpaceObject.where(category: category).where(id: params[:id]).first
     service  = RemoteActionService.new(@object)
 
     begin
-      yield service
+      ok, message = service.send(action_method)
+      flash[flash_type_for_action(ok)] = message
     rescue Exception => ex
       logger.error("Connection error: #{ex.backtrace}")
       flash[:error] = "Connection error: #{ex.message} #{service.inspect}"
