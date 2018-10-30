@@ -38,28 +38,14 @@ module CollectionSpace
               end
               CSXML.add_group_list xml, 'objectName', namegroups, include_group_prefix:false
 
-              # Title group list, need to check for language to avoid downcasing empty strings
-              if attributes["title_translation"]
-                CSXML.add_group_list xml, 'title', [{
-                "title" => attributes["title"],
-                "titleType" => attributes["titleType"],
-                "titleLanguage" => CSXML::Helpers.get_vocab_urn('languages', attributes["titleLanguage"]),
-                }], 'titleTranslation', [{
-                  "titleTranslation" => attributes["titleTranslation"],
-                  "titleTranslationLanguage" => CSXML::Helpers.get_vocab_urn('languages', attributes["titleTranslationLanguage"])
-                }]
-              elsif attributes["titleLanguage"]
-                 CSXML.add_group_list xml, 'title', [{
-                "title" => attributes["title"],
-                "titleType" => attributes["titleType"],
-                "titleLanguage" => CSXML::Helpers.get_vocab_urn('languages', attributes["titleLanguage"]),
-                }]
-              else
-                CSXML.add_group_list xml, 'title', [{
-                "title" => attributes["title"],
-                "titleType" => attributes["titletype"],
-                }]
+              # Title group list
+              title_groups = []
+              titles = split_mvf attributes, 'title'
+              title_types = split_mvf attributes, 'titletype'
+              titles.each_with_index do |title, index|
+                title_groups << { "title" => title, "titleType" => title_types[index] }
               end
+              CSXML.add_group_list xml, 'title', title_groups, include_group_prefix:true
 
               # materialGroupList
               mgs = []
@@ -78,9 +64,9 @@ module CollectionSpace
               dimensions = []
               dims = split_mvf attributes, 'dimension'
               values = split_mvf attributes, 'dimensionvalue'
-              unit = attributes["dimensionmeasurementunit"]
+              units = split_mvf attributes, "dimensionmeasurementunit"
               dims.each_with_index do |dim, index|
-                dimensions << { "dimension" => dim, "value" => values[index], "measurementUnit" => unit }
+                dimensions << { "dimension" => dim, "value" => values[index], "measurementUnit" => units[index] }
               end
               CSXML.add_group_list xml, 'measuredPart', [ overall_data ], 'dimension', dimensions
 
