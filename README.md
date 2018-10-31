@@ -6,8 +6,9 @@ Migrate data into CollectionSpace from CSV files.
 
 ## Getting Started
 
-Ruby (2.1.x) & Rails are required. The database backend is MongoDB (3.2) and by
-default should be running on `localhost:27017`.
+The converter tool is a [Ruby on Rails](https://rubyonrails.org/) application.
+See `.ruby-version` for the recommended version of Ruby. The database backend is
+[MongoDB](https://www.mongodb.com/) (v3.2).
 
 ```bash
 bundle install
