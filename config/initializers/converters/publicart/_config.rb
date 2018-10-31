@@ -30,8 +30,8 @@ module CollectionSpace
               },
             },
             "Authorities" => {
-              "Person" => ["content_person", "inscriber", "objectproductionperson", "owner"],
-              "Organization" => ["production_org"],
+              "Person" => ["content_person", "inscriber", "objectproductionperson", "owners_person"],
+              "Organization" => ["production_org", "owners_org"],
               "Concept" => [["material", "material_ca"]],
             },
             "Relationships" => [
@@ -229,8 +229,8 @@ module CollectionSpace
              "Procedures" => {
                "Media" => {
                  "identifier_field" => "identificationNumber",
-                 "identifier" => "identification_number",
-                 "title" => "identification_number",
+                 "identifier" => "identificationnumber",
+                 "title" => "identificationnumber",
                },
              },
              "Authorities" => {
@@ -240,7 +240,7 @@ module CollectionSpace
                  "procedure1_type" => "CollectionObject",
                  "data1_field" => "relationship",
                  "procedure2_type" => "Media",
-                 "data2_field" => "identification_number",
+                 "data2_field" => "identificationnumber",
                },
              ],
            },
@@ -248,8 +248,8 @@ module CollectionSpace
              "Procedures" => {
                "Movement" => {
                  "identifier_field" => "movementReferenceNumber",
-                 "identifier" => "inventory_reference_number",
-                 "title" => "inventory_reference_number",
+                 "identifier" => "movementreferencenumber",
+                 "title" => "movementreferencenumber",
                },
              },
              "Authorities" => {
@@ -258,27 +258,9 @@ module CollectionSpace
              "Relationships" => [
                {
                   "procedure1_type" => "CollectionObject",
-                  "data1_field" => "relationship_1",
+                  "data1_field" => "relationship",
                   "procedure2_type" => "Movement",
-                  "data2_field" => "inventory_reference_number",
-               },
-               {
-                  "procedure1_type" => "CollectionObject",
-                  "data1_field" => "relationship_2",
-                  "procedure2_type" => "Movement",
-                  "data2_field" => "inventory_reference_number",
-               },
-               {
-                  "procedure1_type" => "CollectionObject",
-                  "data1_field" => "relationship_3",
-                  "procedure2_type" => "Movement",
-                  "data2_field" => "inventory_reference_number",
-               },
-               {
-                  "procedure1_type" => "LoanOut",
-                  "data1_field" => "relationship_4",
-                  "procedure2_type" => "Movement",
-                  "data2_field" => "inventory_reference_number",
+                  "data2_field" => "movementreferencenumber",
                },
              ],
            },

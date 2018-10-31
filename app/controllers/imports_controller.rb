@@ -8,16 +8,19 @@ class ImportsController < ApplicationController
     file = params[:file]
 
     if file.respond_to? :path
-      file      = file.path
-      batch     = params[:batch]
-      converter = params[:converter]
-      profile   = params[:profile]
+      config = {
+        file:      file.path,
+        batch:     params[:batch],
+        converter: params[:converter],
+        profile:   params[:profile],
+        use_previous_auth_cache: params[:use_auth_cache_file] ||= false,
+      }
 
       ::SmarterCSV.process(file, {
           chunk_size: 100,
           convert_values_to_numeric: false,
         }.merge(Rails.application.config.csv_parser_options)) do |chunk|
-        ImportJob.perform_later(file, batch, converter, profile, chunk)
+        ImportProcedureJob.perform_later(config, chunk)
       end
       flash[:notice] = "Background import job running. Check back periodically for results."
       redirect_to procedures_path

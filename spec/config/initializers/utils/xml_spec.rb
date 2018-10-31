@@ -52,9 +52,9 @@ describe "CollectionSpace" do
         '/objectProductionDateGroupList/objectProductionDateGroup[position()=2]/scalarValuesComputed').text).to eq('false')
 
       expect(doc(xml).xpath(
-        '/objectProductionDateGroupList/objectProductionDateGroup[position()=1]/dateEarliestScalarValue').text).to eq("1971-01-01 00:00:00 +0000")
+        '/objectProductionDateGroupList/objectProductionDateGroup[position()=1]/dateEarliestScalarValue').text).to eq("1971-01-01T00:00:00.000Z")
       expect(doc(xml).xpath(
-        '/objectProductionDateGroupList/objectProductionDateGroup[position()=1]/dateLatestScalarValue').text).to eq("1972-01-01 00:00:00 +0000")
+        '/objectProductionDateGroupList/objectProductionDateGroup[position()=1]/dateLatestScalarValue').text).to eq("1972-01-01T00:00:00.000Z")
     end
 
     # <publicartProductionDateGroupList>
@@ -63,8 +63,8 @@ describe "CollectionSpace" do
     #     <publicartProductionDate>
     #       <scalarValuesComputed>true</scalarValuesComputed>
     #       <dateEarliestSingleDay>1</dateEarliestSingleDay>
-    #       <dateEarliestScalarValue>1971-01-01 00:00:00 +0000</dateEarliestScalarValue>
-    #       <dateLatestScalarValue>1972-01-01 00:00:00 +0000</dateLatestScalarValue>
+    #       <dateEarliestScalarValue>1971-01-01T00:00:00.000Z</dateEarliestScalarValue>
+    #       <dateLatestScalarValue>1972-01-01T00:00:00.000Z</dateLatestScalarValue>
     #       <dateLatestDay>1</dateLatestDay>
     #     </publicartProductionDate>
     #   </publicartProductionDateGroup>

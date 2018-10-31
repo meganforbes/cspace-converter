@@ -29,8 +29,11 @@ module CspaceConverter
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
+    config.autoload_paths << Rails.root.join('lib')
+
     config.active_job.queue_adapter = :delayed_job
     config.csv_mvf_delimiter        = ";" # used to split authority fields (procedures handled in module)
+    config.csv_termpart_delimiter   = "::" # used to split an authority term into parts (procedures handled in module)
     config.csv_parser_options       = { downcase_header: true }
     # for parser_options see: https://github.com/tilo/smarter_csv#documentation
     # config.csv_parser_options       = { keep_original_headers: true }

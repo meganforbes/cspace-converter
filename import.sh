@@ -1,9 +1,9 @@
 #!/bin/bash
 
-export CS_CONV_BATCH=${1:-ppsobjects1}
-export CS_CONV_TYPE=${2:-PastPerfect}
-export CS_CONV_PROFILE=${3:-ppsobjectsdata}
-export CS_CONV_FILE=${4:-ppsobjectsdata}
+export CS_CONV_FILE=${1:-ppsobjectsdata.csv}
+export CS_CONV_BATCH=${2:-ppsobjects1}
+export CS_CONV_MODULE=${3:-PastPerfect}
+export CS_CONV_PROFILE=${4:-ppsobjectsdata}
 
 ./bin/rake \
-  db:import:data[$CS_CONV_BATCH,$CS_CONV_TYPE,$CS_CONV_PROFILE,db/data/${CS_CONV_FILE}.csv]
+  db:import:data[db/data/${CS_CONV_FILE},$CS_CONV_BATCH,$CS_CONV_MODULE,$CS_CONV_PROFILE]

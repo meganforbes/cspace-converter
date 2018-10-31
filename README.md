@@ -9,7 +9,7 @@ Migrate data into CollectionSpace from CSV files.
 Ruby (2.1.x) & Rails are required. The database backend is MongoDB (3.2) and by
 default should be running on `localhost:27017`.
 
-```
+```bash
 bundle install
 ```
 
@@ -22,7 +22,7 @@ Before the *cspace-converter* tool can import CSV data into CollectionSpace, it 
 
 Create a data directory and add the CSV files. For example:
 
-```
+```txt
 db/data/
 ├── cataloging.csv # custom CSV data file
 └── ppsobjectsdata.csv # Past Perfect objects data file
@@ -32,11 +32,11 @@ db/data/
 
 If installed locally, you can start the MongoDB server with this command:
 
-```
+```bash
 mongod
 ```
 
-```
+```bash
 # If you don't want to install and run Mongo DB directly, you can
 # use a Docker image to run MongoDB -see https://hub.docker.com/r/_/mongo/
 
@@ -50,26 +50,33 @@ connection: https://docs.mongodb.com/v3.0/tutorial/getting-started-with-the-mong
 
 The general format for the command is:
 
-```
-./import.sh [CS_CONV_BATCH] [CS_CONV_TYPE] [CS_CONV_PROFILE] [CS_CONV_FILE]
+```bash
+./import.sh [CS_CONV_FILE] [CS_CONV_BATCH] [CS_CONV_MODULE] [CS_CONV_PROFILE]
 ```
 
+- `CS_CONV_FILE`: filename (in db/data directory)
 - `CS_CONV_BATCH`: batch name
-- `CS_CONV_TYPE`: converter type (module)
+- `CS_CONV_MODULE`: converter module
 - `CS_CONV_PROFILE`: profile from type
-- `CS_CONV_FILE`: filename (without extension)
 
 For example:
 
-```
-./import.sh pp_accession1 PastPerfect accessions PPSdata_accession
-./import.sh pp_objects1 PastPerfect objects PPSdata_objects
+```bash
+# procedure / object
+./import.sh PPSdata_accession.csv pp_accession1 PastPerfect accessions
+./import.sh PPSdata_objects.csv pp_objects1 PastPerfect objects
+
+# NOTE: for media csv blob_uri field will attempt to create the image
+./import.sh SampleMediaUrl.csv media1 Vanilla media
+
+# authority
+bundle exec rake db:import:authorities[db/data/SamplePerson.csv,person1,Vanilla,Person]
 ```
 
 For these commands to actually work you will need the data (CSV) files in `db/data`. Here's the command using the supplied sample CSV file:
 
-```
-./import.sh cataloging Vanilla cataloging SampleCatalogingData
+```bash
+./import.sh SampleCatalogingData.csv cataloging Vanilla cataloging
 ```
 
 ## Import Staged Data from MongoDB to CollectionSpace
@@ -79,8 +86,9 @@ For these commands to actually work you will need the data (CSV) files in `db/da
 There is a default `.env` file that provides example configuration. Override it
 by creating a `.env.local` file with custom settings.
 
-```
+```bash
 # DEVELOPMENT .env
+export CSPACE_CONVERTER_DB_HOST=127.0.0.1
 export CSPACE_CONVERTER_BASE_URI=http://localhost:8180/cspace-services
 export CSPACE_CONVERTER_DOMAIN=core.collectionspace.org
 export CSPACE_CONVERTER_USERNAME=admin@core.collectionspace.org
@@ -97,35 +105,43 @@ For local testing only: [docker-collectionspace](https://github.com/lyrasis/dock
 
 **Starting/Running the cspace-converter tool UI server**
 
-```
+```bash
 ./bin/rails s
 ```
 Once started, visit http://localhost:3000 with a web browser.
 
 Next, to execute "transfer" jobs you'll eventually create using the UI server, run this command:
 
-```
+```bash
 ./bin/rake jobs:work
 ```
 
 **Using the console**
 
-```
-./bin/rails c
+```ruby
+# ./bin/rails c
 p = DataObject.first
 puts p.to_procedure_xml("CollectionObject")
 ```
 
+**Clearing out data**
+
+```bash
+bundle exec rake db:nuke
+```
+
+Or use 'Nuke' in the ui. Warning: this deletes all data including failed jobs.
+
 ## (Optional) Test environment
 
-```
+```bash
 docker-compose build
 docker-compose up
 
 # to run commands
 docker exec -it converter ./bin/rails c
 docker exec -it converter \
-  ./import.sh cataloging Vanilla cataloging SampleCatalogingData
+  ./import.sh SampleCatalogingData.csv cataloging Vanilla cataloging
 docker exec -it converter ./bin/rake db:nuke
 ```
 
@@ -134,7 +150,7 @@ docker exec -it converter ./bin/rake db:nuke
 The converter can be easily deployed to [Amazon Elastic Beanstalk](https://aws.amazon.com/documentation/elastic-beanstalk/)
 (account required).
 
-```
+```bash
 cp Dockerrun.aws-example.json Dockerrun.aws.json
 ```
 

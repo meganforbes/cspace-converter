@@ -11,11 +11,11 @@ Process:
 ```
 ./bin/rake db:nuke
 
-./import.sh pp_accession1 PastPerfect accessions PPSdata_accession
-./import.sh pp_archives1 PastPerfect archives PPSdata_archives
-./import.sh pp_library1 PastPerfect library PPSdata_library
-./import.sh pp_objects1 PastPerfect objects PPSdata_objects
-./import.sh pp_photos1 PastPerfect photos PPSdata_photos
+./import.sh PPSdata_accession.csv pp_accession1 PastPerfect accessions
+./import.sh PPSdata_archives.csv pp_archives1 PastPerfect archives
+./import.sh PPSdata_library.csv pp_library1 PastPerfect library
+./import.sh PPSdata_objects.csv pp_objects1 PastPerfect objects
+./import.sh PPSdata_photos.csv pp_photos1 PastPerfect photos
 
 # procedures
 ./bin/rake remote:action:transfer[Acquisition,all]

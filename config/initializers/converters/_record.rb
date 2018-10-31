@@ -13,7 +13,7 @@ module CollectionSpace
             path: "collectionobjects", schema: "collectionobjects"
           },
           "Concept" => {
-            path: "conceptauthorities/urn:cspace:name(#{subtype})/items", schema: "concepts"
+            id: "conceptauthorities", path: "conceptauthorities/urn:cspace:name(#{subtype})/items", schema: "concepts"
           },
           "ConditionCheck" => {
             path: "conditionchecks", schema: "conditionchecks"
@@ -37,7 +37,7 @@ module CollectionSpace
             path: "loansout", schema: "loansout"
           },
           "Location" => {
-            path: "locationauthorities/urn:cspace:name(#{subtype})/items", schema: "locations"
+              id: "locationauthorities", path: "locationauthorities/urn:cspace:name(#{subtype})/items", schema: "locations"
           },
           "Media" => {
             path: "media", schema: "media"
@@ -49,13 +49,13 @@ module CollectionSpace
             path: "objectexit", schema: "objectexit"
           },
           "Organization" => {
-            path: "orgauthorities/urn:cspace:name(#{subtype})/items", schema: "organizations"
+            id: "orgauthorities", path: "orgauthorities/urn:cspace:name(#{subtype})/items", schema: "organizations"
           },
           "Person" => {
-            path: "personauthorities/urn:cspace:name(#{subtype})/items", schema: "persons"
+              id: "personauthorities", path: "personauthorities/urn:cspace:name(#{subtype})/items", schema: "persons"
           },
           "Place" => {
-            path: "placeauthorities/urn:cspace:name(#{subtype})/items", schema: "places"
+              id: "placeauthorities", path: "placeauthorities/urn:cspace:name(#{subtype})/items", schema: "places"
           },
           "Relationship" => {
             path: "relations", schema: "relations"
@@ -70,7 +70,7 @@ module CollectionSpace
       end
 
       def self.validate_authority!(authority)
-        unless [ "Concept", "Location", "Material", "Person", "Place", "Organization", "Taxon", "Work" ].include? authority
+        unless [ "Concept", "Location", "Material", "Materials", "Person", "Place", "Organization", "Taxon", "Work" ].include? authority
           raise "Invalid authority #{authority}"
         end
       end
@@ -88,6 +88,15 @@ module CollectionSpace
 
         def initialize(attributes)
           @attributes = attributes
+          @term_short_id = nil
+        end
+
+        def term_short_id
+          @term_short_id
+        end
+
+        def term_short_id=(id)
+          @term_short_id = id
         end
 
         # default implementation used by authorities
@@ -162,6 +171,10 @@ module CollectionSpace
       end
 
       class Concept < Record
+
+        def self.get_service_path
+
+        end
 
         def run(wrapper: "common")
           common = wrapper == "common" ? true : false

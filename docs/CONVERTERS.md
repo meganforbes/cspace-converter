@@ -67,7 +67,7 @@ This would indicate a single converter "profile" being used to handle
 a **single** CSV document. Note: one profile per CSV file, but one
 profile can handle multiple record types per CSV.
 
-If we have multiple CSV files to work with we'll need multiple 
+If we have multiple CSV files to work with we'll need multiple
 "profiles".
 
 ```ruby
@@ -147,14 +147,14 @@ be related.
 ## Running a converter
 
 ```bash
-./import.sh mymuseum1 MyMuseum mymuseum mymuseum_data
+./import.sh mymuseum_data.csv mymuseum1 MyMuseum mymuseum
 ```
 
 The arguments correspond to:
 
+- csv name
 - batch name (arbitrary)
 - converter type
 - converter profile
-- csv name (without extension)
 
 ---

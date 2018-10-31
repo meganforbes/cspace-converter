@@ -13,7 +13,7 @@ Process:
 ./bin/rake db:nuke
 
 # stage cataloging records to Mongo db
-./import.sh cataloging PublicArt cataloging 100_artworks
+./import.sh 100_artworks.csv cataloging PublicArt cataloging
 
 # transfer/import cataloging records to CollectionSpace
 ./bin/rake remote:action:transfer[CollectionObject,all]

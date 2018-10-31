@@ -4,13 +4,15 @@ class DataObject
   include Mongoid::Attributes::Dynamic
 
   has_many :collection_space_objects, autosave: true, dependent: :destroy
-  validates_presence_of :converter_type
+  validates_presence_of :converter_module
   validates_presence_of :converter_profile
+  validates_presence_of :import_type # Procedure or Authority
   validate :type_and_profile_exist
 
+  field :import_type,       type: String
   field :import_file,       type: String
   field :import_batch,      type: String
-  field :converter_type,    type: String
+  field :converter_module,    type: String
   field :converter_profile, type: String
 
   # "Person" => ["recby", "recfrom"]
@@ -30,7 +32,13 @@ class DataObject
         # attempt to split field in case it is multi-valued
         term_display_name.split(self.delimiter).map(&:strip).each do |name|
           begin
+            service = CollectionSpace::Converter::Default.service authority, authority_subtype
+            service_id = service[:id]
+            identifier = AuthCache::lookup_authority_term_id service_id, authority_subtype, name
+            next if identifier != nil
+
             identifier = CSIDF.short_identifier(name)
+
             # pre-filter authorities as we only want to create the first occurrence
             # and not fail CollectionSpaceObject validation for unique_identifier
             next if CollectionSpaceObject.has_authority?(identifier)
@@ -86,12 +94,12 @@ class DataObject
 
   # i.e. CollectionSpace::Converter::PBM
   def converter_class
-    "CollectionSpace::Converter::#{self.converter_type}".constantize
+    "CollectionSpace::Converter::#{self.converter_module}".constantize
   end
 
   # i.e. PastPerfect, PBM etc.
-  def converter_type
-    self.read_attribute(:converter_type)
+  def converter_module
+    self.read_attribute(:converter_module)
   end
 
   # i.e. acquisition
@@ -107,9 +115,14 @@ class DataObject
     Rails.application.config.csv_mvf_delimiter
   end
 
+  # i.e. CollectionSpace::Converter::Vanilla::VanillaMaterials
+  def full_authority_class(authority)
+    "#{self.converter_class.to_s}::#{self.converter_module}#{authority}".constantize
+  end
+
   # i.e. CollectionSpace::Converter::PBM::PBMCollectionObject
   def procedure_class(procedure)
-    "#{self.converter_class.to_s}::#{self.converter_type}#{procedure}".constantize
+    "#{self.converter_class.to_s}::#{self.converter_module}#{procedure}".constantize
   end
 
   def profile
@@ -117,7 +130,9 @@ class DataObject
       profiles          = self.converter_class.registered_profiles
       converter_profile = self.converter_profile
       @profile          = profiles[converter_profile]
-      raise "Invalid profile #{converter_profile} for #{profiles}" unless profile
+      if converter_profile != 'authority'
+        raise "Invalid profile #{converter_profile} for #{profiles}" unless @profile
+      end
     end
     @profile
   end
@@ -126,19 +141,28 @@ class DataObject
     "#{self.default_converter_class.to_s}::Relationship".constantize
   end
 
-  def set_attributes(attributes = {})
+  def set_attributes(attributes = {}, row_number = nil)
     attributes.each do |attribute, value|
       self.write_attribute attribute, value
     end
+    self.write_attribute "row_number", row_number
   end
 
-  def to_auth_xml(authority, term_display_name)
+  def to_auth_xml(authority, term_display_name = nil, term_short_id = nil)
     self.default_converter_class.validate_authority!(authority)
-    converter = self.authority_class(authority).new({
-      "shortIdentifier" => CSIDF.short_identifier(term_display_name),
-      "termDisplayName" => term_display_name,
-      "termType"        => "#{CSIDF.authority_term_type(authority)}Term",
-    })
+    if self.type == 'Procedure'
+      raise "No termDisplayName for procedure authority (#{authority})" unless term_display_name
+      converter = self.authority_class(authority).new({
+        "shortIdentifier" => term_short_id != nil ? term_short_id : CSIDF.short_identifier(term_display_name),
+        "termDisplayName" => term_display_name,
+        "termType"        => "#{CSIDF.authority_term_type(authority)}Term",
+      })
+    elsif self.type == 'Authority'
+      converter = self.full_authority_class(authority).new(self.to_hash)
+      converter.term_short_id=(term_short_id)
+    else
+      raise "Unrecognized type for data object: #{self.type}"
+    end
     # scary hack for namespaces
     hack_namespaces converter.convert
   end
@@ -160,26 +184,33 @@ class DataObject
     Hash[self.attributes]
   end
 
-  private
+  def type
+    self.read_attribute(:import_type)
+  end
 
-  def add_authority(authority, authority_subtype, name)
-    identifier = CSIDF.short_identifier(name)
+  def add_authority(authority, authority_subtype, name, term_id = nil)
+    identifier = term_id
+    if identifier == nil
+      identifier = CSIDF.short_identifier(name)
+    end
 
     data = {}
     # check for existence or update
+    data[:import_batch]     = self.import_batch
     data[:category]         = "Authority"
     data[:type]             = authority
     data[:subtype]          = authority_subtype
     data[:identifier_field] = 'shortIdentifier'
     data[:identifier]       = identifier
     data[:title]            = name
-    data[:content]          = self.to_auth_xml(authority, name)
+    data[:content]          = self.to_auth_xml(authority, name, identifier)
     self.collection_space_objects.build data
   end
 
   def add_procedure(procedure, attributes)
     data = {}
     # check for existence or update
+    data[:import_batch]     = self.import_batch
     data[:category]         = "Procedure"
     data[:type]             = procedure
     data[:subtype]          = ''
@@ -219,6 +250,7 @@ class DataObject
     to_prefix   = to_doc_type[0..2]
 
     data = {}
+    data[:import_batch]     = self.import_batch
     data[:category]         = "Relationship"
     data[:type]             = "Relationship"
     data[:subtype]             = ""

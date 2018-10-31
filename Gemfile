@@ -5,7 +5,7 @@ gem 'rails', '4.2.6'
 gem 'mongoid', '~> 5.1.0'
 gem 'delayed_job_mongoid'
 gem 'smarter_csv'
-gem "collectionspace-client"
+gem "collectionspace-client", '0.1.4'
 gem 'dbf'
 gem 'whenever'
 gem 'rake'

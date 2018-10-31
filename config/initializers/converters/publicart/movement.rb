@@ -7,12 +7,12 @@ module CollectionSpace
 
         def convert
           run do |xml|
-            CSXML.add xml, 'movementReferenceNumber', attributes["inventory_reference_number"]
+            CSXML.add xml, 'movementReferenceNumber', attributes["movementreferencenumber"]
 
             # location, currentLocation
-            current_location = attributes['current_location']
+            current_location = attributes['currentlocation']
             if current_location
-              CSXML::Helpers.add_location xml, 'currentLocation', current_location
+              CSXML::Helpers.add_place xml, 'currentLocation', current_location
             end
             
             CSXML.add xml, 'locationDate', attributes["location_date"]
@@ -21,9 +21,10 @@ module CollectionSpace
 
             CSXML.add xml, 'reasonForMove', attributes["reason_for_move"]
 
-            CSXML.add xml, 'movementNote', scrub_fields([attributes["movement_information_note"]])
+            CSXML.add xml, 'movementNote', scrub_fields([attributes["movementnote"]])
 
-        end
+            CSXML.add xml, 'currentLocationNote', scrub_fields([attributes["currentlocationnote"]])
+          end
 
         end
       end

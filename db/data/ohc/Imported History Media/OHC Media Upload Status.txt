@@ -1,0 +1,64 @@
+remillet@Richards-iPro cspace-converter (WESTAF-1) $ ./import.sh ohc/H_Media_Images05092018.csv media_batch OHC media > media_stage.out
+Running via Spring preloader in process 75584
+remillet@Richards-iPro cspace-converter (WESTAF-1) $ ./bin/rake remote:action:transfer[Media,media_batch]
+Running via Spring preloader in process 76725
+Starting remote transfer job at 2018-09-05 16:05:31 -0700.
+I, [2018-09-05T16:05:31.334334 #76725]  INFO -- : Enqueued TransferJob (Job ID: 32021be6-2c2f-4e8e-bd01-a3c7123e7579) to DelayedJob(default) with arguments: "transfer", "Media", "media_batch"
+I, [2018-09-05T16:05:31.338380 #76725]  INFO -- : 2018-09-05T16:05:31-0700: [Worker(host:Richards-iPro.hitronhub.home pid:76725)] Job ActiveJob::QueueAdapters::DelayedJobAdapter::JobWrapper (id=5b90613b86fb412bb50bec97) RUNNING
+I, [2018-09-05T16:05:31.346976 #76725]  INFO -- : Performing TransferJob from DelayedJob(default) with arguments: "transfer", "Media", "media_batch"
+E, [2018-09-05T16:05:55.940763 #76725] ERROR -- : Failed to transfer #<CollectionSpaceObject _id: 5b90553586fb4127400bec9b, created_at: 2018-09-05 22:14:13 UTC, updated_at: 2018-09-05 22:14:13 UTC, data_object_id: BSON::ObjectId('5b90553586fb4127400bec9a'), category: "Procedure", type: "Media", subtype: "", identifier_field: "identificationNumber", identifier: "SH200190571-2", title: "SH200190571-2", content: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<document name=\"media\">\n  <ns2:media_common xmlns:ns2=\"http://collectionspace.org/services/media\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\n    <ns2:identificationNumber>SH200190571-2</ns2:identificationNumber>\n    <ns2:title/>\n    <ns2:externalUrl/>\n    <ns2:description/>\n  </ns2:media_common>\n</document>\n", csid: nil, uri: nil>
+E, [2018-09-05T16:06:09.942281 #76725] ERROR -- : Failed to transfer #<CollectionSpaceObject _id: 5b90553586fb4127400becbb, created_at: 2018-09-05 22:14:13 UTC, updated_at: 2018-09-05 22:14:13 UTC, data_object_id: BSON::ObjectId('5b90553586fb4127400becba'), category: "Procedure", type: "Media", subtype: "", identifier_field: "identificationNumber", identifier: "SH200186701", title: "SH200186701", content: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<document name=\"media\">\n  <ns2:media_common xmlns:ns2=\"http://collectionspace.org/services/media\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\n    <ns2:identificationNumber>SH200186701</ns2:identificationNumber>\n    <ns2:title/>\n    <ns2:externalUrl/>\n    <ns2:description/>\n  </ns2:media_common>\n</document>\n", csid: nil, uri: nil>
+E, [2018-09-05T17:47:20.077522 #76725] ERROR -- : Failed to transfer #<CollectionSpaceObject _id: 5b90558c86fb4127400c1c27, created_at: 2018-09-05 22:15:40 UTC, updated_at: 2018-09-05 22:15:40 UTC, data_object_id: BSON::ObjectId('5b90558c86fb4127400c1c26'), category: "Procedure", type: "Media", subtype: "", identifier_field: "identificationNumber", identifier: "SH100144778-2", title: "SH100144778-2", content: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<document name=\"media\">\n  <ns2:media_common xmlns:ns2=\"http://collectionspace.org/services/media\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\n    <ns2:identificationNumber>SH100144778-2</ns2:identificationNumber>\n    <ns2:title/>\n    <ns2:externalUrl/>\n    <ns2:description/>\n  </ns2:media_common>\n</document>\n", csid: nil, uri: nil>
+E, [2018-09-05T20:05:31.732505 #76725] ERROR -- : Failed to transfer #<CollectionSpaceObject _id: 5b90562886fb4127400c4cd3, created_at: 2018-09-05 22:18:16 UTC, updated_at: 2018-09-05 22:18:16 UTC, data_object_id: BSON::ObjectId('5b90562886fb4127400c4cd2'), category: "Procedure", type: "Media", subtype: "", identifier_field: "identificationNumber", identifier: "SH200356939", title: "SH200356939", content: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<document name=\"media\">\n  <ns2:media_common xmlns:ns2=\"http://collectionspace.org/services/media\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\n    <ns2:identificationNumber>SH200356939</ns2:identificationNumber>\n    <ns2:title/>\n    <ns2:externalUrl/>\n    <ns2:description/>\n  </ns2:media_common>\n</document>\n", csid: nil, uri: nil>
+E, [2018-09-06T03:45:10.589229 #76725] ERROR -- : Failed to transfer #<CollectionSpaceObject _id: 5b90591086fb4127400cc21e, created_at: 2018-09-05 22:30:40 UTC, updated_at: 2018-09-05 22:30:40 UTC, data_object_id: BSON::ObjectId('5b90591086fb4127400cc21d'), category: "Procedure", type: "Media", subtype: "", identifier_field: "identificationNumber", identifier: "SH200195049-2", title: "SH200195049-2", content: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<document name=\"media\">\n  <ns2:media_common xmlns:ns2=\"http://collectionspace.org/services/media\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\n    <ns2:identificationNumber>SH200195049-2</ns2:identificationNumber>\n    <ns2:title/>\n    <ns2:externalUrl/>\n    <ns2:description/>\n  </ns2:media_common>\n</document>\n", csid: nil, uri: nil>
+E, [2018-09-06T12:13:11.742821 #76725] ERROR -- : Failed to transfer #<CollectionSpaceObject _id: 5b905d1a86fb4127400d2299, created_at: 2018-09-05 22:47:54 UTC, updated_at: 2018-09-05 22:47:54 UTC, data_object_id: BSON::ObjectId('5b905d1a86fb4127400d2298'), category: "Procedure", type: "Media", subtype: "", identifier_field: "identificationNumber", identifier: "SH200367708-2", title: "SH200367708-2", content: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<document name=\"media\">\n  <ns2:media_common xmlns:ns2=\"http://collectionspace.org/services/media\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\n    <ns2:identificationNumber>SH200367708-2</ns2:identificationNumber>\n    <ns2:title/>\n    <ns2:externalUrl/>\n    <ns2:description/>\n  </ns2:media_common>\n</document>\n", csid: nil, uri: nil>
+E, [2018-09-06T12:29:42.366697 #76725] ERROR -- : Failed to transfer #<CollectionSpaceObject _id: 5b905d3386fb4127400d249e, created_at: 2018-09-05 22:48:19 UTC, updated_at: 2018-09-05 22:48:19 UTC, data_object_id: BSON::ObjectId('5b905d3386fb4127400d249d'), category: "Procedure", type: "Media", subtype: "", identifier_field: "identificationNumber", identifier: "SH200366022", title: "SH200366022", content: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<document name=\"media\">\n  <ns2:media_common xmlns:ns2=\"http://collectionspace.org/services/media\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\n    <ns2:identificationNumber>SH200366022</ns2:identificationNumber>\n    <ns2:title/>\n    <ns2:externalUrl/>\n    <ns2:description/>\n  </ns2:media_common>\n</document>\n", csid: nil, uri: nil>
+I, [2018-09-06T14:48:14.435562 #76725]  INFO -- : Performed TransferJob from DelayedJob(default) in 81763087.3ms
+I, [2018-09-06T14:48:14.437276 #76725]  INFO -- : 2018-09-06T14:48:14-0700: [Worker(host:Richards-iPro.hitronhub.home pid:76725)] Job ActiveJob::QueueAdapters::DelayedJobAdapter::JobWrapper (id=5b90613b86fb412bb50bec97) COMPLETED after 81760.9373
+Remote transfer job completed at 2018-09-06 14:48:14 -0700.
+remillet@Richards-iPro cspace-converter (WESTAF-1) $ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

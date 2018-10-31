@@ -1,3 +1,5 @@
+require 'uri'
+
 class RemoteActionService
 
   attr_reader :object, :service
@@ -26,7 +28,12 @@ class RemoteActionService
   def remote_transfer
     transferred = false
     begin
-      response = $collectionspace_client.post(@service[:path], @object.content)
+      blob_uri = @object.data_object.to_hash.fetch('blob_uri', nil)
+      if blob_uri.blank? == false
+        blob_uri = URI.encode blob_uri
+      end
+      params   = (blob_uri and @object.type == 'Media') ? { query: { 'blobUri' => blob_uri } } : {}
+      response = $collectionspace_client.post(@service[:path], @object.content, params)
       if response.status_code == 201
         # http://localhost:1980/cspace-services/collectionobjects/7e5abd18-5aec-4b7f-a10c
         csid = response.headers["Location"].split("/")[-1]

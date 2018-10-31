@@ -3,182 +3,223 @@ module CollectionSpace
     module PublicArt
       include Default
 
+      COMMON_ERA_URN = "urn:cspace:publicart.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'"
+
       class PublicArtCollectionObject < CollectionObject
 
         def convert
-          run do |xml|
-            # objectNumber
-            CSXML.add xml, 'objectNumber', attributes["objectnumber"]
+          run(wrapper: "document") do |xml|
 
-            # numberOfObjects
-            CSXML.add xml, 'numberOfObjects', attributes["number_of_objects"]
+            xml.send(
+                "ns2:collectionobjects_common",
+                "xmlns:ns2" => "http://collectionspace.org/services/collectionobject",
+                "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
+            ) do
+              # applying namespace breaks import
+              xml.parent.namespace = nil
+              # objectNumber
+              CSXML.add xml, 'objectNumber', attributes["objectnumber"]
 
-            #Title group list, need to check for language to avoid downcasing empty strings
-            if attributes["title_translation"]
-              CSXML.add_group_list xml, 'title', [{
-              "title" => attributes["title"],
-              "titleLanguage" => CSXML::Helpers.get_vocab_urn('languages', attributes["title_language"]),
-              }], 'titleTranslation', [{
-                "titleTranslation" => attributes["title_translation"],
-                "titleTranslationLanguage" => CSXML::Helpers.get_vocab_urn('languages', attributes["title_translation_language"])
+              # numberOfObjects
+              CSXML.add xml, 'numberOfObjects', attributes["numberOfObjects"]
+
+              CSXML.add_repeat xml, 'briefDescriptions', [{
+                  "briefDescription" => scrub_fields([attributes["briefdescription"]])
               }]
-            elsif attributes["title_language"]
-               CSXML.add_group_list xml, 'title', [{
-              "title" => attributes["title"],
-              "titleLanguage" => CSXML::Helpers.get_vocab_urn('languages', attributes["title_language"]),
+
+              CSXML.add xml, 'recordStatus', attributes["recordStatus"]
+
+              # objectNameList
+              namegroups = []
+              objectnames = split_mvf attributes, 'objectname'
+              objectnamenotes = split_mvf attributes, 'objectnamenotes'
+              objectnames.each_with_index do |name, index|
+                namegroups << { "objectName" => name, "objectNameNote" => objectnamenotes[index] }
+              end
+              CSXML.add_group_list xml, 'objectName', namegroups, include_group_prefix:false
+
+              # Title group list
+              title_groups = []
+              titles = split_mvf attributes, 'title'
+              title_types = split_mvf attributes, 'titletype'
+              titles.each_with_index do |title, index|
+                title_groups << { "title" => title, "titleType" => title_types[index] }
+              end
+              CSXML.add_group_list xml, 'title', title_groups, include_group_prefix:true
+
+              # materialGroupList
+              mgs = []
+              materials = split_mvf attributes, 'material'
+              materials.each do |m|
+                mgs << { "material" => CSXML::Helpers.get_authority_urn('conceptauthorities', 'material_ca', m) }
+                #mgs << { "material" => m }
+              end
+              CSXML.add_group_list xml, 'material', mgs
+
+              # measuredPartGroupList
+              overall_data = {
+                  "measuredPart" => attributes["dimensionpart"],
+                  "dimensionSummary" => attributes["dimensionsummary"],
+              }
+              dimensions = []
+              dims = split_mvf attributes, 'dimension'
+              values = split_mvf attributes, 'dimensionvalue'
+              units = split_mvf attributes, "dimensionmeasurementunit"
+              dims.each_with_index do |dim, index|
+                dimensions << { "dimension" => dim, "value" => values[index], "measurementUnit" => units[index] }
+              end
+              CSXML.add_group_list xml, 'measuredPart', [ overall_data ], 'dimension', dimensions
+
+              # textualInscriptionGroupList
+              CSXML.add_group_list xml, 'textualInscription', [{
+                inscriptionContentInscriber => CSXML::Helpers.get_authority_urn('personauthorities', 'person', attributes["inscriber"]),
+                inscriptionContentMethod => attributes["method"],
+              }] if attributes["inscriber"]
+
+              # objectProductionOrganizationGroupList
+              CSXML.add_group_list xml, 'objectProductionOrganization', [{
+                "objectProductionOrganization" => CSXML::Helpers.get_authority_urn('orgauthorities', 'organization', attributes["production_org"]),
+                "objectProductionOrganizationRole" => attributes["organization_role"],
+              }] if attributes["production_org"]
+
+              # objectProductionPeopleGroupList
+              CSXML.add_group_list xml, 'objectProductionPeople', [{
+                "objectProductionPeople" => attributes["production_people"]
+              }] if attributes["production_people"]
+
+              # objectProductionPlaceGroupList
+              CSXML.add_group_list xml, 'objectProductionPlace', [{
+                "objectProductionPlace" => attributes["production_place"]
+              }] if attributes["production_place"]
+
+              # owners (two CSV columns, owners_person and owners_org)
+              owners_urns = []
+              owners = split_mvf attributes, 'owners_person'
+              owners.each do |owner|
+                owners_urns << { "owner" => CSXML::Helpers.get_authority_urn('personauthorities', 'person', owner) }
+              end
+              owners = split_mvf attributes, 'owners_org'
+              owners.each do |owner|
+                owners_urns << { "owner" => CSXML::Helpers.get_authority_urn('orgauthorities', 'organization', owner) }
+              end
+              CSXML.add_repeat(xml, 'owners', owners_urns) if owners_urns.empty? == false
+
+              # techniqueGroupList
+              tgs = []
+              techniques = split_mvf attributes, 'technique'
+              techniques.each do |t|
+                tgs << { "technique" => t }
+              end
+              CSXML.add_group_list xml, 'technique', tgs
+
+              # objectStatusList
+              CSXML.add_list xml, 'objectStatus', [{
+                "objectStatus" => attributes["object_status"]
+              }] if attributes["object_status"]
+
+              # fieldColEventNames
+              CSXML.add_repeat xml, 'fieldColEventNames', [{
+                "fieldColEventName" => attributes["field_collection_event_name"]
               }]
-            else
-              CSXML.add_group_list xml, 'title', [{
-              "title" => attributes["title"],
-              }]
             end
 
-            CSXML.add_list xml, 'objectName', [{
-              "objectName" => attributes["objectname"],
-            }], 'Group' if attributes["objectname"]
+            #
+            # Public Art extension fields
+            #
+            xml.send(
+                "ns2:collectionobjects_publicart",
+                "xmlns:ns2" => "http://collectionspace.org/services/collectionobject/domain/collectionobject",
+                "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
+            ) do
+              # applying namespace breaks import
+              xml.parent.namespace = nil
 
+              # Example XML payload
+              #
+              # Column 'objectProductionDate' should map to the <dateDisplayDate> element
+              # Column 'objectProductionDateType' should map to the <publicartProductionDateType> element
+              #
+              # <publicartProductionDateGroupList>
+              #     <publicartProductionDateGroup>
+              #         <publicartProductionDate>
+              #             <dateDisplayDate>7/4/1776</dateDisplayDate>
+              #         </publicartProductionDate>
+              #         <publicartProductionDateType>
+              #             urn:cspace:publicart.collectionspace.org:vocabularies:name(proddatetype):item:name(commission)'commission'
+              #         </publicartProductionDateType>
+              #     </publicartProductionDateGroup>
+              # </publicartProductionDateGroupList>
+              #
+              proddategroups = []
+              proddates = split_mvf attributes, 'objectproductiondate'
+              proddatetypes = split_mvf attributes, 'objectproductiondatetype'
+              proddates.each_with_index do |date, index|
+                proddategroups << { "publicartProductionDate" => date, "publicartProductionDateType" => proddatetypes[index] }
+              end
 
-            CSXML.add_repeat xml, 'briefDescriptions', [{
-              "briefDescription" => scrub_fields([attributes["briefdescription"]])
-            }]
+              xml.send("publicartProductionDateGroupList".to_sym) {
+                proddategroups.each do |element|
+                  xml.send("publicartProductionDateGroup".to_sym) {
+                    if !element["publicartProductionDate"].blank?
+                      structured_date = CSDTP::parse element["publicartProductionDate"] if element["publicartProductionDate"]
+                      if !structured_date.blank?
+                        xml.send("publicartProductionDate".to_sym) {
+                          xml.send("scalarValuesComputed".to_sym, "true")
+                          xml.send("dateDisplayDate".to_sym, structured_date.display_date)
 
-            # responsibleDepartments
-            CSXML.add_repeat xml, 'responsibleDepartments', [{
-              "responsibleDepartment" => attributes["responsible_department"]
-            }] if attributes["responsible_department"]
+                          xml.send("dateEarliestSingleDay".to_sym, structured_date.earliest_day)
+                          xml.send("dateEarliestSingleMonth".to_sym, structured_date.earliest_month)
+                          xml.send("dateEarliestSingleYear".to_sym, structured_date.earliest_year)
+                          xml.send("dateEarliestScalarValue".to_sym, structured_date.earliest_scalar)
+                          xml.send("dateEarliestSingleEra".to_sym, COMMON_ERA_URN)
 
-            if attributes["collection"]
-              CSXML.add xml, 'collection', attributes["collection"]
+                          xml.send("dateLatestDay".to_sym, structured_date.latest_day)
+                          xml.send("dateLatestMonth".to_sym, structured_date.latest_month)
+                          xml.send("dateLatestYear".to_sym, structured_date.latest_year)
+                          xml.send("dateLatestScalarValue".to_sym, structured_date.latest_scalar)
+                          xml.send("dateLatestEra".to_sym, COMMON_ERA_URN)
+                        }
+                      else
+                        xml.send("publicartProductionDate".to_sym) {
+                          xml.send("dateDisplayDate".to_sym, element["publicartProductionDate"])
+                        }
+                      end
+                    end
+                    xml.send("publicartProductionDateType".to_sym, CSXML::Helpers.get_vocab_urn('proddatetype', element["publicartProductionDateType"]))
+                  }
+                end
+              }
+
+              # Collection
+              CSXML.add_repeat xml, 'publicartCollections', [{
+                  "publicartCollection" => CSXML::Helpers.get_authority_urn('orgauthorities', 'organization', attributes["collection"]),
+              }] if attributes["collection"]
+
+              # publicartProductionPersonGroupList
+              prodpersongroups = []
+
+              prodpersons_urns = []
+              prodpersons = split_mvf attributes, 'objectproductionperson'
+              prodpersons.each do |person, index|
+                prodpersons_urns << CSXML::Helpers.get_authority_urn('personauthorities', 'person', person)
+              end
+
+              role_urns = []
+              roles = split_mvf attributes, 'objectproductionpersonrole'
+              roles.each do |role, index|
+                role_urns << CSXML::Helpers.get_vocab_urn('prodpersonrole', role)
+              end
+              types = split_mvf attributes, 'objectproductionpersontype'
+
+              # Build the multi-valued group
+              prodpersons_urns.each_with_index do |person_urn, index|
+                prodpersongroups << { "publicartProductionPerson" => person_urn, "publicartProductionPersonRole" => role_urns[index], "publicartProductionPersonType" => types[index] }
+              end
+              CSXML.add_group_list xml, 'publicartProductionPerson', prodpersongroups
             end
-
-            CSXML.add xml, 'recordStatus', attributes["record_status"]
-
-            CSXML.add_repeat xml, 'comments', [{
-              "comment_" => scrub_fields([attributes["comments"]])
-            }]
-
-            # measuredPartGroupList
-            overall_data = {
-              "measuredPart" => attributes["dimension_part"],
-              "dimensionSummary" => attributes["dimension_summary"],
-            }
-            dimensions = []
-            dims = split_mvf attributes, 'dimension'
-            values = split_mvf attributes, 'value'
-            unit = attributes["unit"]
-            dims.each_with_index do |dim, index|
-              dimensions << { "dimension" => dim, "value" => values[index], "measurementUnit" => unit }
-            end
-            CSXML.add_group_list xml, 'measuredPart', [ overall_data ], 'dimension', dimensions
-
-            # contentPersons
-            if attributes.fetch("content_person", nil)
-              contentpersons = split_mvf attributes, 'content_person'
-              CSXML::Helpers.add_persons xml, 'contentPerson', contentpersons, :add_repeat
-            end
-
-            # copyNumber
-            CSXML.add xml, 'copyNumber', attributes["copy_number"]
-
-            # editionNumber
-            CSXML.add xml, 'editionNumber', attributes["edition_number"]
-
-            # form
-            CSXML.add_repeat xml, 'forms', [{
-              "form" => attributes["form"]
-            }]
-
-            # textualInscriptionGroupList
-            CSXML.add_group_list xml, 'textualInscription', [{
-              inscriptionContentInscriber => CSXML::Helpers.get_authority_urn('personauthorities', 'person', attributes["inscriber"]),
-              inscriptionContentMethod => attributes["method"],
-            }] if attributes["inscriber"]
-
-            # phase
-            CSXML.add xml, 'phase', attributes["phase"]
-
-            # sex
-            CSXML.add xml, 'sex', attributes["sex"]
-
-            # style
-            CSXML.add_repeat xml, 'styles', [{
-              "style" => attributes["style"]
-            }]
-
-            # technicalAttributeGroupList
-            CSXML.add_group_list xml, 'technicalAttribute', [{
-              "technicalAttribute" => attributes["tech_attribute"],
-            }] if attributes["tech_attributes"]
-
-            # objectComponentGroupList
-            CSXML.add_group_list xml, "objectComponent", [{
-              "objectComponentName" => attributes["object_component_name"]
-            }]
-
-            # objectProductionDateGroupList
-            CSXML.add_group_list xml, "objectProductionDate", [{
-              "dateDisplayDate" => attributes["objectproductiondate"]
-            }]
-
-            # objectProductionOrganizationGroupList
-            CSXML.add_group_list xml, 'objectProductionOrganization', [{
-              "objectProductionOrganization" => CSXML::Helpers.get_authority_urn('orgauthorities', 'organization', attributes["production_org"]),
-              "objectProductionOrganizationRole" => attributes["organization_role"],
-            }] if attributes["production_org"]
-
-            # objectProductionPeopleGroupList
-            CSXML.add_group_list xml, 'objectProductionPeople', [{
-              "objectProductionPeople" => attributes["production_people"]
-            }] if attributes["production_people"]
-
-            # objectProductionPersonGroupList
-            CSXML.add_group_list xml, 'objectProductionPerson', [{
-              "objectProductionPerson" => CSXML::Helpers.get_authority_urn('personauthorities', 'person', attributes["objectproductionperson"]),
-              "objectProductionPersonRole" => attributes["person_role"],
-            }] if attributes["objectproductionperson"]
-
-            # objectProductionPlaceGroupList
-            CSXML.add_group_list xml, 'objectProductionPlace', [{
-              "objectProductionPlace" => attributes["production_place"]
-            }] if attributes["production_place"]
-
-            CSXML.add_repeat xml, 'owners', [{
-              "owner" => CSXML::Helpers.get_authority_urn('personauthorities', 'person', attributes["owner"]),
-            }] if attributes["owner"]
-
-            # materialGroupList
-            mgs = []
-            materials = split_mvf attributes, 'material'
-            materials.each do |m|
-              mgs << { "material" => CSXML::Helpers.get_authority_urn('conceptauthorities', 'material_ca', m) }
-              #mgs << { "material" => m }
-            end
-            CSXML.add_group_list xml, 'material', mgs
-
-            # techniqueGroupList
-            tgs = []
-            techniques = split_mvf attributes, 'technique'
-            techniques.each do |t|
-              tgs << { "technique" => t }
-            end
-            CSXML.add_group_list xml, 'technique', tgs
-
-            # objectStatusList
-            CSXML.add_list xml, 'objectStatus', [{
-              "objectStatus" => attributes["object_status"]
-            }] if attributes["object_status"]
-
-            # fieldColEventNames
-            CSXML.add_repeat xml, 'fieldColEventNames', [{
-              "fieldColEventName" => attributes["field_collection_event_name"]
-            }]
-
-
           end
         end
-
       end
-
     end
   end
 end
