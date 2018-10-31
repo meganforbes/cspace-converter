@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   post 'authorities/:id/delete',   to: 'authority_objects#delete'
   post 'authorities/:id/ping',     to: 'authority_objects#ping'
   post 'authorities/:id/transfer', to: 'authority_objects#transfer'
+  post 'authorities/:id/update', to: 'authority_objects#update'
 
   get 'connection', to: "sites#connection", as: 'connection'
 
@@ -24,6 +25,7 @@ Rails.application.routes.draw do
   post 'procedures/:id/delete',   to: 'procedure_objects#delete'
   post 'procedures/:id/ping',     to: 'procedure_objects#ping'
   post 'procedures/:id/transfer', to: 'procedure_objects#transfer'
+  post 'procedures/:id/update', to: 'procedure_objects#update'
 
   post 'nuke', to: 'sites#nuke', as: 'nuke'
 

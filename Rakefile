@@ -105,6 +105,12 @@ namespace :remote do
       remote_action_process "transfer", type, batch
     end
 
+    task :update, [:type, :batch] => :environment do |t, args|
+      type       = args[:type]
+      batch      = args[:batch]
+      remote_action_process "update", type, batch
+    end
+
     def remote_action_process(action, type, batch)
       # don't scope to batch if "all" requested
       batch = batch == "all" ? nil : batch

@@ -2,57 +2,34 @@ module RemoteActionable
   extend ActiveSupport::Concern
 
   def delete
-    force = params[:force] == "true" ? true : false
-    perform(params[:category]) do |service|
-      if force or service.remote_already_exists?
-        if service.remote_delete
-          flash[:notice] = "Record deleted"
-        else
-          flash[:error] = "Failed to delete record"
-        end
-      else
-        flash[:warning] = "Record does not exist"
-      end
-    end
+    perform(:remote_delete, params[:category])
   end
 
   def ping
-    perform(params[:category]) do |service|
-      if service.remote_already_exists?
-        flash[:notice] = "Record found"
-      else
-        flash[:warning] = "Record not found"
-      end
-    end
+    perform(:remote_ping, params[:category])
   end
 
   def transfer
-    perform(params[:category]) do |service|
-      if service.remote_already_exists?
-        if service.remote_update
-          # TOOO: check update supported via config
-          flash[:notice] = "Record updated"
-        else
-          flash[:warning] = "Record was not updated"
-        end
-      else
-        if service.remote_transfer
-          flash[:notice] = "Record created"
-        else
-          flash[:warning] = "Record was not created"
-        end
-      end
-    end
+    perform(:remote_transfer, params[:category])
+  end
+
+  def update
+    perform(:remote_update, params[:category])
   end
 
   private
 
-  def perform(category)
+  def flash_type_for_action(ok)
+    ok ? :notice : :error
+  end
+
+  def perform(action_method, category)
     @object  = CollectionSpaceObject.where(category: category).where(id: params[:id]).first
     service  = RemoteActionService.new(@object)
 
     begin
-      yield service
+      ok, message = service.send(action_method)
+      flash[flash_type_for_action(ok)] = message
     rescue Exception => ex
       logger.error("Connection error: #{ex.backtrace}")
       flash[:error] = "Connection error: #{ex.message} #{service.inspect}"
