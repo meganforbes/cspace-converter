@@ -83,7 +83,7 @@ namespace :db do
 
   # rake db:nuke
   task :nuke => :environment do |t|
-    Converter::Nuke.everything!
+    CollectionSpace::Converter::Nuke.everything!
   end
 end
 
