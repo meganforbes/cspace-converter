@@ -14,7 +14,7 @@ RSpec.describe CollectionSpaceObject do
     }
 
     let(:authority_object_fingerprint) {
-      CollectionSpace::Converter::Fingerprint.generate(['Person', 'person', 'Mickey Mouse'])
+      Fingerprint.generate(['Person', 'person', 'Mickey Mouse'])
     }
 
     let(:procedure_object) {
@@ -27,7 +27,7 @@ RSpec.describe CollectionSpaceObject do
     }
 
     let(:procedure_object_fingerprint) {
-      CollectionSpace::Converter::Fingerprint.generate(
+      Fingerprint.generate(
         ['Acquisition', 'acquisitionReferenceNumber', '123']
       )
     }

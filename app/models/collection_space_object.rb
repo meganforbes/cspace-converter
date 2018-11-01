@@ -42,17 +42,10 @@ class CollectionSpaceObject
   end
 
   def set_fingerprint
-    fp = nil
-    if is_authority?
-      parts = [type, subtype, title]
-      fp = CollectionSpace::Converter::Fingerprint.generate(parts)
-    end
-
-    if is_procedure?
-      parts = [type, identifier_field, identifier]
-      fp = CollectionSpace::Converter::Fingerprint.generate(parts)
-    end
-    write_attribute 'fingerprint', fp
+    parts = Lookup.category_class(category).parts
+    return unless parts.any?
+    parts = parts.map { |p| read_attribute(p) }
+    write_attribute 'fingerprint', Fingerprint.generate(parts)
   end
 
   def self.has_authority?(identifier)

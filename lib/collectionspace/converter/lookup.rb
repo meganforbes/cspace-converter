@@ -9,6 +9,10 @@ module CollectionSpace
         "#{CONVERTER_BASE}::#{converter_module}::#{converter_module}#{authority}".constantize
       end
 
+      def self.category_class(category)
+        "#{CONVERTER_BASE}::#{category}".constantize
+      end
+
       def self.converter_class(converter_module)
         "#{CONVERTER_BASE}::#{converter_module}".constantize
       end
