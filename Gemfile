@@ -11,7 +11,7 @@ gem 'whenever'
 gem 'rake'
 
 # Use SCSS for stylesheets
-gem 'bootstrap', '~> 4.0.0.alpha3'
+gem "bootstrap", ">= 4.1.2"
 gem 'sass-rails', '~> 5.0'
 gem 'kaminari'
 # Use Uglifier as compressor for JavaScript assets
