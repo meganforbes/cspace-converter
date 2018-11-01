@@ -49,7 +49,12 @@ class DataObject
             # and not fail CollectionSpaceObject validation for unique_identifier
             next if CollectionSpaceObject.has_authority?(identifier)
             # prevent creation of duplicate authorities between fields in object data
-            add_authority authority, authority_subtype, name unless authorities_added.include? name
+            add_authority(
+              type: authority,
+              subtype: authority_subtype,
+              name: name,
+              term_id: nil
+            ) unless authorities_added.include? name
             authorities_added << name
           rescue Exception => ex
             logger.error "#{ex.message}\n#{ex.backtrace}"
@@ -145,7 +150,7 @@ class DataObject
     hack_namespaces converter.convert
   end
 
-  def add_authority(authority, authority_subtype, name, term_id = nil)
+  def add_authority(type:, subtype:, name:, term_id: nil)
     identifier = term_id
     if identifier == nil
       identifier = CSIDF.short_identifier(name)
@@ -155,12 +160,12 @@ class DataObject
     # check for existence or update
     data[:batch]            = self.import_batch
     data[:category]         = 'Authority' # need this if coming from procedure
-    data[:type]             = authority
-    data[:subtype]          = authority_subtype
+    data[:type]             = type
+    data[:subtype]          = subtype
     data[:identifier_field] = 'shortIdentifier'
     data[:identifier]       = identifier
     data[:title]            = name
-    data[:content]          = self.to_auth_xml(authority, name, identifier)
+    data[:content]          = self.to_auth_xml(type, name, identifier)
     self.collection_space_objects.build data
   end
 

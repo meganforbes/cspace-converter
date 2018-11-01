@@ -48,7 +48,12 @@ class ImportAuthorityJob < ActiveJob::Base
         cspace_object.save!
       else
         # CREATE NEW CSPACE OBJECT
-        object.add_authority(authority_type, authority_subtype, object.read_attribute(identifier_field), identifier)
+        object.add_authority(
+          type: authority_type,
+          subtype: authority_subtype,
+          name: object.read_attribute(identifier_field),
+          term_id: identifier
+        )
         object.save!
       end
       row_count += 1
