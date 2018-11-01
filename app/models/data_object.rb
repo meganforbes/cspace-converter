@@ -93,57 +93,23 @@ class DataObject
     end
   end
 
-  def authority_class(authority)
-    "#{self.default_converter_class.to_s}::#{authority}".constantize
-  end
-
-  # i.e. CollectionSpace::Converter::PBM
   def converter_class
-    "CollectionSpace::Converter::#{self.converter_module}".constantize
-  end
-
-  # i.e. PastPerfect, PBM etc.
-  def converter_module
-    self.read_attribute(:converter_module)
-  end
-
-  # i.e. acquisition
-  def converter_profile
-    self.read_attribute(:converter_profile)
-  end
-
-  def default_converter_class
-    "CollectionSpace::Converter::Default".constantize
+    Lookup.converter_class(converter_module)
   end
 
   def delimiter
     Rails.application.config.csv_mvf_delimiter
   end
 
-  # i.e. CollectionSpace::Converter::Vanilla::VanillaMaterials
-  def full_authority_class(authority)
-    "#{self.converter_class.to_s}::#{self.converter_module}#{authority}".constantize
-  end
-
-  # i.e. CollectionSpace::Converter::PBM::PBMCollectionObject
-  def procedure_class(procedure)
-    "#{self.converter_class.to_s}::#{self.converter_module}#{procedure}".constantize
-  end
-
   def profile
     unless @profile
       profiles          = self.converter_class.registered_profiles
-      converter_profile = self.converter_profile
       @profile          = profiles[converter_profile]
       if converter_profile != 'authority'
         raise "Invalid profile #{converter_profile} for #{profiles}" unless @profile
       end
     end
     @profile
-  end
-
-  def relationship_class
-    "#{self.default_converter_class.to_s}::Relationship".constantize
   end
 
   def set_attributes(attributes = {})
@@ -153,16 +119,16 @@ class DataObject
   end
 
   def to_auth_xml(authority, term_display_name = nil, term_short_id = nil)
-    self.default_converter_class.validate_authority!(authority)
+    Lookup.default_converter_class.validate_authority!(authority)
     if self.type == 'Procedure'
       raise "No termDisplayName for procedure authority (#{authority})" unless term_display_name
-      converter = self.authority_class(authority).new({
+      converter = Lookup.default_authority_class(authority).new({
         "shortIdentifier" => term_short_id != nil ? term_short_id : CSIDF.short_identifier(term_display_name),
         "termDisplayName" => term_display_name,
         "termType"        => "#{CSIDF.authority_term_type(authority)}Term",
       })
     elsif self.type == 'Authority'
-      converter = self.full_authority_class(authority).new(object_data)
+      converter = Lookup.authority_class(converter_module, authority).new(object_data)
       converter.term_short_id=(term_short_id)
     else
       raise "Unrecognized type for data object: #{self.type}"
@@ -173,13 +139,13 @@ class DataObject
 
   def to_procedure_xml(procedure)
     check_valid_procedure!(procedure, self.converter_class)
-    converter = self.procedure_class(procedure).new(object_data)
+    converter = Lookup.procedure_class(converter_module, procedure).new(object_data)
     # scary hack for namespaces
     hack_namespaces converter.convert
   end
 
   def to_relationship_xml(attributes)
-    converter = self.relationship_class.new(attributes)
+    converter = Lookup.default_relationship_class.new(attributes)
     # scary hack for namespaces
     hack_namespaces converter.convert
   end
@@ -263,7 +229,7 @@ class DataObject
   end
 
   def check_valid_procedure!(procedure, converter)
-    self.default_converter_class.validate_procedure!(procedure, converter)
+    Lookup.default_converter_class.validate_procedure!(procedure, converter)
   end
 
   def hack_namespaces(xml)
