@@ -6,6 +6,7 @@ class CollectionSpaceObject
   validate   :identifier_is_unique_per_type
 
   after_validation :log_errors, :if => Proc.new { |object| object.errors.any? }
+  before_validation :set_fingerprint
 
   field :import_batch,     type: String
   field :category,         type: String # Authority, Procedure
@@ -15,6 +16,7 @@ class CollectionSpaceObject
   field :identifier,       type: String
   field :title,            type: String
   field :content,          type: String
+  field :fingerprint,      type: String
   # fields from remote collectionspace
   field :csid,             type: String
   field :uri,              type: String
@@ -27,8 +29,32 @@ class CollectionSpaceObject
     csid and uri
   end
 
+  def is_authority?
+    category == 'Authority'
+  end
+
+  def is_procedure?
+    category == 'Procedure'
+  end
+
   def is_relationship?
-    type == 'Relationship'
+    category == 'Relationship'
+  end
+
+  def set_fingerprint
+    fp = nil
+    if is_authority?
+      fp = CollectionSpace::Converter::Fingerprint.generate(
+        [type, subtype, title]
+      )
+    end
+
+    if is_procedure?
+      fp = CollectionSpace::Converter::Fingerprint.generate(
+        [type, identifier_field, identifier]
+      )
+    end
+    write_attribute 'fingerprint', fp
   end
 
   def self.has_authority?(identifier)
@@ -49,13 +75,12 @@ class CollectionSpaceObject
   private
 
   def identifier_is_unique_per_type
-    identifier = CollectionSpaceObject.where(type: self.type, identifier: self.identifier).count
-    if identifier > 1 # don't create another cspace object of same type with the same identifier
-      errors.add("Identifier must be unique per type: #{self.type} #{self.identifier}")
+    if CollectionSpaceObject.where(type: type, identifier: identifier).count > 1
+      errors.add("Identifier must be unique per type: #{type} #{identifier}")
     end
   end
 
   def log_errors
-    logger.warn self.errors.full_messages.append([self.attributes.inspect]).join("\n")
+    logger.warn errors.full_messages.append([attributes.inspect]).join("\n")
   end
 end

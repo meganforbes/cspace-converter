@@ -2,7 +2,11 @@ module CollectionSpace
   module Converter
     class Nuke
       def self.everything!
-        [DataObject, Delayed::Job].each { |model| model.destroy_all }
+        [
+          DataObject,
+          CollectionSpaceObject,
+          Delayed::Job,
+        ].each { |model| model.destroy_all }
       end
     end
   end
