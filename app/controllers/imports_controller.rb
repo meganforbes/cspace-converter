@@ -16,7 +16,7 @@ class ImportsController < ApplicationController
         use_previous_auth_cache: params[:use_auth_cache_file] ||= false,
       }
 
-      ::SmarterCSV.process(file, {
+      ::SmarterCSV.process(file.path, {
           chunk_size: 100,
           convert_values_to_numeric: false,
         }.merge(Rails.application.config.csv_parser_options)) do |chunk|

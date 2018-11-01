@@ -94,7 +94,6 @@ export CSPACE_CONVERTER_BASE_URI=http://localhost:8180/cspace-services
 export CSPACE_CONVERTER_DOMAIN=core.collectionspace.org
 export CSPACE_CONVERTER_USERNAME=admin@core.collectionspace.org
 export CSPACE_CONVERTER_PASSWORD=Administrator
-export DISABLE_SPRING=1
 ```
 
 **Start CollectionSpace Server**

@@ -30,10 +30,6 @@
         {
           "name": "CSPACE_CONVERTER_PASSWORD",
           "value": "INSERT_YOUR_VALUE_HERE"
-        },
-        {
-          "name": "DISABLE_SPRING",
-          "value": "1"
         }
       ],
       "essential": true,
