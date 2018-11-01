@@ -2,8 +2,7 @@ version: '2'
 services:
   converter:
     build: .
-    image: lyrasis/cspace-converter
-    container_name: converter
+    image: cspace-converter
     volumes:
       - .:/app
     ports:
