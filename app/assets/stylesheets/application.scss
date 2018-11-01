@@ -13,6 +13,19 @@
 
 @import "bootstrap";
 
+.logo {
+  width: 100%;
+  margin-top: -0.5rem;
+}
+
+.title {
+  color: #fff;
+}
+
+.nav-item {
+  margin-right: 0.5rem;
+}
+
 .notice {
   padding: 0.5rem 0;
   margin-top: 0.5rem;
@@ -69,9 +82,4 @@ input[name=remote_action] {
 
 footer p {
   text-align: center;
-}
-
-.logo {
-  width: 100%;
-  margin-top: -0.5rem;
 }
