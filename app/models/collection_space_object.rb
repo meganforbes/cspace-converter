@@ -26,7 +26,7 @@ class CollectionSpaceObject
   scope :transferred, ->{ where(csid: true) } # TODO: check
 
   def has_csid_and_uri?
-    csid and uri
+    !!(csid and uri)
   end
 
   def is_authority?
@@ -67,7 +67,7 @@ class CollectionSpaceObject
 
   def identifier_is_unique_per_type
     if CollectionSpaceObject.where(type: type, identifier: identifier).count > 1
-      errors.add("Identifier must be unique per type: #{type} #{identifier}")
+      errors.add(:uniqueness, message: "Identifier must be unique per type:#{type};#{identifier}")
     end
   end
 

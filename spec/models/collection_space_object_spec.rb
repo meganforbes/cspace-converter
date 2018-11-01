@@ -35,12 +35,22 @@ RSpec.describe CollectionSpaceObject do
     let(:relationship_object) {
       CollectionSpaceObject.create({
         category: 'Relationship',
+        csid: 'fake',
         identifier: 'xyz',
         type: 'Relationship',
+        uri: '/fake',
       })
     }
 
     let(:relationship_object_fingerprint) { nil }
+
+    it "returns false correctly for no csid and uri check" do
+      expect(authority_object.has_csid_and_uri?).to be false
+    end
+
+    it "returns true correctly for no csid and uri check" do
+      expect(relationship_object.has_csid_and_uri?).to be true
+    end
 
     it "identifies authority categories correctly" do
       expect(authority_object.is_authority?).to be true
