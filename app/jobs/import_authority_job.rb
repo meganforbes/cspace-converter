@@ -20,11 +20,12 @@ class ImportAuthorityJob < ActiveJob::Base
     # row_count is used to reference the current row in logging and error messages
     row_count = 1
     rows.each do |data|
-      row_count = row_count + 1
+      data_object_attributes[:row_count] = row_count
+      attributes = data_object_attributes.merge(data)
 
-      object = DataObject.new.from_json JSON.generate(data)
-      object.set_attributes data_object_attributes,row_count
-      # validate object immediately after initial attributes set
+      logger.debug "Importing row #{row_count}: #{data_object_attributes.inspect}"
+      object = DataObject.new.from_json JSON.generate(attributes)
+
       object.save!
 
       # TODO: support for explicit identifiers
@@ -50,7 +51,7 @@ class ImportAuthorityJob < ActiveJob::Base
         object.add_authority(authority_type, authority_subtype, object.read_attribute(identifier_field), identifier)
         object.save!
       end
-
+      row_count += 1
     end
   end
 end

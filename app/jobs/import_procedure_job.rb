@@ -15,11 +15,12 @@ class ImportProcedureJob < ActiveJob::Base
     # row_count is used to reference the current row in logging and error messages
     row_count = 1
     rows.each do |data|
+      data_object_attributes[:row_count] = row_count
       begin
-        row_count = row_count + 1
+        logger.debug "Importing row #{row_count}: #{data_object_attributes.inspect}"
+        attributes = data_object_attributes.merge(data)
 
-        object = DataObject.new.from_json JSON.generate(data)
-        object.set_attributes data_object_attributes,row_count
+        object = DataObject.new.from_json(JSON.generate(attributes))
         # validate object immediately after initial attributes set
         object.save!
 
@@ -28,9 +29,16 @@ class ImportProcedureJob < ActiveJob::Base
 
         object.add_authorities
         object.save!
-      rescue
-        logger.error "Record not staged in Mongo DB. Exception message:#{$!}"
+
+        object.write_attributes(import_status: 0, import_message: 'ok')
+        object.save!
+      rescue Exception => ex
+        logger.error "Failed to import row #{row_count}: #{ex.backtrace}"
+        object = DataObject.new.from_json(JSON.generate(data_object_attributes))
+        object.write_attributes(import_status: 1, import_message: ex.backtrace)
+        object.save!
       end
+      row_count += 1
     end
   end
 end

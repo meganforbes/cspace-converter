@@ -27,7 +27,7 @@ namespace :db do
         path = Rails.root.join(File.join(base + [obj.category, obj.type, obj.subtype].compact))
         FileUtils.mkdir_p File.join(path)
         file_path = path + "#{obj.identifier}.xml"
-        puts "Exporting: #{file_path}"
+        Rails.logger.debug "Exporting: #{file_path}"
         File.open(file_path, 'w') {|f| f.write(obj.content) }
       end
     end
@@ -41,7 +41,7 @@ namespace :db do
           chunk_size: 100,
           convert_values_to_numeric: false,
         }.merge(Rails.application.config.csv_parser_options)) do |chunk|
-        puts "Processing #{config[:batch]} #{counter}"
+        Rails.logger.debug "Processing #{config[:batch]} #{counter}"
         job_class.perform_later(config, chunk)
         # run the job immediately when using rake
         Delayed::Worker.new.run(Delayed::Job.last)
@@ -57,10 +57,13 @@ namespace :db do
         module:    args[:module],
         profile:   args[:profile],
       }
-      raise "Invalid file #{config[:filename]}" unless File.file? config[:filename]
-      puts "Project #{config[:module]}; Batch #{config[:batch]}; Profile #{config[:profile]}"
+      unless File.file? config[:filename]
+        Rails.logger.error "Invalid file #{config[:filename]}"
+        abort
+      end
+      Rails.logger.debug "Project #{config[:module]}; Batch #{config[:batch]}; Profile #{config[:profile]}"
       process ImportProcedureJob, config
-      puts "Data import complete!"
+      Rails.logger.debug "Data import complete!"
     end
 
     # rake db:import:authorities[data/SamplePerson.csv,person1,Vanilla,name,Person]
@@ -74,16 +77,20 @@ namespace :db do
         type:       args[:type],
         subtype:    args[:subtype] ||= args[:type].downcase,
       }
-      raise "Invalid file #{config[:filename]}" unless File.file? config[:filename]
-      puts "Project #{config[:module]}; Batch #{config[:batch]}"
+      unless File.file? config[:filename]
+        Rails.logger.error "Invalid file #{config[:filename]}"
+        abort
+      end
+      Rails.logger.debug "Project #{config[:module]}; Batch #{config[:batch]}"
       process ImportAuthorityJob, config
-      puts "Data import complete!"
+      Rails.logger.debug "Data import complete!"
     end
   end
 
   # rake db:nuke
   task :nuke => :environment do |t|
     CollectionSpace::Converter::Nuke.everything!
+    Rails.logger.debug "Database nuked!"
   end
 end
 
@@ -96,7 +103,7 @@ namespace :relationships do
     # run the job immediately when using rake
     Delayed::Worker.new.run(Delayed::Job.last)
 
-    puts "Relationships created!"
+    Rails.logger.debug "Relationships created!"
   end
 end
 
@@ -125,13 +132,13 @@ namespace :remote do
       # don't scope to batch if "all" requested
       batch = batch == "all" ? nil : batch
       start_time = Time.now
-      puts "Starting remote #{action} job at #{start_time}."
+      Rails.logger.debug "Starting remote #{action} job at #{start_time}."
       TransferJob.perform_later(action, type, batch)
       # run the job immediately when using rake
       Delayed::Worker.new.run(Delayed::Job.last)
 
       end_time = Time.now
-      puts "Remote #{action} job completed at #{end_time}."
+      Rails.logger.debug "Remote #{action} job completed at #{end_time}."
     end
 
   end
