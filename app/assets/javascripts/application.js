@@ -21,7 +21,7 @@ ready = function() {
 
   // hide the profile options that do not belong to the converter (start with Default)
   $("#profile option[class!='Default']").hide();
-  var converter = "#converter";
+  var converter = "#module";
   $(converter).change(function() {
     // start by deselecting all the options
     $("#profile option").attr("selected", false);

@@ -4,10 +4,6 @@ module ApplicationHelper
     [ "all" ].concat( DataObject.pluck('import_batch').uniq )
   end
 
-  def converters
-    CollectionSpace::Converter.constants
-  end
-
   def collectionspace_base_uri
     Rails.application.secrets[:collectionspace_base_uri]
   end
@@ -18,6 +14,10 @@ module ApplicationHelper
 
   def collectionspace_username
     Rails.application.secrets[:collectionspace_username]
+  end
+
+  def modules
+    CollectionSpace::Converter.constants
   end
 
   def profiles
