@@ -5,18 +5,6 @@ require File.expand_path('../config/application', __FILE__)
 
 Rails.application.load_tasks
 
-namespace :cache do
-  # rake cache:from_api
-  task :from_api => :environment do |t|
-    AuthCache::ApiLoader.new($client).setup
-  end
-
-  # rake cache:from_file[file]
-  task :from_file, [:file] => :environment do |t, args|
-    AuthCache::FileLoader.new(args[:file]).setup
-  end
-end
-
 namespace :db do
   namespace :export do
     # rake db:export:xml
@@ -56,6 +44,7 @@ namespace :db do
         batch:     args[:batch],
         module:    args[:module],
         profile:   args[:profile],
+        use_previous_auth_cache: args[:use_auth_cache_file] ||= false,
       }
       raise "Invalid file #{config[:filename]}" unless File.file? config[:filename]
       puts "Project #{config[:module]}; Batch #{config[:batch]}; Profile #{config[:profile]}"
@@ -73,6 +62,7 @@ namespace :db do
         id_field:   args[:id_field],
         type:       args[:type],
         subtype:    args[:subtype] ||= args[:type].downcase,
+        use_previous_auth_cache: args[:use_auth_cache_file] ||= false,
       }
       raise "Invalid file #{config[:filename]}" unless File.file? config[:filename]
       puts "Project #{config[:module]}; Batch #{config[:batch]}"

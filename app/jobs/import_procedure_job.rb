@@ -10,7 +10,11 @@ class ImportProcedureJob < ActiveJob::Base
       import_batch:      config[:batch],
       converter_module:  config[:module],
       converter_profile: config[:profile],
+      use_auth_cache_file: config[:use_previous_auth_cache]
     }
+
+    # Fetch the authority and vocabulary terms for the cspace profile type
+    AuthCache.setup(config[:module]) unless config[:use_previous_auth_cache]
 
     # row_count is used to reference the current row in logging and error messages
     row_count = 1
