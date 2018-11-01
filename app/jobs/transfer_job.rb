@@ -1,11 +1,11 @@
 class TransferJob < ActiveJob::Base
   queue_as :default
 
-  def perform(action, import_type, import_batch = nil)
+  def perform(action, type, batch = nil)
     action_method = TransferJob.actions action
     raise "Invalid remote action #{action}!" unless action_method
 
-    CollectionSpaceObject.where(type: import_type, import_batch: import_batch).each do |object|
+    CollectionSpaceObject.where(type: type, batch: batch).each do |object|
       service = RemoteActionService.new(object)
 
       if not object.is_relationship? and not object.has_csid_and_uri?

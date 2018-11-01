@@ -8,10 +8,10 @@ class CollectionSpaceObject
   after_validation :log_errors, :if => Proc.new { |object| object.errors.any? }
   before_validation :set_fingerprint
 
-  field :import_batch,     type: String
-  field :category,         type: String # Authority, Procedure
-  field :type,             type: String
-  field :subtype,          type: String # used for Authorities
+  field :batch,            type: String
+  field :category,         type: String # ex: Authority, Procedure
+  field :type,             type: String # ex: CollectionObject, Person
+  field :subtype,          type: String # ex: person [auth only]
   field :identifier_field, type: String
   field :identifier,       type: String
   field :title,            type: String
@@ -44,15 +44,13 @@ class CollectionSpaceObject
   def set_fingerprint
     fp = nil
     if is_authority?
-      fp = CollectionSpace::Converter::Fingerprint.generate(
-        [type, subtype, title]
-      )
+      parts = [type, subtype, title]
+      fp = CollectionSpace::Converter::Fingerprint.generate(parts)
     end
 
     if is_procedure?
-      fp = CollectionSpace::Converter::Fingerprint.generate(
-        [type, identifier_field, identifier]
-      )
+      parts = [type, identifier_field, identifier]
+      fp = CollectionSpace::Converter::Fingerprint.generate(parts)
     end
     write_attribute 'fingerprint', fp
   end
