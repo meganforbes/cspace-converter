@@ -30,7 +30,7 @@ module CollectionSpace
             Rails.logger.warn "No authority cache file found at #{file}"
             return
           end
-          puts "The file name is #{file}."
+          Rails.logger.debug "The file name is #{file}."
           file_cache = JSON.parse(File.read(file))
           parse_keys(file_cache) do |parts, value|
             Rails.cache.write(AuthCache.cache_key(parts), value)
@@ -53,14 +53,14 @@ module CollectionSpace
       # public accessor to cached authority terms
       def self.lookup_authority_term_id(authority_type, authority_id, display_name)
         term_id = fetch(cache_key([authority_type, authority_id, display_name]))
-        puts "Term #{authority_type}:#{authority_id}:#{display_name.downcase} is not in the authority cache." unless term_id
+        Rails.logger.debug "Term #{authority_type}:#{authority_id}:#{display_name.downcase} is not in the authority cache." unless term_id
         term_id
       end
 
       # public accessor to cached vocabulary terms
       def self.lookup_vocabulary_term_id(vocabulary_id, display_name)
         term_id = fetch(cache_key(['vocabularies', vocabulary_id, display_name]))
-        puts "Term #{vocabulary_id}:#{display_name.downcase} is not in the authority cache." unless term_id
+        Rails.logger.debug "Term #{vocabulary_id}:#{display_name.downcase} is not in the authority cache." unless term_id
         term_id
       end
 
