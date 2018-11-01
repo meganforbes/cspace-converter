@@ -40,6 +40,7 @@ class DataObject
             service = CollectionSpace::Converter::Default.service authority, authority_subtype
             service_id = service[:id]
             identifier = AuthCache::lookup_authority_term_id service_id, authority_subtype, name
+            # if we find this procedure authority in the cache skip it!
             next if identifier != nil
 
             identifier = CSIDF.short_identifier(name)
