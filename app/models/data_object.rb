@@ -1,19 +1,24 @@
 class DataObject
   include Mongoid::Document
   include Mongoid::Timestamps
-  include Mongoid::Attributes::Dynamic
+  # include Mongoid::Attributes::Dynamic
 
   has_many :collection_space_objects, autosave: true, dependent: :destroy
   validates_presence_of :converter_module
   validates_presence_of :converter_profile
-  validates_presence_of :import_type # Procedure or Authority
-  validate :type_and_profile_exist
+  validates_presence_of :object_data
+  validates_presence_of :import_category
+  validate :module_and_profile_exist
 
-  field :import_type,       type: String
-  field :import_file,       type: String
-  field :import_batch,      type: String
-  field :converter_module,    type: String
-  field :converter_profile, type: String
+  field :converter_module,  type: String # ex: Vanilla
+  field :converter_profile, type: String # ex: cataloging
+  field :object_data,       type: Hash
+  field :import_batch,      type: String # ex: cat1
+  field :import_file,       type: String # ex: cat1.csv
+  field :import_message,    type: String, default: 'ok'
+  field :import_status,     type: Integer, default: 1
+  field :import_category,   type: String # ex: Procedure
+  field :row_count,         type: Integer
 
   # "Person" => ["recby", "recfrom"]
   # "Concept" => [ ["objname", "objectname"] ]
@@ -27,7 +32,7 @@ class DataObject
         if field.respond_to? :each
           field, authority_subtype = field
         end
-        term_display_name = self.read_attribute(field)
+        term_display_name = object_data[field]
         next unless term_display_name
         # attempt to split field in case it is multi-valued
         term_display_name.split(self.delimiter).map(&:strip).each do |name|
@@ -157,7 +162,7 @@ class DataObject
         "termType"        => "#{CSIDF.authority_term_type(authority)}Term",
       })
     elsif self.type == 'Authority'
-      converter = self.full_authority_class(authority).new(self.to_hash)
+      converter = self.full_authority_class(authority).new(object_data)
       converter.term_short_id=(term_short_id)
     else
       raise "Unrecognized type for data object: #{self.type}"
@@ -168,7 +173,7 @@ class DataObject
 
   def to_procedure_xml(procedure)
     check_valid_procedure!(procedure, self.converter_class)
-    converter = self.procedure_class(procedure).new(self.to_hash)
+    converter = self.procedure_class(procedure).new(object_data)
     # scary hack for namespaces
     hack_namespaces converter.convert
   end
@@ -184,7 +189,7 @@ class DataObject
   end
 
   def type
-    self.read_attribute(:import_type)
+    self.read_attribute(:import_category)
   end
 
   def add_authority(authority, authority_subtype, name, term_id = nil)
@@ -195,8 +200,8 @@ class DataObject
 
     data = {}
     # check for existence or update
-    data[:import_batch]     = self.import_batch
-    data[:category]         = "Authority"
+    data[:batch]            = self.import_batch
+    data[:category]         = 'Authority' # need this if coming from procedure
     data[:type]             = authority
     data[:subtype]          = authority_subtype
     data[:identifier_field] = 'shortIdentifier'
@@ -209,12 +214,12 @@ class DataObject
   def add_procedure(procedure, attributes)
     data = {}
     # check for existence or update
-    data[:import_batch]     = self.import_batch
-    data[:category]         = "Procedure"
+    data[:batch]            = self.import_batch
+    data[:category]         = 'Procedure'
     data[:type]             = procedure
     data[:subtype]          = ''
     data[:identifier_field] = attributes["identifier_field"]
-    data[:identifier]       = self.read_attribute( attributes["identifier"] )
+    data[:identifier]       = object_data[attributes["identifier"]]
     data[:title]            = self.read_attribute( attributes["title"] )
     data[:content]          = self.to_procedure_xml(procedure)
     self.collection_space_objects.build data
@@ -249,7 +254,7 @@ class DataObject
     to_prefix   = to_doc_type[0..2]
 
     data = {}
-    data[:import_batch]     = self.import_batch
+    data[:batch]            = import_batch
     data[:category]         = "Relationship"
     data[:type]             = "Relationship"
     data[:subtype]             = ""
@@ -269,11 +274,11 @@ class DataObject
     xml.to_s.gsub(/(<\/?)(\w+_)/, '\1ns2:\2')
   end
 
-  def type_and_profile_exist
+  def module_and_profile_exist
     begin
       self.profile
     rescue Exception => ex
-      errors.add(:invalid_type_or_profile, ex.message)
+      errors.add(:invalid_module_or_profile, ex.message)
     end
   end
 
