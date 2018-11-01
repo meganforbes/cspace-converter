@@ -112,26 +112,20 @@ class DataObject
     @profile
   end
 
-  def set_attributes(attributes = {})
-    attributes.each do |attribute, value|
-      self.write_attribute attribute, value
-    end
-  end
-
   def to_auth_xml(authority, term_display_name = nil, term_short_id = nil)
     Lookup.default_converter_class.validate_authority!(authority)
-    if self.type == 'Procedure'
+    if import_category == 'Procedure'
       raise "No termDisplayName for procedure authority (#{authority})" unless term_display_name
       converter = Lookup.default_authority_class(authority).new({
         "shortIdentifier" => term_short_id != nil ? term_short_id : CSIDF.short_identifier(term_display_name),
         "termDisplayName" => term_display_name,
         "termType"        => "#{CSIDF.authority_term_type(authority)}Term",
       })
-    elsif self.type == 'Authority'
+    elsif import_category == 'Authority'
       converter = Lookup.authority_class(converter_module, authority).new(object_data)
       converter.term_short_id=(term_short_id)
     else
-      raise "Unrecognized type for data object: #{self.type}"
+      raise "Unrecognized type for data object: #{import_category}"
     end
     # scary hack for namespaces
     hack_namespaces converter.convert
@@ -148,10 +142,6 @@ class DataObject
     converter = Lookup.default_relationship_class.new(attributes)
     # scary hack for namespaces
     hack_namespaces converter.convert
-  end
-
-  def type
-    self.read_attribute(:import_category)
   end
 
   def add_authority(authority, authority_subtype, name, term_id = nil)
