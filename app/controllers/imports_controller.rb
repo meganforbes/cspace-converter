@@ -13,6 +13,7 @@ class ImportsController < ApplicationController
         batch:     params[:batch],
         converter: params[:converter],
         profile:   params[:profile],
+        use_previous_auth_cache: params[:use_auth_cache_file] ||= false,
       }
 
       ::SmarterCSV.process(file, {
