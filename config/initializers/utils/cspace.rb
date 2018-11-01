@@ -341,7 +341,7 @@ module CollectionSpace
 
           CSURN.generate(
               Rails.application.config.domain,
-              AuthCache::VOCABULARIES,
+              'vocabularies',
               vocabulary_id,
               term_id,
               display_name
