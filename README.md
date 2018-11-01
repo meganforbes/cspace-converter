@@ -24,7 +24,7 @@ Before the *cspace-converter* tool can import CSV data into CollectionSpace, it 
 Create a data directory and add the CSV files. For example:
 
 ```txt
-db/data/
+data/
 ├── cataloging.csv # custom CSV data file
 └── ppsobjectsdata.csv # Past Perfect objects data file
 ```
@@ -55,7 +55,7 @@ The general format for the command is:
 ./import.sh [CS_CONV_FILE] [CS_CONV_BATCH] [CS_CONV_MODULE] [CS_CONV_PROFILE]
 ```
 
-- `CS_CONV_FILE`: filename (in db/data directory)
+- `CS_CONV_FILE`: filename (in data directory)
 - `CS_CONV_BATCH`: batch name
 - `CS_CONV_MODULE`: converter module
 - `CS_CONV_PROFILE`: profile from type
@@ -71,10 +71,10 @@ For example:
 ./import.sh SampleMediaUrl.csv media1 Vanilla media
 
 # authority
-bundle exec rake db:import:authorities[db/data/SamplePerson.csv,person1,Vanilla,Person]
+bundle exec rake db:import:authorities[data/SamplePerson.csv,person1,Vanilla,Person]
 ```
 
-For these commands to actually work you will need the data (CSV) files in `db/data`. Here's the command using the supplied sample CSV file:
+For these commands to actually work you will need the data (CSV) files in `data`. Here's the command using the supplied sample CSV file:
 
 ```bash
 ./import.sh SampleCatalogingData.csv cataloging Vanilla cataloging

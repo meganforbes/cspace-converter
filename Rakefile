@@ -49,7 +49,7 @@ namespace :db do
       end
     end
 
-    # rake db:import:data[db/data/SampleCatalogingData.csv,cataloging1,Vanilla,cataloging]
+    # rake db:import:data[data/SampleCatalogingData.csv,cataloging1,Vanilla,cataloging]
     task :data, [:filename, :batch, :module, :profile, :use_auth_cache_file] => :environment do |t, args|
       config = {
         filename:  args[:filename],
@@ -63,8 +63,8 @@ namespace :db do
       puts "Data import complete!"
     end
 
-    # rake db:import:authorities[db/data/SamplePerson.csv,person1,Vanilla,name,Person]
-    # rake db:import:authorities[db/data/SampleMaterial.csv,materials1,Vanilla,materials,Concept,materials_ca]
+    # rake db:import:authorities[data/SamplePerson.csv,person1,Vanilla,name,Person]
+    # rake db:import:authorities[data/SampleMaterial.csv,materials1,Vanilla,materials,Concept,materials_ca]
     task :authorities, [:filename, :batch, :module, :id_field, :type, :subtype, :use_auth_cache_file] => :environment do |t, args|
       config = {
         filename:   args[:filename],
