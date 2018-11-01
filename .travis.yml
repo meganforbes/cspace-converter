@@ -2,3 +2,5 @@ dist: trusty
 language: ruby
 script:
   - bundle exec rspec
+services:
+  - mongodb
