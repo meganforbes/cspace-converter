@@ -11,7 +11,7 @@ class ImportsController < ApplicationController
       config = {
         file:      file.path,
         batch:     params[:batch],
-        converter: params[:converter],
+        module:    params[:module],
         profile:   params[:profile],
         use_previous_auth_cache: params[:use_auth_cache_file] ||= false,
       }
