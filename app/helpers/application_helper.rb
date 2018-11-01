@@ -17,12 +17,14 @@ module ApplicationHelper
   end
 
   def modules
-    CollectionSpace::Converter.constants
+    CollectionSpace::Converter.constants.find_all do |c|
+      "CollectionSpace::Converter::#{c}".constantize.respond_to? :registered_profiles
+    end
   end
 
   def profiles
     profiles = []
-    CollectionSpace::Converter.constants.each do |c|
+    modules.each do |c|
       converter = "CollectionSpace::Converter::#{c}".constantize
       converter.registered_profiles.keys.each do |profile|
         profiles << [profile, profile, class: c.to_s]
