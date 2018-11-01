@@ -10,11 +10,7 @@ class ImportAuthorityJob < ActiveJob::Base
       import_batch:      config[:batch],
       converter_module:  config[:module],
       converter_profile: 'authority',
-      use_auth_cache_file: config[:use_previous_auth_cache]
     }
-
-    # Fetch the authority and vocabulary terms for the cspace profile type
-    AuthCache.setup(config[:module]) unless config[:use_previous_auth_cache]
 
     # Authority config
     identifier_field  = config[:id_field]
