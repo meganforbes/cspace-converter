@@ -1,11 +1,12 @@
 FactoryGirl.define do
 
   factory :data_object do
-    import_file 'ppsobjectsdata.csv'
-    import_batch 'ppbatch1'
-    converter_module 'PastPerfect'
-    converter_profile 'ppsobjectsdata'
-    sequence(:objectid) { |n| "2000.#{n}" }
+    converter_module 'Vanilla'
+    converter_profile 'cataloging'
+    import_batch 'cat1'
+    import_category 'Procedure'
+    import_file 'cat1.csv'
+    object_data { {a: 'b'} }
   end
 
 end
