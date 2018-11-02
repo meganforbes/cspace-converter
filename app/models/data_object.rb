@@ -53,7 +53,8 @@ class DataObject
               type: authority,
               subtype: authority_subtype,
               name: name,
-              term_id: nil
+              term_id: nil,
+              from_procedure: true
             ) unless authorities_added.include? name
             authorities_added << name
           rescue Exception => ex
@@ -118,60 +119,48 @@ class DataObject
     @profile
   end
 
-  def to_auth_xml(authority, term_display_name = nil, term_short_id = nil)
-    Lookup.default_converter_class.validate_authority!(authority)
-    if import_category == 'Procedure'
-      raise "No termDisplayName for procedure authority (#{authority})" unless term_display_name
-      converter = Lookup.default_authority_class(authority).new({
-        "shortIdentifier" => term_short_id != nil ? term_short_id : CSIDF.short_identifier(term_display_name),
-        "termDisplayName" => term_display_name,
-        "termType"        => "#{CSIDF.authority_term_type(authority)}Term",
-      })
-    elsif import_category == 'Authority'
-      converter = Lookup.authority_class(converter_module, authority).new(object_data)
-      converter.term_short_id=(term_short_id)
-    else
-      raise "Unrecognized type for data object: #{import_category}"
-    end
-    # scary hack for namespaces
-    hack_namespaces converter.convert
-  end
-
-  def to_procedure_xml(procedure)
-    check_valid_procedure!(procedure, self.converter_class)
-    converter = Lookup.procedure_class(converter_module, procedure).new(object_data)
-    # scary hack for namespaces
-    hack_namespaces converter.convert
-  end
-
-  def to_relationship_xml(attributes)
-    converter = Lookup.default_relationship_class.new(attributes)
-    # scary hack for namespaces
-    hack_namespaces converter.convert
-  end
-
-  def add_authority(type:, subtype:, name:, term_id: nil)
+  def add_authority(type:, subtype:, name:, term_id: nil, from_procedure: false)
+    # TODO: check the cache here, remove term_id
     identifier = term_id
     if identifier == nil
       identifier = CSIDF.short_identifier(name)
     end
 
+    converter = nil
+
     data = {}
-    # check for existence or update
-    data[:batch]            = self.import_batch
+    data[:batch]            = import_batch
     data[:category]         = 'Authority' # need this if coming from procedure
     data[:type]             = type
     data[:subtype]          = subtype
     data[:identifier_field] = 'shortIdentifier'
     data[:identifier]       = identifier
     data[:title]            = name
-    data[:content]          = self.to_auth_xml(type, name, identifier)
-    self.collection_space_objects.build data
+
+    if from_procedure
+      converter = Lookup.default_authority_class(type)
+      content_data = {
+        "shortIdentifier" => identifier,
+        "termDisplayName" => name,
+        "termType"        => "#{CSIDF.authority_term_type(type)}Term",
+      }
+    else
+      converter    = Lookup.authority_class(converter_module, type)
+      content_data = object_data
+    end
+
+    cspace_object = collection_space_objects.build(data)
+    Task.generate_content(
+      converter: converter,
+      data: content_data,
+      object: cspace_object,
+    )
   end
 
   def add_procedure(procedure, attributes)
+    converter = Lookup.procedure_class(converter_module, procedure)
+
     data = {}
-    # check for existence or update
     data[:batch]            = self.import_batch
     data[:category]         = 'Procedure'
     data[:type]             = procedure
@@ -179,8 +168,13 @@ class DataObject
     data[:identifier_field] = attributes["identifier_field"]
     data[:identifier]       = object_data[attributes["identifier"]]
     data[:title]            = self.read_attribute( attributes["title"] )
-    data[:content]          = self.to_procedure_xml(procedure)
-    self.collection_space_objects.build data
+
+    cspace_object = collection_space_objects.build(data)
+    Task.generate_content(
+      converter: converter,
+      data: object_data,
+      object: cspace_object,
+    )
   end
 
   def add_relationship(from_procedure, from_field, to_procedure, to_field)
@@ -211,6 +205,8 @@ class DataObject
     from_prefix = from_doc_type[0..2]
     to_prefix   = to_doc_type[0..2]
 
+    converter = Lookup.default_relationship_class
+
     data = {}
     data[:batch]            = import_batch
     data[:category]         = "Relationship"
@@ -220,16 +216,14 @@ class DataObject
     data[:identifier_field] = 'csid'
     data[:identifier]       = "#{from_csid}_#{to_csid}"
     data[:title]            = "#{from_prefix}:#{from_value}_#{to_prefix}:#{to_value}"
-    data[:content]          = self.to_relationship_xml(attributes)
     self.collection_space_objects.build data
-  end
 
-  def check_valid_procedure!(procedure, converter)
-    Lookup.default_converter_class.validate_procedure!(procedure, converter)
-  end
-
-  def hack_namespaces(xml)
-    xml.to_s.gsub(/(<\/?)(\w+_)/, '\1ns2:\2')
+    cspace_object = collection_space_objects.build(data)
+    Task.generate_content(
+      converter: converter,
+      data: attributes,
+      object: cspace_object,
+    )
   end
 
   def module_and_profile_exist
