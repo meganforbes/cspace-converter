@@ -1,7 +1,6 @@
 class DataObject
   include Mongoid::Document
   include Mongoid::Timestamps
-  # include Mongoid::Attributes::Dynamic
 
   has_many :collection_space_objects, autosave: true, dependent: :destroy
   validates_presence_of :converter_module
@@ -19,51 +18,6 @@ class DataObject
   field :import_status,     type: Integer, default: 1
   field :import_category,   type: String # ex: Procedure
   field :row_count,         type: Integer
-
-  # "Person" => ["recby", "recfrom"]
-  # "Concept" => [ ["objname", "objectname"] ]
-  def add_authorities
-    authorities = self.profile.fetch("Authorities", {})
-    authorities_added = Set.new
-    authorities.each do |authority, fields|
-      fields.each do |field|
-        authority_subtype = authority.downcase
-        # if value pair first is the field and second is the specific authority (sub)type
-        if field.respond_to? :each
-          field, authority_subtype = field
-        end
-        term_display_name = object_data[field]
-        next unless term_display_name
-        # attempt to split field in case it is multi-valued
-        term_display_name.split(self.delimiter).map(&:strip).each do |name|
-          begin
-            service = CollectionSpace::Converter::Default.service authority, authority_subtype
-            service_id = service[:id]
-            identifier = AuthCache::lookup_authority_term_id service_id, authority_subtype, name
-            # if we find this procedure authority in the cache skip it!
-            next if identifier != nil
-
-            identifier = CSIDF.short_identifier(name)
-
-            # pre-filter authorities as we only want to create the first occurrence
-            # and not fail CollectionSpaceObject validation for unique_identifier
-            next if CollectionSpaceObject.has_authority?(identifier)
-            # prevent creation of duplicate authorities between fields in object data
-            add_authority(
-              type: authority,
-              subtype: authority_subtype,
-              name: name,
-              term_id: nil,
-              from_procedure: true
-            ) unless authorities_added.include? name
-            authorities_added << name
-          rescue Exception => ex
-            logger.error "#{ex.message}\n#{ex.backtrace}"
-          end
-        end
-      end
-    end
-  end
 
   # "Acquisition" => { "identifier_field" => "acqid", "identifier" => "acqid", "title" => "acqid" }
   def add_procedures
