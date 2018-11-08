@@ -34,7 +34,7 @@ class RemoteActionService
     unless object.has_csid_and_uri?
       Rails.logger.debug("Transferring: #{object.identifier}")
       begin
-        blob_uri = object.data_object.to_hash.fetch('blob_uri', nil)
+        blob_uri = object.data_object.object_data.fetch('blob_uri', nil)
         if blob_uri.blank? == false
           blob_uri = URI.encode blob_uri
         end

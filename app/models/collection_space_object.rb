@@ -8,10 +8,10 @@ class CollectionSpaceObject
   after_validation :log_errors, :if => Proc.new { |object| object.errors.any? }
   before_validation :set_fingerprint
 
-  field :import_batch,     type: String
-  field :category,         type: String # Authority, Procedure
-  field :type,             type: String
-  field :subtype,          type: String # used for Authorities
+  field :batch,            type: String
+  field :category,         type: String # ex: Authority, Procedure
+  field :type,             type: String # ex: CollectionObject, Person
+  field :subtype,          type: String # ex: person [auth only]
   field :identifier_field, type: String
   field :identifier,       type: String
   field :title,            type: String
@@ -26,7 +26,7 @@ class CollectionSpaceObject
   scope :transferred, ->{ where(csid: true) } # TODO: check
 
   def has_csid_and_uri?
-    csid and uri
+    !!(csid and uri)
   end
 
   def is_authority?
@@ -42,19 +42,10 @@ class CollectionSpaceObject
   end
 
   def set_fingerprint
-    fp = nil
-    if is_authority?
-      fp = CollectionSpace::Converter::Fingerprint.generate(
-        [type, subtype, title]
-      )
-    end
-
-    if is_procedure?
-      fp = CollectionSpace::Converter::Fingerprint.generate(
-        [type, identifier_field, identifier]
-      )
-    end
-    write_attribute 'fingerprint', fp
+    parts = Lookup.category_class(category).parts
+    return unless parts.any?
+    parts = parts.map { |p| read_attribute(p) }
+    write_attribute 'fingerprint', Fingerprint.generate(parts)
   end
 
   def self.has_authority?(identifier)
@@ -76,7 +67,7 @@ class CollectionSpaceObject
 
   def identifier_is_unique_per_type
     if CollectionSpaceObject.where(type: type, identifier: identifier).count > 1
-      errors.add("Identifier must be unique per type: #{type} #{identifier}")
+      errors.add(:uniqueness, message: "Identifier must be unique per type:#{type};#{identifier}")
     end
   end
 

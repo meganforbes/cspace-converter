@@ -5,11 +5,12 @@ class ImportAuthorityJob < ActiveJob::Base
 
   def perform(config, rows = [])
     data_object_attributes = {
-      import_type:       'Authority',
-      import_file:       config[:filename],
-      import_batch:      config[:batch],
       converter_module:  config[:module],
       converter_profile: 'authority',
+      object_data:       {},
+      import_batch:      config[:batch],
+      import_category:   'Authority',
+      import_file:       config[:filename],
     }
 
     # Authority config
@@ -20,37 +21,12 @@ class ImportAuthorityJob < ActiveJob::Base
     # row_count is used to reference the current row in logging and error messages
     row_count = 1
     rows.each do |data|
-      data_object_attributes[:row_count] = row_count
-      attributes = data_object_attributes.merge(data)
-
+      data_object_attributes[:object_data] = data
+      data_object_attributes[:row_count]   = row_count
       logger.debug "Importing row #{row_count}: #{data_object_attributes.inspect}"
-      object = DataObject.new.from_json JSON.generate(attributes)
-
-      object.save!
-
-      # TODO: support for explicit identifiers
-      service = CollectionSpace::Converter::Default.service authority_type, authority_subtype
-      service_id = service[:id]
-      term_display_name = object.read_attribute(identifier_field)
-      term_id = object.read_attribute("shortidentifier")
-      if term_id == nil
-        term_id = AuthCache::lookup_authority_term_id service_id, authority_subtype, term_display_name
-      end
-
-      identifier = term_id
-      if identifier == nil
-        identifier = CSIDF.short_identifier(object.read_attribute(identifier_field))
-      end
-
-      if CollectionSpaceObject.has_authority?(identifier)
-        cspace_object = CollectionSpaceObject.where(category: 'Authority', identifier: identifier).first
-        cspace_object.content = object.to_auth_xml(authority_type, term_display_name, identifier)
-        cspace_object.save!
-      else
-        # CREATE NEW CSPACE OBJECT
-        object.add_authority(authority_type, authority_subtype, object.read_attribute(identifier_field), identifier)
-        object.save!
-      end
+      service = ImportService.new(data_object_attributes)
+      service.create_object
+      service.add_authority(identifier_field, authority_type, authority_subtype)
       row_count += 1
     end
   end
