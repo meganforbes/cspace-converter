@@ -19,41 +19,6 @@ class DataObject
   field :import_category,   type: String # ex: Procedure
   field :row_count,         type: Integer
 
-  # "Acquisition" => { "identifier_field" => "acqid", "identifier" => "acqid", "title" => "acqid" }
-  def add_procedures
-    procedures = self.profile.fetch("Procedures", {})
-    procedures.each do |procedure, attributes|
-      begin
-        add_procedure procedure, attributes
-      rescue Exception => ex
-        logger.error "#{ex.message}\n#{ex.backtrace}"
-      end
-    end
-  end
-
-  # [ { "procedure1_type" => "Acquisition",
-  #   "data1_field" => "acquisitionReferenceNumber",
-  #   "procedure2_type" => "CollectionObject",
-  #   "data2_field" => "objectNumber" } ]
-  def add_relationships(reciprocal = true)
-    relationships = self.profile.fetch("Relationships", [])
-    relationships.each do |relationship|
-      r  = relationship
-      begin
-        # no point continuing if the fields don't exist
-        next unless (self.read_attribute(r["data1_field"]) and self.read_attribute(r["data2_field"]))
-
-        add_relationship r["procedure1_type"], r["data1_field"],
-          r["procedure2_type"], r["data2_field"]
-
-        add_relationship r["procedure2_type"], r["data2_field"],
-          r["procedure1_type"], r["data1_field"] if reciprocal
-      rescue Exception => ex
-        logger.warn ex.message
-      end
-    end
-  end
-
   def converter_class
     Lookup.converter_class(converter_module)
   end
@@ -115,13 +80,13 @@ class DataObject
     converter = Lookup.procedure_class(converter_module, procedure)
 
     data = {}
-    data[:batch]            = self.import_batch
+    data[:batch]            = import_batch
     data[:category]         = 'Procedure'
     data[:type]             = procedure
     data[:subtype]          = ''
     data[:identifier_field] = attributes["identifier_field"]
     data[:identifier]       = object_data[attributes["identifier"]]
-    data[:title]            = self.read_attribute( attributes["title"] )
+    data[:title]            = object_data[attributes["title"]]
 
     cspace_object = collection_space_objects.build(data)
     Task.generate_content(
@@ -132,21 +97,31 @@ class DataObject
   end
 
   def add_relationship(from_procedure, from_field, to_procedure, to_field)
-    from_value = self.read_attribute( from_field )
-    to_value   = self.read_attribute( to_field )
-    raise "No data for field pair [#{from_field}:#{to_field}] for #{self.id}" unless (from_value and to_value)
+    from_value = object_data[from_field]
+    to_value   = object_data[to_field]
+    unless (from_value and to_value)
+      raise "No data for field pair [#{from_field}:#{to_field}] for #{id}"
+    end
 
     # TODO: update this (lookup doc_type)!
     from_doc_type = "#{from_procedure.downcase}s"
-    from          = CollectionSpaceObject.where(type: from_procedure, identifier: from_value).first
-    to_doc_type   = "#{to_procedure.downcase}s"
-    to            = CollectionSpaceObject.where(type: to_procedure, identifier: to_value).first
-    raise "Object pair not found [#{from_value}:#{to_value}] for #{self.id}" unless (from and to)
+    from = CollectionSpaceObject.where(
+      type: from_procedure,
+      identifier: from_value
+    ).first
 
-    from_csid = from.read_attribute "csid"
-    to_csid   = to.read_attribute   "csid"
+    to_doc_type = "#{to_procedure.downcase}s"
+    to = CollectionSpaceObject.where(
+      type: to_procedure,
+      identifier: to_value
+    ).first
+
+    raise "Object pair not found [#{from_value}:#{to_value}] for #{id}" unless (from and to)
+
+    from_csid = from.csid
+    to_csid   = to.csid
     unless (from_csid and to_csid)
-      raise "CSID values not found for pair [#{from.identifier}:#{to.identifier}] for #{self.id}"
+      raise "CSID values not found for pair [#{from.id}:#{to.id}] for #{id}"
     end
 
     attributes = {
@@ -170,7 +145,6 @@ class DataObject
     data[:identifier_field] = 'csid'
     data[:identifier]       = "#{from_csid}_#{to_csid}"
     data[:title]            = "#{from_prefix}:#{from_value}_#{to_prefix}:#{to_value}"
-    self.collection_space_objects.build data
 
     cspace_object = collection_space_objects.build(data)
     Task.generate_content(

@@ -73,16 +73,39 @@ class ImportService
     end
   end
 
-  # TODO: refactor
   # "Acquisition" => { "identifier_field" => "acqid", "identifier" => "acqid", "title" => "acqid" }
   def add_procedures
     raise 'Data Object has not been created' unless object
-    object.add_procedures
-    object.save!
+
+    procedures = object.profile.fetch("Procedures", {})
+    procedures.each do |procedure, attributes|
+      begin
+        object.add_procedure procedure, attributes
+      rescue Exception => ex
+        logger.error "#{ex.message}\n#{ex.backtrace}"
+      end
+    end
   end
 
-  def add_relationships
-    # TODO
+  def add_relationships(reciprocal = true)
+    relationships = object.profile.fetch("Relationships", [])
+    relationships.each do |relationship|
+      r  = relationship
+      begin
+        # no point continuing if the fields don't exist
+        unless object.object_data[r["data1_field"]] && object.object_data[r["data2_field"]]
+          next
+        end
+
+        object.add_relationship r["procedure1_type"], r["data1_field"],
+          r["procedure2_type"], r["data2_field"]
+
+        object.add_relationship r["procedure2_type"], r["data2_field"],
+          r["procedure1_type"], r["data1_field"] if reciprocal
+      rescue Exception => ex
+        logger.warn ex.message
+      end
+    end
   end
 
   def create_object
