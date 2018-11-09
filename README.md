@@ -78,6 +78,7 @@ For these commands to actually work you will need the data (CSV) files in `data`
 
 ```bash
 ./import.sh SampleCatalogingData.csv cataloging Vanilla cataloging
+./import_auth.sh SamplePlace.csv place1 PublicArt termdisplayname Place place
 ```
 
 ## Import Staged Data from MongoDB to CollectionSpace
