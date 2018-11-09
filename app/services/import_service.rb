@@ -48,7 +48,11 @@ class ImportService
             next
           else
             converter     = Lookup.authority_class(object.converter_module, type)
-            cspace_object = CollectionSpaceObject.where(category: 'Authority', identifier: identifier).first
+            cspace_object = CollectionSpaceObject.where(
+              category: 'Authority',
+              identifier: identifier
+            ).first
+
             Task.generate_content(
               converter: converter,
               data: object.object_data,
