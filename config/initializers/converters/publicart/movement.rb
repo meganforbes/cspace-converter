@@ -14,7 +14,8 @@ module CollectionSpace
             # location, currentLocation
             current_location = attributes['currentlocation']
             if current_location
-              CSXML::Helpers.get_authority_urn('placeauthorities', DEFAULT_PLACE_AUTHORITY_ID, current_location)
+              current_location_urn = CSXML::Helpers.get_authority_urn('placeauthorities', DEFAULT_PLACE_AUTHORITY_ID, current_location)
+              CSXML.add xml, 'currentLocation', current_location_urn
             end
             
             CSXML.add xml, 'locationDate', attributes["location_date"]
