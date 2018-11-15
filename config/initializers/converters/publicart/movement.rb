@@ -3,6 +3,8 @@ module CollectionSpace
     module PublicArt
       include Default
 
+      DEFAULT_PLACE_AUTHORITY_ID = 'place_shared'
+
       class PublicArtMovement < Movement
 
         def convert
@@ -12,12 +14,10 @@ module CollectionSpace
             # location, currentLocation
             current_location = attributes['currentlocation']
             if current_location
-              CSXML::Helpers.add_place xml, 'currentLocation', current_location
+              CSXML::Helpers.get_authority_urn('placeauthorities', DEFAULT_PLACE_AUTHORITY_ID, current_location)
             end
             
             CSXML.add xml, 'locationDate', attributes["location_date"]
-
-            CSXML::Helpers.add_persons xml, 'borrowersAuthorizer', [attributes["movement_contact"]]
 
             CSXML.add xml, 'reasonForMove', attributes["reason_for_move"]
 

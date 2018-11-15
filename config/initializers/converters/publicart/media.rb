@@ -5,6 +5,9 @@ module CollectionSpace
 
       class PublicArtMedia < Media
 
+        DEFAULT_PERSON_AUTHORITY_ID = 'person_shared'
+        DEFAULT_ORG_AUTHORITY_ID = 'organization_shared'
+
         def convert
           run(wrapper: "document") do |xml|
 
@@ -31,11 +34,11 @@ module CollectionSpace
               rightsholders_urns = []
               rightsholders = split_mvf attributes, 'rightsholder_person'
               rightsholders.each do | rightsholder |
-                rightsholders_urns << { "publicartRightsHolder" => CSXML::Helpers.get_authority_urn('personauthorities', 'person', rightsholder) }
+                rightsholders_urns << { "publicartRightsHolder" => CSXML::Helpers.get_authority_urn('personauthorities', DEFAULT_PERSON_AUTHORITY_ID, rightsholder) }
               end
               rightsholders = split_mvf attributes, 'rightsholder_org'
               rightsholders.each do |rightsholder|
-                rightsholders_urns << { "publicartRightsHolder" => CSXML::Helpers.get_authority_urn('orgauthorities', 'organization', rightsholder) }
+                rightsholders_urns << { "publicartRightsHolder" => CSXML::Helpers.get_authority_urn('orgauthorities', DEFAULT_ORG_AUTHORITY_ID, rightsholder) }
               end
               CSXML.add_repeat(xml, 'publicartRightsHolders', rightsholders_urns) if rightsholders_urns.empty? == false
 

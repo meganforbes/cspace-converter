@@ -7,6 +7,9 @@ module CollectionSpace
 
       class PublicArtCollectionObject < CollectionObject
 
+        DEFAULT_PERSON_AUTHORITY_ID = 'person_shared'
+        DEFAULT_ORG_AUTHORITY_ID = 'organization_shared'
+
         def convert
           run(wrapper: "document") do |xml|
 
@@ -72,13 +75,13 @@ module CollectionSpace
 
               # textualInscriptionGroupList
               CSXML.add_group_list xml, 'textualInscription', [{
-                inscriptionContentInscriber => CSXML::Helpers.get_authority_urn('personauthorities', 'person', attributes["inscriber"]),
+                inscriptionContentInscriber => CSXML::Helpers.get_authority_urn('personauthorities', DEFAULT_PERSON_AUTHORITY_ID, attributes["inscriber"]),
                 inscriptionContentMethod => attributes["method"],
               }] if attributes["inscriber"]
 
               # objectProductionOrganizationGroupList
               CSXML.add_group_list xml, 'objectProductionOrganization', [{
-                "objectProductionOrganization" => CSXML::Helpers.get_authority_urn('orgauthorities', 'organization', attributes["production_org"]),
+                "objectProductionOrganization" => CSXML::Helpers.get_authority_urn('orgauthorities', DEFAULT_ORG_AUTHORITY_ID, attributes["production_org"]),
                 "objectProductionOrganizationRole" => attributes["organization_role"],
               }] if attributes["production_org"]
 
@@ -96,11 +99,11 @@ module CollectionSpace
               owners_urns = []
               owners = split_mvf attributes, 'owners_person'
               owners.each do |owner|
-                owners_urns << { "owner" => CSXML::Helpers.get_authority_urn('personauthorities', 'person', owner) }
+                owners_urns << { "owner" => CSXML::Helpers.get_authority_urn('personauthorities', DEFAULT_PERSON_AUTHORITY_ID, owner) }
               end
               owners = split_mvf attributes, 'owners_org'
               owners.each do |owner|
-                owners_urns << { "owner" => CSXML::Helpers.get_authority_urn('orgauthorities', 'organization', owner) }
+                owners_urns << { "owner" => CSXML::Helpers.get_authority_urn('orgauthorities', DEFAULT_ORG_AUTHORITY_ID, owner) }
               end
               CSXML.add_repeat(xml, 'owners', owners_urns) if owners_urns.empty? == false
 
@@ -192,7 +195,7 @@ module CollectionSpace
 
               # Collection
               CSXML.add_repeat xml, 'publicartCollections', [{
-                  "publicartCollection" => CSXML::Helpers.get_authority_urn('orgauthorities', 'organization', attributes["collection"]),
+                  "publicartCollection" => CSXML::Helpers.get_authority_urn('orgauthorities', DEFAULT_ORG_AUTHORITY_ID, attributes["collection"]),
               }] if attributes["collection"]
 
               # publicartProductionPersonGroupList
@@ -201,7 +204,7 @@ module CollectionSpace
               prodpersons_urns = []
               prodpersons = split_mvf attributes, 'objectproductionperson'
               prodpersons.each do |person, index|
-                prodpersons_urns << CSXML::Helpers.get_authority_urn('personauthorities', 'person', person)
+                prodpersons_urns << CSXML::Helpers.get_authority_urn('personauthorities', DEFAULT_PERSON_AUTHORITY_ID, person)
               end
 
               role_urns = []
