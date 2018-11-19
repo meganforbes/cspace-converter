@@ -30,7 +30,7 @@ class RemoteActionService
     begin
       blob_uri = @object.data_object.to_hash.fetch('blob_uri', nil)
       if blob_uri.blank? == false
-        blob_uri = URI.encode blob_uri
+        blob_uri = blob_uri # URI.encode blob_uri
       end
       params   = (blob_uri and @object.type == 'Media') ? { query: { 'blobUri' => blob_uri } } : {}
       response = $collectionspace_client.post(@service[:path], @object.content, params)
