@@ -52,33 +52,38 @@ connection: https://docs.mongodb.com/v3.0/tutorial/getting-started-with-the-mong
 The general format for the command is:
 
 ```bash
-./import.sh [CS_CONV_FILE] [CS_CONV_BATCH] [CS_CONV_MODULE] [CS_CONV_PROFILE]
+./import_procedures.sh [FILE] [BATCH] [MODULE] [PROFILE]
 ```
 
-- `CS_CONV_FILE`: filename (in data directory)
-- `CS_CONV_BATCH`: batch name
-- `CS_CONV_MODULE`: converter module
-- `CS_CONV_PROFILE`: profile from type
+- `FILE`: name of import file in data directory
+- `BATCH`: import batch label (for reference)
+- `MODULE`: converter module name (`CollectionSpace::Converter::$NAME`)
+- `PROFILE`: profile key from config (`_config.rb` registered_profiles)
 
 For example:
 
 ```bash
 # procedure / object
-./import.sh PPSdata_accession.csv pp_accession1 PastPerfect accessions
-./import.sh PPSdata_objects.csv pp_objects1 PastPerfect objects
+./import_procedures.sh PPSdata_accession.csv pp_accession1 PastPerfect accessions
+./import_procedures.sh PPSdata_objects.csv pp_objects1 PastPerfect objects
 
 # NOTE: for media csv blob_uri field will attempt to create the image
-./import.sh SampleMediaUrl.csv media1 Vanilla media
-
-# authority
-bundle exec rake db:import:authorities[data/SamplePerson.csv,person1,Vanilla,Person]
+./import_procedures.sh SampleMediaUrl.csv media1 Vanilla media
 ```
 
 For these commands to actually work you will need the data (CSV) files in `data`. Here's the command using the supplied sample CSV file:
 
 ```bash
-./import.sh SampleCatalogingData.csv cataloging Vanilla cataloging
-./import_auth.sh SamplePlace.csv place1 PublicArt termdisplayname Place place
+./import_procedures.sh SampleCatalogingData.csv cataloging Vanilla cataloging
+```
+
+For authorities:
+
+```
+# authority
+./import_authorities.sh [FILE] [BATCH] [MODULE] [ID_COLUMN] [AUTH_TYPE] [AUTH_INSTANCE]
+./import_authorities.sh SamplePlace.csv place1 PublicArt termdisplayname Place place
+bundle exec rake db:import:authorities[data/SamplePerson.csv,person1,Vanilla,termdisplayname,Person,person]
 ```
 
 ## Import Staged Data from MongoDB to CollectionSpace
@@ -122,7 +127,7 @@ Next, to execute "transfer" jobs you'll eventually create using the UI server, r
 ```ruby
 # ./bin/rails c
 p = DataObject.first
-puts p.to_procedure_xml("CollectionObject")
+puts p.inspect
 ```
 
 **Clearing out data**
@@ -142,7 +147,7 @@ docker-compose up
 # to run commands
 docker exec -it converter ./bin/rails c
 docker exec -it converter \
-  ./import.sh SampleCatalogingData.csv cataloging Vanilla cataloging
+  ./import_procedures.sh SampleCatalogingData.csv cataloging Vanilla cataloging
 docker exec -it converter ./bin/rake db:nuke
 ```
 

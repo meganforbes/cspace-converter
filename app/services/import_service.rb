@@ -37,8 +37,9 @@ class ImportService
       begin
         identifier = AuthCache::lookup_authority_term_id service_id, subtype, name
         # if we find this procedure authority in the cache skip it!
-        next if identifier and from_procedure
+        next if identifier && from_procedure
 
+        # if the object data contains a shortidentifier then use it, don't generate it
         identifier = object.object_data.fetch("shortidentifier", identifier)
         identifier = CSIDF.short_identifier(name) unless identifier
 
