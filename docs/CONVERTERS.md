@@ -147,7 +147,7 @@ be related.
 ## Running a converter
 
 ```bash
-./import_procedures.sh mymuseum_data.csv mymuseum1 MyMuseum mymuseum
+./import_procedures.sh data/mymuseum_data.csv mymuseum1 MyMuseum mymuseum
 ```
 
 The arguments correspond to:

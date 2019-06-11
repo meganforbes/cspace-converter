@@ -64,17 +64,17 @@ For example:
 
 ```bash
 # procedure / object
-./import_procedures.sh PPSdata_accession.csv pp_accession1 PastPerfect accessions
-./import_procedures.sh PPSdata_objects.csv pp_objects1 PastPerfect objects
+./import_procedures.sh data/PPSdata_accession.csv pp_accession1 PastPerfect accessions
+./import_procedures.sh data/PPSdata_objects.csv pp_objects1 PastPerfect objects
 
 # NOTE: for media csv blob_uri field will attempt to create the image
-./import_procedures.sh SampleMediaUrl.csv media1 Vanilla media
+./import_procedures.sh data/SampleMediaUrl.csv media1 Vanilla media
 ```
 
 For these commands to actually work you will need the data (CSV) files in `data`. Here's the command using the supplied sample CSV file:
 
 ```bash
-./import_procedures.sh SampleCatalogingData.csv cataloging Vanilla cataloging
+./import_procedures.sh data/SampleCatalogingData.csv cataloging Vanilla cataloging
 ```
 
 For authorities:
@@ -147,7 +147,7 @@ docker-compose up
 # to run commands
 docker exec -it converter ./bin/rails c
 docker exec -it converter \
-  ./import_procedures.sh SampleCatalogingData.csv cataloging Vanilla cataloging
+  ./import_procedures.sh data/SampleCatalogingData.csv cataloging Vanilla cataloging
 docker exec -it converter ./bin/rake db:nuke
 ```
 
