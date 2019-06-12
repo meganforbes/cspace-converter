@@ -9,7 +9,7 @@ class DataObject
   validates_presence_of :import_category
   validate :module_and_profile_exist
 
-  field :converter_module,  type: String # ex: Vanilla
+  field :converter_module,  type: String # ex: Core
   field :converter_profile, type: String # ex: cataloging
   field :object_data,       type: Hash
   field :import_batch,      type: String # ex: cat1

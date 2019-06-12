@@ -1,9 +1,9 @@
 module CollectionSpace
   module Converter
-    module Vanilla
+    module Core
       include Default
 
-      class VanillaPerson < Person
+      class CorePerson < Person
 
         def convert
           run do |xml|

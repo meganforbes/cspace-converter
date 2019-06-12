@@ -1,9 +1,9 @@
 module CollectionSpace
   module Converter
-    module Vanilla
+    module Core
       include Default
 
-      class VanillaMovement < Movement
+      class CoreMovement < Movement
 
         def convert
           run do |xml|
@@ -14,7 +14,7 @@ module CollectionSpace
             if current_location
               CSXML::Helpers.add_location xml, 'currentLocation', current_location
             end
-            
+
             CSXML.add xml, 'locationDate', attributes["location_date"]
 
             CSXML::Helpers.add_persons xml, 'borrowersAuthorizer', [attributes["movement_contact"]]

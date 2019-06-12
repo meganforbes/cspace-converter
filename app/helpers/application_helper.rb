@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   def batches
-    [ "all" ].concat( DataObject.pluck('import_batch').uniq )
+    ['all'].concat( DataObject.pluck('import_batch').uniq )
   end
 
   def collectionspace_base_uri
@@ -18,12 +18,12 @@ module ApplicationHelper
 
   def modules
     CollectionSpace::Converter.constants.find_all do |c|
-      "CollectionSpace::Converter::#{c}".constantize.respond_to? :registered_profiles
-    end.sort
+      "CollectionSpace::Converter::#{c}".constantize.respond_to?(:registered_profiles)
+    end.sort.promote(:Default)
   end
 
   def profiles
-    profiles = []
+    profiles = ['Default', 'Default', class: 'Default']
     modules.each do |c|
       converter = "CollectionSpace::Converter::#{c}".constantize
       converter.registered_profiles.keys.sort.each do |profile|

@@ -68,13 +68,13 @@ For example:
 ./import_procedures.sh data/PPSdata_objects.csv pp_objects1 PastPerfect objects
 
 # NOTE: for media csv blob_uri field will attempt to create the image
-./import_procedures.sh data/SampleMediaUrl.csv media1 Vanilla media
+./import_procedures.sh data/SampleMediaUrl.csv media1 Core media
 ```
 
 For these commands to actually work you will need the data (CSV) files in `data`. Here's the command using the supplied sample CSV file:
 
 ```bash
-./import_procedures.sh data/SampleCatalogingData.csv cataloging Vanilla cataloging
+./import_procedures.sh data/SampleCatalogingData.csv cataloging Core cataloging
 ```
 
 For authorities:
@@ -83,7 +83,7 @@ For authorities:
 # authority
 ./import_authorities.sh [FILE] [BATCH] [MODULE] [ID_COLUMN] [AUTH_TYPE] [AUTH_INSTANCE]
 ./import_authorities.sh SamplePlace.csv place1 PublicArt termdisplayname Place place
-bundle exec rake db:import:authorities[data/SamplePerson.csv,person1,Vanilla,termdisplayname,Person,person]
+bundle exec rake db:import:authorities[data/SamplePerson.csv,person1,Core,termdisplayname,Person,person]
 ```
 
 ## Import Staged Data from MongoDB to CollectionSpace
@@ -147,7 +147,7 @@ docker-compose up
 # to run commands
 docker exec -it converter ./bin/rails c
 docker exec -it converter \
-  ./import_procedures.sh data/SampleCatalogingData.csv cataloging Vanilla cataloging
+  ./import_procedures.sh data/SampleCatalogingData.csv cataloging Core cataloging
 docker exec -it converter ./bin/rake db:nuke
 ```
 

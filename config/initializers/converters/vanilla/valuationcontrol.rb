@@ -1,15 +1,15 @@
 module CollectionSpace
   module Converter
-    module Vanilla
+    module Core
       include Default
 
-      class VanillaValuationControl < ValuationControl
+      class CoreValuationControl < ValuationControl
 
         def convert
           run do |xml|
 
               CSXML.add xml, 'valuationcontrolRefNumber', attributes["valuation_control_reference_number"]
-              
+
               value_source = attributes["source"]
               CSXML::Helpers.add_persons xml, 'valueSource', [value_source] if value_source
 

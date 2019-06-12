@@ -1,9 +1,9 @@
 module CollectionSpace
   module Converter
-    module Vanilla
+    module Core
       include Default
 
-      class VanillaConcept < Concept
+      class CoreConcept < Concept
 
         def convert
           run do |xml|

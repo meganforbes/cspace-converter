@@ -4,7 +4,7 @@ module CollectionSpace
       ::Lookup = CollectionSpace::Converter::Lookup
       CONVERTER_BASE    = "CollectionSpace::Converter"
       CONVERTER_DEFAULT = "#{CONVERTER_BASE}::Default"
-      # i.e. #{CONVERTER_BASE}::Vanilla::VanillaMaterials
+      # i.e. #{CONVERTER_BASE}::Core::CoreMaterials
       def self.authority_class(converter_module, authority)
         "#{CONVERTER_BASE}::#{converter_module}::#{converter_module}#{authority}".constantize
       end

@@ -1,6 +1,6 @@
 module CollectionSpace
   module Converter
-    module Vanilla
+    module Core
       def self.config
         @config ||= YAML.safe_load(
           File.open(

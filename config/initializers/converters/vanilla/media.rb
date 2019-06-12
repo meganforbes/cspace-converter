@@ -1,9 +1,9 @@
 module CollectionSpace
   module Converter
-    module Vanilla
+    module Core
       include Default
 
-      class VanillaMedia < Media
+      class CoreMedia < Media
 
         def convert
           run do |xml|

@@ -1,9 +1,9 @@
 module CollectionSpace
   module Converter
-    module Vanilla
+    module Core
       include Default
 
-      class VanillaObjectExit < ObjectExit
+      class CoreObjectExit < ObjectExit
 
         def convert
           run do |xml|
@@ -22,7 +22,7 @@ module CollectionSpace
 
             #currentOwner
             CSXML.add xml, 'currentOwner', CSXML::Helpers.get_authority_urn('orgauthorities', 'organization', attributes["current_owner"]) if attributes["current_owner"]
-            
+
             #exitNote
             CSXML.add xml, 'exitNote', attributes["exit_note"]
 

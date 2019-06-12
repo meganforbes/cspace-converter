@@ -1,9 +1,9 @@
 module CollectionSpace
   module Converter
-    module Vanilla
+    module Core
       include Default
 
-      class VanillaAcquisition < Acquisition
+      class CoreAcquisition < Acquisition
 
         def convert
           run do |xml|
@@ -28,7 +28,7 @@ module CollectionSpace
             CSXML.add_repeat xml, 'owners', [{
               'owner' => CSXML::Helpers.get_authority_urn('personauthorities', 'person', attributes['owner']),
             }] if attributes['owner']
-            
+
             #acquisitionMethod
             CSXML.add xml, 'acquisition_method', attributes['acquisition_method']
 

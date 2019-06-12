@@ -1,9 +1,9 @@
 module CollectionSpace
   module Converter
-    module Vanilla
+    module Core
       include Default
 
-      class VanillaIntake < Intake
+      class CoreIntake < Intake
 
         def convert
           run do |xml|
@@ -15,10 +15,10 @@ module CollectionSpace
 
             #entryReason
             CSXML.add xml, 'entryReason', attributes["entry_reason"].downcase!
-            
+
             #currentOwner
             CSXML::Helpers.add_person xml, 'currentOwner', attributes["current_owner"] if attributes["current_owner"]
-            
+
             #entryNote
             CSXML.add xml, 'entryNote', attributes["entry_note"]
 

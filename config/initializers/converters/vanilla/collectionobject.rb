@@ -1,9 +1,9 @@
 module CollectionSpace
   module Converter
-    module Vanilla
+    module Core
       include Default
 
-      class VanillaCollectionObject < CollectionObject
+      class CoreCollectionObject < CollectionObject
 
         def convert
           #

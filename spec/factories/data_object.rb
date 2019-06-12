@@ -1,7 +1,7 @@
 FactoryGirl.define do
 
   factory :data_object do
-    converter_module 'Vanilla'
+    converter_module 'Core'
     converter_profile 'cataloging'
     import_batch 'cat1'
     import_category 'Procedure'

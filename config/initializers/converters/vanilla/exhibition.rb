@@ -1,9 +1,9 @@
 module CollectionSpace
   module Converter
-    module Vanilla
+    module Core
       include Default
 
-      class VanillaExhibition < Exhibition
+      class CoreExhibition < Exhibition
 
         def convert
           run do |xml|

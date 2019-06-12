@@ -1,9 +1,9 @@
 module CollectionSpace
   module Converter
-    module Vanilla
+    module Core
       include Default
 
-      class VanillaGroup < Group
+      class CoreGroup < Group
 
         def convert
           run do |xml|

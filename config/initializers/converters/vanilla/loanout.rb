@@ -1,9 +1,9 @@
 module CollectionSpace
   module Converter
-    module Vanilla
+    module Core
       include Default
 
-      class VanillaLoanOut < LoanOut
+      class CoreLoanOut < LoanOut
 
         def convert
           run do |xml|
