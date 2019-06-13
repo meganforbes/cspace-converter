@@ -23,19 +23,17 @@
                 <th>Profile</th>
                 <th>Created</th>
                 <th>Updated</th>
-                <th></th>
               </tr>
             </thead>
             <tbody>
               <% @objects.entries.each.with_index do |object, i| %>
                 <tr>
-                  <td><%= object.id %></td>
+                  <td><%= link_to object.id, object_path(object) %></td>
                   <td><%= object.import_batch %></td>
                   <td><%= object.converter_module %></td>
                   <td><%= object.converter_profile %></td>
                   <td><%= short_date object.created_at %></td>
                   <td><%= short_date object.updated_at %></td>
-                  <td><%= link_to "View", object_path(object) %></td>
                 </tr>
               <% end %>
             </tbody>

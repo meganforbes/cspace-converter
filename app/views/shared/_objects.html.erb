@@ -24,19 +24,17 @@
                 <th>Batch</th>
                 <th>Created</th>
                 <th>Updated</th>
-                <th></th>
               </tr>
             </thead>
             <tbody>
               <% objects.entries.each.with_index do |object, i| %>
                 <tr>
-                  <td><%= object.identifier %></td>
+                  <td><%= link_to object.identifier, send("#{type}_path".to_sym, object) %></td>
                   <td><%= object.type %></td>
                   <td><%= object.csid %></td>
                   <td><%= object.data_object.import_batch %></td>
                   <td><%= short_date object.created_at %></td>
                   <td><%= short_date object.updated_at %></td>
-                  <td><%= link_to "View", send("#{type}_path".to_sym, object) %></td>
                 </tr>
               <% end %>
             </tbody>
