@@ -5,21 +5,21 @@ documents to CollectionSpace XML payloads.
 
 ## How to create a converter
 
-Converters are defined in `config/initializers/converters`. This
-directory containers a `_record.rb` file that is the foundation
-for converter profiles to build upon. If a procedure or authority
-is not represented in `_record.rb` it cannot be mapped, and most
-likely should be added (pull requests welcome!).
+Converters are defined in `lib/collectionspace/converter/`.
+This directory containers a `_default/record.rb` file that is the
+foundation for converter profiles to build upon. If a procedure
+or authority is not represented in `record.rb` it cannot be mapped,
+and most likely should be added (pull requests welcome!).
 
 Subfolders in this directory are converter implementations. Each
 converter requires a `_config.rb` file to define its behavior.
 
 If you're creating a converter for `mymuseum` you could create
-`config/initializers/converters/mymuseum/_config.rb`.
+`lib/collectionspace/converter/mymuseum/_config.rb`.
 
 ## Converter configuration
 
-Begin by copying the `default/_config.rb` but replace "Default"
+Begin by copying the `_default/default.rb` but replace "Default"
 with "MyMuseum" (following ruby naming conventions).
 
 ```
