@@ -38,12 +38,9 @@ class DataObject
     @profile
   end
 
-  def add_authority(type:, subtype:, name:, term_id: nil, from_procedure: false)
+  def add_authority(type:, subtype:, name:, identifier: nil, from_procedure: false)
     # TODO: check the cache here, remove term_id
-    identifier = term_id
-    if identifier == nil
-      identifier = CSIDF.short_identifier(name)
-    end
+    identifier ||= CSIDF.short_identifier(name)
 
     converter = nil
 

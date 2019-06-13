@@ -66,7 +66,7 @@ class ImportService
             type: type,
             subtype: subtype,
             name: name,
-            term_id: identifier,
+            identifier: identifier,
             from_procedure: from_procedure
           )
           object.save!

@@ -6,14 +6,7 @@ module CollectionSpace
         Rails.logger.debug(
           "Generating content for: #{converter};#{object.inspect};#{data}"
         )
-
-        converter = converter.new(data)
-
-        if converter.respond_to? :term_short_id
-          # TODO: get rid of this
-          converter.term_short_id=object.identifier
-        end
-
+        converter      = converter.new(data)
         object.content = hack_namespaces(converter.convert)
         object
       end

@@ -95,15 +95,6 @@ module CollectionSpace
 
         def initialize(attributes)
           @attributes = attributes
-          @term_short_id = nil
-        end
-
-        def term_short_id
-          @term_short_id
-        end
-
-        def term_short_id=(id)
-          @term_short_id = id
         end
 
         # default implementation used by authorities
