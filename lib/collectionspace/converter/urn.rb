@@ -58,7 +58,7 @@ module CollectionSpace
     #
     # Get the URN for a vocabulary term value
     #
-    def self.get_vocab_urn(vocabulary_id, value, row_number = "unknown")
+    def self.get_vocab_urn(vocabulary_id, value)
       if value
         # try to breakup the term value into component parts
         term_parts = get_term_parts value
@@ -73,7 +73,7 @@ module CollectionSpace
         if term_id == nil
           term_id = AuthCache::lookup_vocabulary_term_id vocabulary_id, display_name
         end
-        Rails.logger.error "Problem in row #{row_number} because vocabulary short ID for term '#{display_name}' does not exist or was not provided." unless term_id != nil
+        Rails.logger.error "Problem because vocabulary short ID for term '#{display_name}' does not exist or was not provided." unless term_id != nil
 
         generate(
           Rails.application.config.domain,

@@ -6,11 +6,6 @@ module CollectionSpace
       class CoreCollectionObject < CollectionObject
 
         def convert
-          #
-          # The current row number of the CSV that we're processing
-          #
-          row_number = attributes["row_number"]
-
           run do |xml|
             # objectNumber
             CSXML.add xml, 'objectNumber', attributes["id_number"]
@@ -22,15 +17,15 @@ module CollectionSpace
             if attributes["title_translation"]
               CSXML.add_group_list xml, 'title', [{
               "title" => attributes["title"],
-              "titleLanguage" => CSURN.get_vocab_urn('languages', attributes["title_language"], row_number),
+              "titleLanguage" => CSURN.get_vocab_urn('languages', attributes["title_language"]),
               }], 'titleTranslation', [{
                 "titleTranslation" => attributes["title_translation"],
-                "titleTranslationLanguage" => CSURN.get_vocab_urn('languages', attributes["title_translation_language"], row_number)
+                "titleTranslationLanguage" => CSURN.get_vocab_urn('languages', attributes["title_translation_language"])
               }]
             elsif attributes["title_language"]
                CSXML.add_group_list xml, 'title', [{
               "title" => attributes["title"],
-              "titleLanguage" => CSURN.get_vocab_urn('languages', attributes["title_language"], row_number),
+              "titleLanguage" => CSURN.get_vocab_urn('languages', attributes["title_language"]),
               }]
             else
               CSXML.add_group_list xml, 'title', [{
