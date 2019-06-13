@@ -42,26 +42,7 @@ class ImportService
         identifier = object.object_data.fetch("shortidentifier", identifier)
         identifier = CSIDF.short_identifier(name) unless identifier
 
-        if CollectionSpaceObject.has_authority?(identifier)
-          if from_procedure
-            # don't duplicate or update
-            next
-          else
-            converter     = Lookup.authority_class(object.converter_module, type)
-            cspace_object = CollectionSpaceObject.where(
-              category: 'Authority',
-              identifier: identifier
-            ).first
-
-            Task.generate_content(
-              converter: converter,
-              data: object.object_data,
-              object: cspace_object,
-            )
-            cspace_object.save!
-          end
-        else
-          # CREATE NEW CSPACE OBJECT
+        unless CollectionSpaceObject.has_authority?(identifier)
           object.add_authority(
             type: type,
             subtype: subtype,
