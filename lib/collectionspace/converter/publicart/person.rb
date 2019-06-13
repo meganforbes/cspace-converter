@@ -3,37 +3,43 @@ module CollectionSpace
     module PublicArt
       include Default
 
-      class PublicArtOrganization < Organization
+      class PublicArtPerson < Person
 
         def convert
           run(wrapper: "document") do |xml|
 
             xml.send(
-                "ns2:organizations_common",
-                "xmlns:ns2" => "http://collectionspace.org/services/organization",
+                "ns2:persons_common",
+                "xmlns:ns2" => "http://collectionspace.org/services/person",
                 "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
             ) do
               # applying namespace breaks import
               xml.parent.namespace = nil
 
-              CSXML.add xml, 'shortIdentifier', CSIDF.short_identifier(attributes["name"])
+              CSXML.add xml, 'shortIdentifier', CSIDF.short_identifier(attributes["termdisplayname"])
 
-              CSXML.add_group_list xml, 'orgTerm',
+              CSXML.add_group_list xml, 'personTerm',
                                    [{
                                         "termDisplayName" => attributes["termdisplayname"],
-                                        "mainBodyName" => attributes["mainbodyname"],
+                                        "termType" => CSXML::Helpers.get_vocab_urn('persontermtype', attributes["termtype"]),
                                     }]
             end
 
             xml.send(
-                "ns2:organizations_publicart",
-                "xmlns:ns2" => "http://collectionspace.org/services/organization/local/publicart",
+                "ns2:persons_publicart",
+                "xmlns:ns2" => "http://collectionspace.org/services/person/local/publicart",
                 "xmlns:xsi" => "http://www.w3.org/2001/XMLSchema-instance"
             ) do
               # applying namespace breaks import
               xml.parent.namespace = nil
 
-              CSXML.add xml, 'currentPlace', CSXML::Helpers.get_authority_urn('placeauthorities', 'place', attributes["currentPlace"])
+              # organizations
+              organization_urns = []
+              organizations = split_mvf attributes, 'organization'
+              organizations.each do |organization|
+                organization_urns << { "organization" => CSXML::Helpers.get_authority_urn('orgauthorities', 'organization', organization, true) }
+              end
+              CSXML.add_repeat(xml, 'organizations', organization_urns) if attributes["organization"]
             end
 
             xml.send(

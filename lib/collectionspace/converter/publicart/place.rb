@@ -16,7 +16,7 @@ module CollectionSpace
               # applying namespace breaks import
               xml.parent.namespace = nil
 
-              CSXML.add xml, 'shortIdentifier', CSIDF.short_identifier(attributes["name"])
+              CSXML.add xml, 'shortIdentifier', CSIDF.short_identifier(attributes["termdisplayname"])
 
               CSXML.add_group_list xml, 'addr',
                                    [{

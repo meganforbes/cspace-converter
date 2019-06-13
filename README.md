@@ -82,7 +82,7 @@ For authorities:
 ```
 # authority
 ./import_authorities.sh [FILE] [BATCH] [MODULE] [ID_COLUMN] [AUTH_TYPE] [AUTH_INSTANCE]
-./import_authorities.sh SamplePlace.csv place1 PublicArt termdisplayname Place place
+./import_authorities.sh data/SamplePlace.csv place1 PublicArt termdisplayname Place place
 bundle exec rake db:import:authorities[data/SamplePerson.csv,person1,Core,termdisplayname,Person,person]
 ```
 

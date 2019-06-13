@@ -7,7 +7,7 @@ module CollectionSpace
 
         def convert
           run do |xml|
-            CSXML.add xml, 'shortIdentifier', CSIDF.short_identifier(attributes["name"])
+            CSXML.add xml, 'shortIdentifier', CSIDF.short_identifier(attributes["termdisplayname"])
             CSXML.add_group_list xml, 'personTerm',
                                  [{
                                       "termDisplayName" => attributes["termdisplayname"],
