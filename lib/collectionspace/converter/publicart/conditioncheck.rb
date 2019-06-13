@@ -16,7 +16,7 @@ module CollectionSpace
                 'condition' => attributes['condition'].downcase.gsub(' ', '_').gsub('/', '_').gsub(/_+/,'_').gsub('not_ex','notex')
               }] if attributes['condition']
 
-              CSXML.add xml, 'conditionChecker', CSXML::Helpers.get_authority_urn('personauthorities', 'person', attributes["condition_checker"]) if  attributes["condition_checker"]
+              CSXML.add xml, 'conditionChecker', CSURN.get_authority_urn('personauthorities', 'person', attributes["condition_checker"]) if  attributes["condition_checker"]
 
               CSXML.add xml, 'conditionCheckNote', attributes.fetch("condition_check_note")
 

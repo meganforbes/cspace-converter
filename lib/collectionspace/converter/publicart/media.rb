@@ -31,11 +31,11 @@ module CollectionSpace
               rightsholders_urns = []
               rightsholders = split_mvf attributes, 'rightsholder_person'
               rightsholders.each do | rightsholder |
-                rightsholders_urns << { "publicartRightsHolder" => CSXML::Helpers.get_authority_urn('personauthorities', 'person', rightsholder) }
+                rightsholders_urns << { "publicartRightsHolder" => CSURN.get_authority_urn('personauthorities', 'person', rightsholder) }
               end
               rightsholders = split_mvf attributes, 'rightsholder_org'
               rightsholders.each do |rightsholder|
-                rightsholders_urns << { "publicartRightsHolder" => CSXML::Helpers.get_authority_urn('orgauthorities', 'organization', rightsholder) }
+                rightsholders_urns << { "publicartRightsHolder" => CSURN.get_authority_urn('orgauthorities', 'organization', rightsholder) }
               end
               CSXML.add_repeat(xml, 'publicartRightsHolders', rightsholders_urns) if rightsholders_urns.empty? == false
 
@@ -45,7 +45,7 @@ module CollectionSpace
               publishto_urns = []
               publishto_list = split_mvf attributes, 'publishto'
               publishto_list.each do | publishto |
-                publishto_urns << { "publishTo" => CSXML::Helpers.get_vocab_urn('publishto', publishto) }
+                publishto_urns << { "publishTo" => CSURN.get_vocab_urn('publishto', publishto) }
               end
               if publishto_urns.empty? == false
                 puts publishto_urns

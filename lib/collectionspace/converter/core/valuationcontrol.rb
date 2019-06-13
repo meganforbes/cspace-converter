@@ -17,7 +17,7 @@ module CollectionSpace
 
               CSXML.add_list xml, 'valueAmounts', [{
                 "valueAmount" => attributes['amount'],
-                "valueCurrency" => CSXML::Helpers.get_vocab_urn('currency', attributes['currency']),
+                "valueCurrency" => CSURN.get_vocab_urn('currency', attributes['currency']),
               }]
 
               # value_date = DateTime.parse(attributes["valuedate"]) rescue nil

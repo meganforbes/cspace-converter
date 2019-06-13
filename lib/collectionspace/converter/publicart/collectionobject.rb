@@ -51,7 +51,7 @@ module CollectionSpace
               mgs = []
               materials = split_mvf attributes, 'material'
               materials.each do |m|
-                mgs << { "material" => CSXML::Helpers.get_authority_urn('conceptauthorities', 'material_ca', m) }
+                mgs << { "material" => CSURN.get_authority_urn('conceptauthorities', 'material_ca', m) }
                 #mgs << { "material" => m }
               end
               CSXML.add_group_list xml, 'material', mgs
@@ -72,13 +72,13 @@ module CollectionSpace
 
               # textualInscriptionGroupList
               CSXML.add_group_list xml, 'textualInscription', [{
-                inscriptionContentInscriber => CSXML::Helpers.get_authority_urn('personauthorities', 'person', attributes["inscriber"]),
+                inscriptionContentInscriber => CSURN.get_authority_urn('personauthorities', 'person', attributes["inscriber"]),
                 inscriptionContentMethod => attributes["method"],
               }] if attributes["inscriber"]
 
               # objectProductionOrganizationGroupList
               CSXML.add_group_list xml, 'objectProductionOrganization', [{
-                "objectProductionOrganization" => CSXML::Helpers.get_authority_urn('orgauthorities', 'organization', attributes["production_org"]),
+                "objectProductionOrganization" => CSURN.get_authority_urn('orgauthorities', 'organization', attributes["production_org"]),
                 "objectProductionOrganizationRole" => attributes["organization_role"],
               }] if attributes["production_org"]
 
@@ -96,11 +96,11 @@ module CollectionSpace
               owners_urns = []
               owners = split_mvf attributes, 'owners_person'
               owners.each do |owner|
-                owners_urns << { "owner" => CSXML::Helpers.get_authority_urn('personauthorities', 'person', owner) }
+                owners_urns << { "owner" => CSURN.get_authority_urn('personauthorities', 'person', owner) }
               end
               owners = split_mvf attributes, 'owners_org'
               owners.each do |owner|
-                owners_urns << { "owner" => CSXML::Helpers.get_authority_urn('orgauthorities', 'organization', owner) }
+                owners_urns << { "owner" => CSURN.get_authority_urn('orgauthorities', 'organization', owner) }
               end
               CSXML.add_repeat(xml, 'owners', owners_urns) if owners_urns.empty? == false
 
@@ -185,14 +185,14 @@ module CollectionSpace
                         }
                       end
                     end
-                    xml.send("publicartProductionDateType".to_sym, CSXML::Helpers.get_vocab_urn('proddatetype', element["publicartProductionDateType"]))
+                    xml.send("publicartProductionDateType".to_sym, CSURN.get_vocab_urn('proddatetype', element["publicartProductionDateType"]))
                   }
                 end
               }
 
               # Collection
               CSXML.add_repeat xml, 'publicartCollections', [{
-                  "publicartCollection" => CSXML::Helpers.get_authority_urn('orgauthorities', 'organization', attributes["collection"]),
+                  "publicartCollection" => CSURN.get_authority_urn('orgauthorities', 'organization', attributes["collection"]),
               }] if attributes["collection"]
 
               # publicartProductionPersonGroupList
@@ -201,13 +201,13 @@ module CollectionSpace
               prodpersons_urns = []
               prodpersons = split_mvf attributes, 'objectproductionperson'
               prodpersons.each do |person, index|
-                prodpersons_urns << CSXML::Helpers.get_authority_urn('personauthorities', 'person', person)
+                prodpersons_urns << CSURN.get_authority_urn('personauthorities', 'person', person)
               end
 
               role_urns = []
               roles = split_mvf attributes, 'objectproductionpersonrole'
               roles.each do |role, index|
-                role_urns << CSXML::Helpers.get_vocab_urn('prodpersonrole', role)
+                role_urns << CSURN.get_vocab_urn('prodpersonrole', role)
               end
               types = split_mvf attributes, 'objectproductionpersontype'
 

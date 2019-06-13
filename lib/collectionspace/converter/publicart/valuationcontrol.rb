@@ -9,7 +9,7 @@ module CollectionSpace
           run do |xml|
 
               CSXML.add xml, 'valuationcontrolRefNumber', attributes["valuation_control_reference_number"]
-              
+
               value_source = attributes["source"]
               CSXML::Helpers.add_persons xml, 'valueSource', [value_source] if value_source
 
@@ -17,7 +17,7 @@ module CollectionSpace
 
               CSXML.add_list xml, 'valueAmounts', [{
                 "valueAmount" => attributes['amount'],
-                "valueCurrency" => CSXML::Helpers.get_vocab_urn('currency', attributes['currency']),
+                "valueCurrency" => CSURN.get_vocab_urn('currency', attributes['currency']),
               }]
 
               # value_date = DateTime.parse(attributes["valuedate"]) rescue nil

@@ -26,7 +26,7 @@ module CollectionSpace
 
             #owner
             CSXML.add_repeat xml, 'owners', [{
-              'owner' => CSXML::Helpers.get_authority_urn('personauthorities', 'person', attributes['owner']),
+              'owner' => CSURN.get_authority_urn('personauthorities', 'person', attributes['owner']),
             }] if attributes['owner']
 
             #acquisitionMethod

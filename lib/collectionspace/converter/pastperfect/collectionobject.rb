@@ -23,7 +23,7 @@ module CollectionSpace
               # otherNumberList - NM
               previous_number = attributes["otherno"] ? attributes["otherno"] : attributes["oldno"]
               CSXML.add_list xml, 'otherNumber', [{
-                "numberType" => CSXML::Helpers.get_vocab_urn('bmnumbertype', 'Previous'),
+                "numberType" => CSURN.get_vocab_urn('bmnumbertype', 'Previous'),
                 "numberValue" => previous_number,
               }] if previous_number
 
@@ -42,7 +42,7 @@ module CollectionSpace
               # responsibleDepartments n/a
 
               collection = attributes["collection"]
-              CSXML.add xml, 'collection', CSXML::Helpers.get_vocab_urn('bmcollection', collection) if collection
+              CSXML.add xml, 'collection', CSURN.get_vocab_urn('bmcollection', collection) if collection
 
               CSXML.add_repeat xml, 'briefDescriptions', [{
                 "briefDescription" => scrub_fields([attributes["descrip_"], attributes["subjects_"]])
@@ -60,15 +60,15 @@ module CollectionSpace
 
               objname_group = {}
               objname_group = objname_group.merge({
-                "objectName" => CSXML::Helpers.get_authority_urn('conceptauthorities', 'objectname', objname),
+                "objectName" => CSURN.get_authority_urn('conceptauthorities', 'objectname', objname),
               }) if objname
 
               objname_group = objname_group.merge({
-                "objectNameSystem" => CSXML::Helpers.get_authority_urn('conceptauthorities', 'category', gparent),
+                "objectNameSystem" => CSURN.get_authority_urn('conceptauthorities', 'category', gparent),
               }) if gparent
 
               objname_group = objname_group.merge({
-                "objectNameType" => CSXML::Helpers.get_authority_urn('conceptauthorities', 'subcategory', parent),
+                "objectNameType" => CSURN.get_authority_urn('conceptauthorities', 'subcategory', parent),
               }) if parent
 
               CSXML.add_list xml, 'objectName', [ objname_group ], 'Group' unless objname_group.empty?
@@ -97,25 +97,25 @@ module CollectionSpace
               assoc_person = []
               assoc_person << {
                 "assocPersonNote" => "Collector",
-                "assocPerson" => CSXML::Helpers.get_authority_urn('personauthorities', 'person', attributes["collector"]),
+                "assocPerson" => CSURN.get_authority_urn('personauthorities', 'person', attributes["collector"]),
               } if attributes["collector"]
               assoc_person << {
                 "assocPersonNote" => "Owned",
-                "assocPerson" => CSXML::Helpers.get_authority_urn('personauthorities', 'person', attributes["owned"]),
+                "assocPerson" => CSURN.get_authority_urn('personauthorities', 'person', attributes["owned"]),
               } if attributes["owned"]
               assoc_person << {
                 "assocPersonNote" => "Used",
-                "assocPerson" => CSXML::Helpers.get_authority_urn('personauthorities', 'person', attributes["used"]),
+                "assocPerson" => CSURN.get_authority_urn('personauthorities', 'person', attributes["used"]),
               } if attributes["used"]
               assoc_person << {
                 "assocPersonNote" => "Found",
-                "assocPerson" => CSXML::Helpers.get_authority_urn('personauthorities', 'person', attributes["found"]),
+                "assocPerson" => CSURN.get_authority_urn('personauthorities', 'person', attributes["found"]),
               } if attributes["found"]
               CSXML.add_group_list xml, 'assocPerson', assoc_person
 
               # assocOrganizationGroupList: studio
               CSXML.add_group_list xml, 'assocOrganization', [{
-                "assocOrganization" => CSXML::Helpers.get_authority_urn('orgauthorities', 'organization', attributes["studio"]),
+                "assocOrganization" => CSURN.get_authority_urn('orgauthorities', 'organization', attributes["studio"]),
                 "assocOrganizationNote" => "Studio",
               }] if attributes["studio"]
 
@@ -136,16 +136,16 @@ module CollectionSpace
               object_prod_person = []
               ["artist", "artist2", "artist3"].each do |artist|
                 object_prod_person << {
-                  "objectProductionPerson" => CSXML::Helpers.get_authority_urn('personauthorities', 'person', attributes[artist]),
+                  "objectProductionPerson" => CSURN.get_authority_urn('personauthorities', 'person', attributes[artist]),
                   "objectProductionPersonRole" => "artist",
                 } if attributes[artist]
               end
               object_prod_person << {
-                "objectProductionPerson" => CSXML::Helpers.get_authority_urn('personauthorities', 'person', attributes["author"]),
+                "objectProductionPerson" => CSURN.get_authority_urn('personauthorities', 'person', attributes["author"]),
                 "objectProductionPersonRole" => "author",
               } if attributes["author"]
               object_prod_person << {
-                "objectProductionPerson" => CSXML::Helpers.get_authority_urn('personauthorities', 'person', attributes["phtgrapher"]),
+                "objectProductionPerson" => CSURN.get_authority_urn('personauthorities', 'person', attributes["phtgrapher"]),
                 "objectProductionPersonRole" => "photographer",
               } if attributes["phtgrapher"]
               CSXML.add_group_list xml, 'objectProductionPerson', object_prod_person
@@ -153,7 +153,7 @@ module CollectionSpace
 
               # objectProductionOrganizationGroupList: publisher
               CSXML.add_group_list xml, 'objectProductionOrganization', [{
-                "objectProductionOrganization" => CSXML::Helpers.get_authority_urn('orgauthorities', 'organization', attributes["publisher"]),
+                "objectProductionOrganization" => CSURN.get_authority_urn('orgauthorities', 'organization', attributes["publisher"]),
                 "objectProductionOrganizationRole" => "Publisher",
               }] if attributes["publisher"]
 
@@ -172,8 +172,8 @@ module CollectionSpace
               signed_name = attributes["signedname"]
               CSXML.add_group_list xml, 'textualInscription', [{
                 "inscriptionContent" => signed_name,
-                "inscriptionContentType" => CSXML::Helpers.get_vocab_urn('inscriptioncontenttype', 'signature'),
-                "inscriptionContentPosition" => CSXML::Helpers.get_vocab_urn('inscriptioncontentposition', attributes.fetch("signloc", "back")),
+                "inscriptionContentType" => CSURN.get_vocab_urn('inscriptioncontenttype', 'signature'),
+                "inscriptionContentPosition" => CSURN.get_vocab_urn('inscriptioncontentposition', attributes.fetch("signloc", "back")),
               }] if signed_name
 
               # measuredPartGroupList: overall
@@ -197,7 +197,7 @@ module CollectionSpace
             ) do
               # applying namespace breaks import
               xml.parent.namespace = nil
-              CSXML.add xml, 'conditionStatus', CSXML::Helpers.get_vocab_urn('conditionstatus', 'Exhibitable/Needs no work')
+              CSXML.add xml, 'conditionStatus', CSURN.get_vocab_urn('conditionstatus', 'Exhibitable/Needs no work')
               CSXML.add xml, 'approvedForWeb', "false"
             end
 
@@ -209,7 +209,7 @@ module CollectionSpace
               # applying namespace breaks import
               xml.parent.namespace = nil
               CSXML.add xml, 'materialTechniqueDescription', attributes["process"]
-              CSXML.add xml, 'catalogLevel', CSXML::Helpers.get_vocab_urn('cataloglevel', ' item ', true)
+              CSXML.add xml, 'catalogLevel', CSURN.get_vocab_urn('cataloglevel', ' item ', true)
               # creatorDescription: copyright
               CSXML.add xml, 'creatorDescription', attributes["copyright"]
             end

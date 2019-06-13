@@ -21,7 +21,7 @@ module CollectionSpace
               CSXML.add_group_list xml, 'personTerm',
                                    [{
                                         "termDisplayName" => attributes["termdisplayname"],
-                                        "termType" => CSXML::Helpers.get_vocab_urn('persontermtype', attributes["termtype"]),
+                                        "termType" => CSURN.get_vocab_urn('persontermtype', attributes["termtype"]),
                                     }]
             end
 
@@ -37,7 +37,7 @@ module CollectionSpace
               organization_urns = []
               organizations = split_mvf attributes, 'organization'
               organizations.each do |organization|
-                organization_urns << { "organization" => CSXML::Helpers.get_authority_urn('orgauthorities', 'organization', organization, true) }
+                organization_urns << { "organization" => CSURN.get_authority_urn('orgauthorities', 'organization', organization, true) }
               end
               CSXML.add_repeat(xml, 'organizations', organization_urns) if attributes["organization"]
             end

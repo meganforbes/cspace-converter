@@ -11,17 +11,17 @@ module CollectionSpace
             CSXML.add xml, 'loanOutNumber', attributes["loan_out_number"]
 
             #borrower
-            CSXML.add xml, 'borrower', CSXML::Helpers.get_authority_urn('orgauthorities', 'organization', attributes["borrower"])
+            CSXML.add xml, 'borrower', CSURN.get_authority_urn('orgauthorities', 'organization', attributes["borrower"])
 
             #borrowersAuthorizer
-            CSXML.add xml, 'borrowersAuthorizer', CSXML::Helpers.get_authority_urn('personauthorities', 'person', attributes["borrower's_authorizer"])
+            CSXML.add xml, 'borrowersAuthorizer', CSURN.get_authority_urn('personauthorities', 'person', attributes["borrower's_authorizer"])
 
             #lendersAuthorizer
-            CSXML.add xml, 'lendersAuthorizer', CSXML::Helpers.get_authority_urn('personauthorities', 'person', attributes["lender's_authorizer"])
+            CSXML.add xml, 'lendersAuthorizer', CSURN.get_authority_urn('personauthorities', 'person', attributes["lender's_authorizer"])
 
             #loanStatusGroupList
             CSXML.add_group_list xml, 'loanStatus', [{
-              "loanStatus" =>  CSXML::Helpers.get_vocab_urn('loanoutstatus', attributes["loan_status"].capitalize!),
+              "loanStatus" =>  CSURN.get_vocab_urn('loanoutstatus', attributes["loan_status"].capitalize!),
               "loanStatusDate" => attributes["loan_status_date"],
             }] if attributes["loan_status"]
 

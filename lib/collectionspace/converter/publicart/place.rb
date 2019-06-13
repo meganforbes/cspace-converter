@@ -26,7 +26,7 @@ module CollectionSpace
                                         "addressMunicipality" => attributes["addressmunicipality"],
                                         "addressStateOrProvince" => attributes["addressstateorprovince"],
                                         "addressPostCode" => attributes["addresspostcode"],
-                                        "addressType" => CSXML::Helpers.get_vocab_urn('addresstype', attributes["addresstype"])
+                                        "addressType" => CSURN.get_vocab_urn('addresstype', attributes["addresstype"])
 
                                     }]
 
@@ -54,7 +54,7 @@ module CollectionSpace
               placement_types_urns = []
               placement_types = split_mvf attributes, 'placementtype'
               placement_types.each do | placement_type |
-                placement_types_urns << { "placementType" => CSXML::Helpers.get_vocab_urn('placementtypes', placement_type) }
+                placement_types_urns << { "placementType" => CSURN.get_vocab_urn('placementtypes', placement_type) }
               end
               CSXML.add_repeat(xml, 'placementTypes', placement_types_urns) if attributes["placementtype"]
             end

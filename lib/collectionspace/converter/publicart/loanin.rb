@@ -12,8 +12,8 @@ module CollectionSpace
 
             #lenderGroupList
             CSXML.add_group_list xml, 'lender', [{
-              "lender" => CSXML::Helpers.get_authority_urn('orgauthorities', 'organization', attributes["lender"]),
-              "lendersAuthorizer" => CSXML::Helpers.get_authority_urn('personauthorities', 'person', attributes["lender's_authorizer"]),
+              "lender" => CSURN.get_authority_urn('orgauthorities', 'organization', attributes["lender"]),
+              "lendersAuthorizer" => CSURN.get_authority_urn('personauthorities', 'person', attributes["lender's_authorizer"]),
             }] if attributes["lender's_authorizer"]
 
             #borrowersAuthorizer
@@ -21,7 +21,7 @@ module CollectionSpace
 
             #loanStatusGroupList
             CSXML.add_group_list xml, 'loanStatus', [{
-              "loanStatus" =>  CSXML::Helpers.get_vocab_urn('loanoutstatus', attributes["loan_status"]),
+              "loanStatus" =>  CSURN.get_vocab_urn('loanoutstatus', attributes["loan_status"]),
               "loanStatusDate" => attributes["loan_status_date"],
             }] if attributes["loan_status"]
 

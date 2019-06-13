@@ -11,14 +11,14 @@ module CollectionSpace
             CSXML.add xml, 'exhibitionNumber', attributes["exhibition_number"]
 
             #type
-            CSXML.add xml, 'type', CSXML::Helpers.get_vocab_urn('exhibitiontype', attributes["exhibition_type"].capitalize!)
+            CSXML.add xml, 'type', CSURN.get_vocab_urn('exhibitiontype', attributes["exhibition_type"].capitalize!)
 
             #title
             CSXML.add xml, 'title', attributes["exhibition_title"]
 
             #organizers
             CSXML.add_repeat xml, 'organizers', [{
-              'organizer' =>  CSXML::Helpers.get_authority_urn('orgauthorities', 'organization', attributes["organizer"])
+              'organizer' =>  CSURN.get_authority_urn('orgauthorities', 'organization', attributes["organizer"])
             }]
 
             #boilerplateText

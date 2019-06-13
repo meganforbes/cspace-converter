@@ -22,15 +22,15 @@ module CollectionSpace
             if attributes["title_translation"]
               CSXML.add_group_list xml, 'title', [{
               "title" => attributes["title"],
-              "titleLanguage" => CSXML::Helpers.get_vocab_urn('languages', attributes["title_language"], row_number),
+              "titleLanguage" => CSURN.get_vocab_urn('languages', attributes["title_language"], row_number),
               }], 'titleTranslation', [{
                 "titleTranslation" => attributes["title_translation"],
-                "titleTranslationLanguage" => CSXML::Helpers.get_vocab_urn('languages', attributes["title_translation_language"], row_number)
+                "titleTranslationLanguage" => CSURN.get_vocab_urn('languages', attributes["title_translation_language"], row_number)
               }]
             elsif attributes["title_language"]
                CSXML.add_group_list xml, 'title', [{
               "title" => attributes["title"],
-              "titleLanguage" => CSXML::Helpers.get_vocab_urn('languages', attributes["title_language"], row_number),
+              "titleLanguage" => CSURN.get_vocab_urn('languages', attributes["title_language"], row_number),
               }]
             else
               CSXML.add_group_list xml, 'title', [{
@@ -95,7 +95,7 @@ module CollectionSpace
 
             # textualInscriptionGroupList
             CSXML.add_group_list xml, 'textualInscription', [{
-              inscriptionContentInscriber => CSXML::Helpers.get_authority_urn('personauthorities', 'person', attributes["inscriber"]),
+              inscriptionContentInscriber => CSURN.get_authority_urn('personauthorities', 'person', attributes["inscriber"]),
               inscriptionContentMethod => attributes["method"],
             }] if attributes["inscriber"]
 
@@ -127,7 +127,7 @@ module CollectionSpace
 
             # objectProductionOrganizationGroupList
             CSXML.add_group_list xml, 'objectProductionOrganization', [{
-              "objectProductionOrganization" => CSXML::Helpers.get_authority_urn('orgauthorities', 'organization', attributes["production_org"]),
+              "objectProductionOrganization" => CSURN.get_authority_urn('orgauthorities', 'organization', attributes["production_org"]),
               "objectProductionOrganizationRole" => attributes["organization_role"],
             }] if attributes["production_org"]
 
@@ -138,7 +138,7 @@ module CollectionSpace
 
             # objectProductionPersonGroupList
             CSXML.add_group_list xml, 'objectProductionPerson', [{
-              "objectProductionPerson" => CSXML::Helpers.get_authority_urn('personauthorities', 'person', attributes["production_person"]),
+              "objectProductionPerson" => CSURN.get_authority_urn('personauthorities', 'person', attributes["production_person"]),
               "objectProductionPersonRole" => attributes["person_role"],
             }] if attributes["production_person"]
 

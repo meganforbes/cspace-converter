@@ -33,7 +33,7 @@ module CollectionSpace
               # applying namespace breaks import
               xml.parent.namespace = nil
 
-              CSXML.add xml, 'currentPlace', CSXML::Helpers.get_authority_urn('placeauthorities', 'place', attributes["currentPlace"])
+              CSXML.add xml, 'currentPlace', CSURN.get_authority_urn('placeauthorities', 'place', attributes["currentPlace"])
             end
 
             xml.send(

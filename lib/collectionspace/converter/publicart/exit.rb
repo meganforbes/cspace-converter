@@ -21,8 +21,8 @@ module CollectionSpace
             }
 
             #currentOwner
-            CSXML.add xml, 'currentOwner', CSXML::Helpers.get_authority_urn('orgauthorities', 'organization', attributes["current_owner"]) if attributes["current_owner"]
-            
+            CSXML.add xml, 'currentOwner', CSURN.get_authority_urn('orgauthorities', 'organization', attributes["current_owner"]) if attributes["current_owner"]
+
             #exitNote
             CSXML.add xml, 'exitNote', attributes["exit_note"]
 

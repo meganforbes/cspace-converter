@@ -7,7 +7,7 @@ module CollectionSpace
 
         def convert
           run do |xml|
-            term_parts = CSXML::Helpers.get_term_parts attributes["termdisplayname"]
+            term_parts = CSURN.get_term_parts attributes["termdisplayname"]
             term_id = term_parts[:term_id]
             if term_id == nil
               term_id = AuthCache::lookup_authority_term_id 'conceptauthorities', 'material_ca', term_parts[:display_name]
@@ -22,7 +22,7 @@ module CollectionSpace
             CSXML.add_group_list xml, 'conceptTerm', [{
                                                           "termDisplayName" => attributes["termdisplayname"],
                                                           "termSourceDetail" => attributes["termsourcedetail"],
-                                                          "termSource" => CSXML::Helpers.get_authority_urn('citationauthorities', 'citation', attributes["termsource"])
+                                                          "termSource" => CSURN.get_authority_urn('citationauthorities', 'citation', attributes["termsource"])
                                                       }]
           end
         end

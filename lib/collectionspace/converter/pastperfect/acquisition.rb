@@ -14,7 +14,7 @@ module CollectionSpace
             CSXML.add xml, 'creditLine', attributes["credit"]
 
             acquisition_method = attributes["recas"].nil? ?
-              nil : CSXML::Helpers.get_vocab_urn('acquisitionMethod', attributes["recas"])
+              nil : CSURN.get_vocab_urn('acquisitionMethod', attributes["recas"])
             CSXML.add xml, 'acquisitionMethod', acquisition_method if acquisition_method
 
             if attributes.fetch("recfrom", nil)
