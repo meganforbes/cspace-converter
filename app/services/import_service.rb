@@ -10,7 +10,6 @@ class ImportService
   def add_authorities
     raise 'Data Object has not been created' unless object
     authorities = object.profile.fetch("Authorities", {})
-    authorities_added = Set.new
     authorities.each do |authority, fields|
       fields.each do |field|
         authority_subtype = authority.downcase
@@ -20,12 +19,12 @@ class ImportService
           field, authority_subtype = field
         end
 
-        add_authority(field, authority, authority_subtype, true, authorities_added)
+        add_authority(field, authority, authority_subtype, true)
       end
     end
   end
 
-  def add_authority(identifier_field, type, subtype, from_procedure = false, added = [])
+  def add_authority(identifier_field, type, subtype, from_procedure = false)
     term_display_name = object.object_data[identifier_field]
     return unless term_display_name
 
@@ -69,7 +68,7 @@ class ImportService
             name: name,
             term_id: identifier,
             from_procedure: from_procedure
-          ) unless added.include? name
+          )
           object.save!
         end
       rescue Exception => ex
