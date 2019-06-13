@@ -1,10 +1,9 @@
-<nav class="navbar navbar-expand-lg bg-dark bg-inverse">
-  <%= link_to 'cspace-converter', root_path, class: 'navbar-brand title' %>
+<nav class="navbar navbar-expand-lg bg-inverse">
   <ul class="navbar-nav mr-auto">
     <li class="nav-item"><%= button_to 'Info', connection_path, class: 'nav-link btn btn-info', method: :get %></li>
     <li class="nav-item"><%= button_to 'Nuke', nuke_path, data: { confirm: "Delete all records?" }, class: 'nav-link btn btn-danger' %></li>
   </ul>
-  <form class="form-inline pull-xs-right">
+  <form class="form-inline pull-xs-right search">
     <input class="form-control" type="text" placeholder="Search">
     <button class="btn btn-success-outline" type="submit">Search</button>
   </form>

@@ -13,7 +13,11 @@
 
 @import "bootstrap";
 
-.logo {
+.header-logo {
+  margin: 1rem 0rem;
+}
+
+footer .logo {
   width: 100%;
   margin-top: -0.5rem;
 }
@@ -22,8 +26,20 @@
   color: #fff;
 }
 
+.navbar {
+  background-color: #739DD3;
+}
+
 .nav-item {
   margin-right: 0.5rem;
+}
+
+.nav-link {
+  width: 4rem;
+}
+
+.search button {
+  margin-left: 0.5rem;
 }
 
 .notice {
@@ -33,12 +49,24 @@
 }
 
 .jumbotron {
-    text-align: center;
-    background-color: transparent;
+  text-align: center;
+  background-color: transparent;
+}
+
+.jumbotron h1 span {
+  border-bottom: 1px solid #CCC;
 }
 
 .sidebar {
   margin-top: 0.5rem;
+}
+
+.list-group {
+  margin-bottom: 1rem;
+}
+
+.list-group-item {
+  background-color: #E1E8ED;
 }
 
 .page-header {
@@ -53,10 +81,25 @@ table {
   margin-top: 0.5rem;
 }
 
+thead {
+  background-color: #739DD3;
+  color: #FFF;
+}
+
+.table th, .table td {
+  border-top: 1px solid #CCC;
+}
+
 td {
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 12rem;
+  background-color: #E1E8ED;
+}
+
+.json, .xml {
+  background-color: #E1E8ED;
+  padding: 0.5rem;
 }
 
 .metadata {
@@ -66,6 +109,8 @@ td {
 #import, #transfer {
   width: 50%;
   margin: 0 auto;
+  border: 1px dotted #CCC;
+  padding: 1rem;
 }
 
 input[name=remote_action] {
@@ -78,6 +123,10 @@ input[name=remote_action] {
 
 .external {
   display: inline;
+}
+
+.page {
+  margin: 0 0.2rem;
 }
 
 footer p {

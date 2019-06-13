@@ -1,7 +1,12 @@
 <div class="col-md-2 sidebar">
+  <h5>Actions</h5>
   <div class="list-group">
     <%= link_to 'Import', import_path, class: 'list-group-item' %>
     <%= link_to 'Transfer', transfer_path, class: 'list-group-item' %>
+  </div>
+
+  <h5>Records</h5>
+  <div class="list-group">
     <%= link_to 'Objects', objects_path, class: 'list-group-item' %>
     <%= link_to 'Authorities', authorities_path, class: 'list-group-item' %>
     <%= link_to 'Procedures', procedures_path, class: 'list-group-item' %>
