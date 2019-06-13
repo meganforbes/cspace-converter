@@ -1,7 +1,7 @@
 class DataObjectsController < ApplicationController
 
   def index
-    @objects = DataObject.page params[:page]
+    @objects = DataObject.order_by(updated_at: :desc).page params[:page]
   end
 
   def show
