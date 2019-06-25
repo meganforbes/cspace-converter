@@ -7,24 +7,25 @@ module CollectionSpace
 
         def convert
           run do |xml|
-            term_parts = CSURN.get_term_parts attributes["termdisplayname"]
-            term_id = term_parts[:term_id]
-            if term_id == nil
-              term_id = AuthCache::lookup_authority_term_id 'conceptauthorities', 'material_ca', term_parts[:display_name]
-            end
+            # TODO: refactor
+            # term_parts = CSURN.get_term_parts attributes["termdisplayname"]
+            # term_id = term_parts[:term_id]
+            # if term_id == nil
+            #   term_id = AuthCache.authority 'conceptauthorities', 'material_ca', term_parts[:display_name]
+            # end
 
-            if term_id == nil
-              CSXML.add xml, 'shortIdentifier', CSIDF.short_identifier(attributes["termdisplayname"])
-            else
-              CSXML.add xml, 'shortIdentifier', term_id
-            end
+            # if term_id == nil
+            #   CSXML.add xml, 'shortIdentifier', CSIDF.short_identifier(attributes["termdisplayname"])
+            # else
+            #   CSXML.add xml, 'shortIdentifier', term_id
+            # end
 
-            CSXML.add_group_list xml, 'conceptTerm', [{
-                                                          "termDisplayName" => attributes["termdisplayname"],
-                                                          "termSourceDetail" => attributes["termsourcedetail"],
-                                                          "termSourceNote" => attributes["termsourcenote"],
-                                                          "termSource" => CSURN.get_authority_urn('citationauthorities', 'citation', attributes["termsource"], true)
-                                                      }]
+            # CSXML.add_group_list xml, 'conceptTerm', [{
+            #                                               "termDisplayName" => attributes["termdisplayname"],
+            #                                               "termSourceDetail" => attributes["termsourcedetail"],
+            #                                               "termSourceNote" => attributes["termsourcenote"],
+            #                                               "termSource" => CSURN.get_authority_urn('citationauthorities', 'citation', attributes["termsource"], true)
+            #                                           }]
           end
         end
 

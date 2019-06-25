@@ -51,17 +51,13 @@ module CollectionSpace
       end
 
       # public accessor to cached authority terms
-      def self.lookup_authority_term_id(authority_type, authority_id, display_name)
-        term_id = fetch(cache_key([authority_type, authority_id, display_name]))
-        Rails.logger.debug "Term #{authority_type}:#{authority_id}:#{display_name.downcase} is not in the authority cache." unless term_id
-        term_id
+      def self.authority(authority, authority_subtype, display_name)
+        fetch(cache_key([authority, authority_subtype, display_name]))
       end
 
       # public accessor to cached vocabulary terms
-      def self.lookup_vocabulary_term_id(vocabulary_id, display_name)
-        term_id = fetch(cache_key(['vocabularies', vocabulary_id, display_name]))
-        Rails.logger.debug "Term #{vocabulary_id}:#{display_name.downcase} is not in the authority cache." unless term_id
-        term_id
+      def self.vocabulary(vocabulary, display_name)
+        fetch(cache_key(['vocabularies', vocabulary, display_name]))
       end
 
     end
