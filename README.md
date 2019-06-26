@@ -24,7 +24,7 @@ Before the *cspace-converter* tool can import CSV data into CollectionSpace, it 
 Create a data directory and add the CSV files. For example:
 
 ```txt
-data/
+data/sample/
 ├── cataloging.csv # custom CSV data file
 └── ppsobjectsdata.csv # Past Perfect objects data file
 ```
@@ -64,17 +64,17 @@ For example:
 
 ```bash
 # procedure / object
-./import_procedures.sh data/PPSdata_accession.csv pp_accession1 PastPerfect accessions
-./import_procedures.sh data/PPSdata_objects.csv pp_objects1 PastPerfect objects
+./import_procedures.sh data/sample/PPSdata_accession.csv pp_accession1 PastPerfect accessions
+./import_procedures.sh data/sample/PPSdata_objects.csv pp_objects1 PastPerfect objects
 
 # NOTE: for media csv blob_uri field will attempt to create the image
-./import_procedures.sh data/SampleMediaUrl.csv media1 Core media
+./import_procedures.sh data/sample/SampleMediaUrl.csv media1 Core media
 ```
 
 For these commands to actually work you will need the data (CSV) files in `data`. Here's the command using the supplied sample CSV file:
 
 ```bash
-./import_procedures.sh data/SampleCatalogingData.csv cataloging Core cataloging
+./import_procedures.sh data/sample/SampleCatalogingData.csv cataloging Core cataloging
 ```
 
 For authorities:
@@ -82,8 +82,8 @@ For authorities:
 ```
 # authority
 ./import_authorities.sh [FILE] [BATCH] [MODULE] [ID_COLUMN] [AUTH_TYPE] [AUTH_INSTANCE]
-./import_authorities.sh data/SamplePlace.csv place1 PublicArt termdisplayname Place place
-bundle exec rake db:import:authorities[data/SamplePerson.csv,person1,Core,termdisplayname,Person,person]
+./import_authorities.sh data/sample/SamplePlace.csv place1 PublicArt termdisplayname Place place
+bundle exec rake db:import:authorities[data/sample/SamplePerson.csv,person1,Core,termdisplayname,Person,person]
 ```
 
 ## Import Staged Data from MongoDB to CollectionSpace
@@ -147,7 +147,7 @@ docker-compose up
 # to run commands
 docker exec -it converter ./bin/rails c
 docker exec -it converter \
-  ./import_procedures.sh data/SampleCatalogingData.csv cataloging Core cataloging
+  ./import_procedures.sh data/sample/SampleCatalogingData.csv cataloging Core cataloging
 docker exec -it converter ./bin/rake db:nuke
 ```
 
