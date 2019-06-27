@@ -28,7 +28,7 @@ class ImportService
     term_display_name = object.object_data[identifier_field]
     return unless term_display_name
 
-    service = CollectionSpace::Converter::Default.service type, subtype
+    service = CollectionSpace::Converter::Service.lookup type, subtype
     service_id = service[:id]
 
     # attempt to split field in case it is multi-valued
