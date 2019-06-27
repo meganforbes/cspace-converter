@@ -38,6 +38,7 @@ class ImportAuthorityJob < ActiveJob::Base
       rescue Exception => ex
         logger.error "Error for import row #{row_count}: #{ex.message}"
         service.update_status(import_status: 0, import_message: ex.message)
+        service.object.collection_space_objects.destroy_all
       end
       row_count += 1
     end
