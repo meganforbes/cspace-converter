@@ -23,7 +23,7 @@ module CollectionSpace
         raise "Required vocabulary item not found: #{vocabulary}, #{display_name}"
       end
 
-      identifier ||= display_name.downcase
+      identifier ||= display_name.to_s.downcase
       generate(
         Rails.application.config.domain,
         'vocabularies',

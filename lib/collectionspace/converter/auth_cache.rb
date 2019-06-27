@@ -42,7 +42,7 @@ module CollectionSpace
       end
 
       def self.cache_key(parts = [])
-        Digest::MD5.hexdigest parts.map(&:downcase).join('.')
+        Digest::MD5.hexdigest parts.compact.map(&:downcase).join('.')
       end
 
       def self.fetch(key)

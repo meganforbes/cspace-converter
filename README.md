@@ -35,12 +35,9 @@ If installed locally, you can start the MongoDB server with this command:
 
 ```bash
 mongod
-```
 
-```bash
 # If you don't want to install and run Mongo DB directly, you can
 # use a Docker image to run MongoDB -see https://hub.docker.com/r/_/mongo/
-
 docker run --name mongo -d -p 27017:27017 mongo:3.2
 ```
 
@@ -64,17 +61,9 @@ For example:
 
 ```bash
 # procedure / object
-./import_procedures.sh data/sample/PPSdata_accession.csv pp_accession1 PastPerfect accessions
-./import_procedures.sh data/sample/PPSdata_objects.csv pp_objects1 PastPerfect objects
-
+./import_procedures.sh data/sample/SampleCatalogingData.csv cataloging Core cataloging
 # NOTE: for media csv blob_uri field will attempt to create the image
 ./import_procedures.sh data/sample/SampleMediaUrl.csv media1 Core media
-```
-
-For these commands to actually work you will need the data (CSV) files in `data`. Here's the command using the supplied sample CSV file:
-
-```bash
-./import_procedures.sh data/sample/SampleCatalogingData.csv cataloging Core cataloging
 ```
 
 For authorities:
@@ -82,9 +71,11 @@ For authorities:
 ```
 # authority
 ./import_authorities.sh [FILE] [BATCH] [MODULE] [ID_COLUMN] [AUTH_TYPE] [AUTH_INSTANCE]
-./import_authorities.sh data/sample/SamplePlace.csv place1 PublicArt termdisplayname Place place
-bundle exec rake db:import:authorities[data/sample/SamplePerson.csv,person1,Core,termdisplayname,Person,person]
+./import_authorities.sh data/sample/SamplePlace.csv place1 PublicArt termdisplayname
+bundle exec rake db:import:authorities[data/sample/SamplePerson.csv,person1,Core,termdisplayname]
 ```
+
+Note: authoritiy csv files must contain both `authority_type` and `authority_subtype` fields.
 
 ## Import Staged Data from MongoDB to CollectionSpace
 

@@ -1,7 +1,7 @@
-shortIdentifier, termDisplayName, termType, webAddress, organization, otherName,
-,Andrew Reid,artist,www.arnone.com,(e)merge art fair,
-mickey_mouse,Mickey Mouse,architect,www.disney.com,21c Museum Hotel,
-,Donald Duck,architect,www.disney.net,,
-,Mini Mouse,architect,www.disney.com,,
-,Goofy Dog,,www.disney.com,,
-,Joe Riche,artist,www.demiurgedesign.com,,
+authority_type,authority_subtype,shortIdentifier,termDisplayName,termType,webAddress
+Person,person,,Andrew Reid,artist,www.arnone.com
+Person,person,,Mickey Mouse,architect,www.disney.com
+Person,person,,Donald Duck,architect,www.disney.net
+Person,person,,Mini Mouse,architect,www.disney.com
+Person,person,,Goofy Dog,,www.disney.com
+Person,person,,Joe Riche,artist,www.demiurgedesign.com

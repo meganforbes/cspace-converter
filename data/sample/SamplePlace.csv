@@ -1,6 +1,6 @@
-objectNumber,placementType,termDisplayName,decimalLatitude,decimalLongitude,addressPlace1,addressMunicipality,addressStateOrProvince,addressCountry,addressPostCode,addressType
-38899,airports,Denver International Airport,39.849363,-104.672718,8500 Pena Boulevard,Denver,Colorado,USA,80249,business
-38905,convention centers,"Colorado Convention Center, lobby",39.743656,-104.994995,700 14th St.,Denver,Colorado,USA,80202,business
-38911,traffic islands,19th St. and Welton St.,39.747207,-104.987624,19th St. and Welton St.,Denver,Colorado,USA,80202,intersection
-38917,government office buildings,"Richard T. Castro Human Services Building, outside front entrance",39.735127,-105.025222,1200 Federal Blvd.,Denver,Colorado,USA,80204,streetaddress
-38923,hotels (public accommodations),Hyatt Regency Denver at Colorado Convention Center,39.743972,-104.993013,650 15th St.,Denver,Colorado,USA,80202,personal
+authority_type,authority_subtype,objectNumber,placementType,termDisplayName,decimalLatitude,decimalLongitude,addressPlace1,addressMunicipality,addressStateOrProvince,addressCountry,addressPostCode,addressType
+Person,person,38899,airports,Denver International Airport,39.849363,-104.672718,8500 Pena Boulevard,Denver,Colorado,USA,80249,business
+Person,person,38905,convention centers,"Colorado Convention Center, lobby",39.743656,-104.994995,700 14th St.,Denver,Colorado,USA,80202,business
+Person,person,38911,traffic islands,19th St. and Welton St.,39.747207,-104.987624,19th St. and Welton St.,Denver,Colorado,USA,80202,intersection
+Person,person,38917,government office buildings,"Richard T. Castro Human Services Building, outside front entrance",39.735127,-105.025222,1200 Federal Blvd.,Denver,Colorado,USA,80204,streetaddress
+Person,person,38923,hotels (public accommodations),Hyatt Regency Denver at Colorado Convention Center,39.743972,-104.993013,650 15th St.,Denver,Colorado,USA,80202,personal

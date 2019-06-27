@@ -28,10 +28,11 @@ namespace :db do
         Delayed::Worker.new.run(Delayed::Job.last)
         counter += 1
       end
+      Rails.logger.debug "Data import complete. Review logs for possible errors."
     end
 
     # rake db:import:data[data/sample/SampleCatalogingData.csv,cataloging1,Core,cataloging]
-    task :data, [:filename, :batch, :module, :profile, :use_auth_cache_file] => :environment do |t, args|
+    task :data, [:filename, :batch, :module, :profile] => :environment do |t, args|
       config = {
         filename:  args[:filename],
         batch:     args[:batch],
@@ -44,19 +45,16 @@ namespace :db do
       end
       Rails.logger.debug "Project #{config[:module]}; Batch #{config[:batch]}; Profile #{config[:profile]}"
       process ImportProcedureJob, config
-      Rails.logger.debug "Data import complete!"
     end
 
-    # rake db:import:authorities[data/sample/SamplePerson.csv,person1,Core,name,Person]
-    # rake db:import:authorities[data/sample/SampleMaterial.csv,materials1,Core,materials,Concept,materials_ca]
-    task :authorities, [:filename, :batch, :module, :id_field, :type, :subtype, :use_auth_cache_file] => :environment do |t, args|
+    # rake db:import:authorities[data/sample/SamplePerson.csv,person1,Core,name]
+    # rake db:import:authorities[data/sample/SampleMaterial.csv,materials1,Core,materials]
+    task :authorities, [:filename, :batch, :module, :id_field] => :environment do |t, args|
       config = {
         filename:   args[:filename],
         batch:      args[:batch],
         module:     args[:module],
         id_field:   args[:id_field],
-        type:       args[:type],
-        subtype:    args[:subtype] ||= args[:type].downcase,
       }
       unless File.file? config[:filename]
         Rails.logger.error "Invalid file #{config[:filename]}"
@@ -64,7 +62,6 @@ namespace :db do
       end
       Rails.logger.debug "Project #{config[:module]}; Batch #{config[:batch]}"
       process ImportAuthorityJob, config
-      Rails.logger.debug "Data import complete!"
     end
   end
 
