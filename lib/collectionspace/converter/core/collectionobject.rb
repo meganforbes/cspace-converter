@@ -17,15 +17,15 @@ module CollectionSpace
             if attributes["title_translation"]
               CSXML.add_group_list xml, 'title', [{
               "title" => attributes["title"],
-              "titleLanguage" => CSURN.get_vocab_urn('languages', attributes["title_language"]),
+              "titleLanguage" => CSURN.get_vocab_urn('languages', attributes["title_language"], true),
               }], 'titleTranslation', [{
                 "titleTranslation" => attributes["title_translation"],
-                "titleTranslationLanguage" => CSURN.get_vocab_urn('languages', attributes["title_translation_language"])
+                "titleTranslationLanguage" => CSURN.get_vocab_urn('languages', attributes["title_translation_language"], true)
               }]
             elsif attributes["title_language"]
                CSXML.add_group_list xml, 'title', [{
               "title" => attributes["title"],
-              "titleLanguage" => CSURN.get_vocab_urn('languages', attributes["title_language"]),
+              "titleLanguage" => CSURN.get_vocab_urn('languages', attributes["title_language"], true),
               }]
             else
               CSXML.add_group_list xml, 'title', [{

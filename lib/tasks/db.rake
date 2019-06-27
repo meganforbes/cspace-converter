@@ -16,6 +16,7 @@ namespace :db do
 
   namespace :import do
     def process(job_class, config)
+      Rake::Task['cache:setup'].invoke
       counter = 1
       # process in chunks of 100 rows
       SmarterCSV.process(config[:filename], {

@@ -1,0 +1,644 @@
+refName,displayName,shortIdentifier
+urn:cspace:core.collectionspace.org:vocabularies:name(acousticalproperties):item:name(sound_absorption_absorbent)'sound absorption - absorbent',sound absorption - absorbent,sound_absorption_absorbent
+urn:cspace:core.collectionspace.org:vocabularies:name(acousticalproperties):item:name(sound_absorption_neutral)'sound absorption - neutral',sound absorption - neutral,sound_absorption_neutral
+urn:cspace:core.collectionspace.org:vocabularies:name(acousticalproperties):item:name(sound_absorption_reflective)'sound absorption - reflective',sound absorption - reflective,sound_absorption_reflective
+urn:cspace:core.collectionspace.org:vocabularies:name(acousticalproperties):item:name(sound_isolation_conductor)'sound isolation - conductor',sound isolation - conductor,sound_isolation_conductor
+urn:cspace:core.collectionspace.org:vocabularies:name(acousticalproperties):item:name(sound_isolation_insulator)'sound isolation - insulator',sound isolation - insulator,sound_isolation_insulator
+urn:cspace:core.collectionspace.org:vocabularies:name(acousticalproperties):item:name(sound_isolation_neutral)'sound isolation - neutral',sound isolation - neutral,sound_isolation_neutral
+urn:cspace:core.collectionspace.org:vocabularies:name(additionalprocesses):item:name(acetylation)'acetylation',acetylation,acetylation
+urn:cspace:core.collectionspace.org:vocabularies:name(additionalprocesses):item:name(casting)'casting',casting,casting
+urn:cspace:core.collectionspace.org:vocabularies:name(additionalprocesses):item:name(firing)'firing',firing,firing
+urn:cspace:core.collectionspace.org:vocabularies:name(additionalprocesses):item:name(harvesting)'harvesting',harvesting,harvesting
+urn:cspace:core.collectionspace.org:vocabularies:name(additionalprocesses):item:name(mixing)'mixing',mixing,mixing
+urn:cspace:core.collectionspace.org:vocabularies:name(additionalprocesses):item:name(pigmenting)'pigmenting',pigmenting,pigmenting
+urn:cspace:core.collectionspace.org:vocabularies:name(additionalprocesses):item:name(poured_in_place)'poured-in-place',poured-in-place,poured_in_place
+urn:cspace:core.collectionspace.org:vocabularies:name(additionalprocesses):item:name(pressure_treating)'pressure treating',pressure treating,pressure_treating
+urn:cspace:core.collectionspace.org:vocabularies:name(additionalprocesses):item:name(pyrolysis)'pyrolysis',pyrolysis,pyrolysis
+urn:cspace:core.collectionspace.org:vocabularies:name(additionalprocesses):item:name(recycled)'recycled',recycled,recycled
+urn:cspace:core.collectionspace.org:vocabularies:name(additionalprocesses):item:name(tanning)'tanning',tanning,tanning
+urn:cspace:core.collectionspace.org:vocabularies:name(additionalproperties):item:name(acoustic)'acoustic',acoustic,acoustic
+urn:cspace:core.collectionspace.org:vocabularies:name(additionalproperties):item:name(antimicrobial)'antimicrobial',antimicrobial,antimicrobial
+urn:cspace:core.collectionspace.org:vocabularies:name(additionalproperties):item:name(ductile)'ductile',ductile,ductile
+urn:cspace:core.collectionspace.org:vocabularies:name(additionalproperties):item:name(elastic)'elastic',elastic,elastic
+urn:cspace:core.collectionspace.org:vocabularies:name(additionalproperties):item:name(flexible)'flexible',flexible,flexible
+urn:cspace:core.collectionspace.org:vocabularies:name(additionalproperties):item:name(hydrophilic)'hydrophilic',hydrophilic,hydrophilic
+urn:cspace:core.collectionspace.org:vocabularies:name(additionalproperties):item:name(magnetic)'magnetic',magnetic,magnetic
+urn:cspace:core.collectionspace.org:vocabularies:name(additionalproperties):item:name(non_stick)'non-stick',non-stick,non_stick
+urn:cspace:core.collectionspace.org:vocabularies:name(additionalproperties):item:name(nutrient_providing)'nutrient-providing',nutrient-providing,nutrient_providing
+urn:cspace:core.collectionspace.org:vocabularies:name(additionalproperties):item:name(rot_resistant)'rot resistant',rot resistant,rot_resistant
+urn:cspace:core.collectionspace.org:vocabularies:name(additionalproperties):item:name(slip_resistant)'slip resistant',slip resistant,slip_resistant
+urn:cspace:core.collectionspace.org:vocabularies:name(additionalproperties):item:name(soluble)'soluble',soluble,soluble
+urn:cspace:core.collectionspace.org:vocabularies:name(additionalproperties):item:name(temperature_control)'temperature control',temperature control,temperature_control
+urn:cspace:core.collectionspace.org:vocabularies:name(additionalproperties):item:name(water_absorbent)'water absorbent',water absorbent,water_absorbent
+urn:cspace:core.collectionspace.org:vocabularies:name(additionalproperties):item:name(water_permeable)'water permeable',water permeable,water_permeable
+urn:cspace:core.collectionspace.org:vocabularies:name(addresstype):item:name(business)'business',business,business
+urn:cspace:core.collectionspace.org:vocabularies:name(addresstype):item:name(intersection)'intersection',intersection,intersection
+urn:cspace:core.collectionspace.org:vocabularies:name(addresstype):item:name(personal)'personal',personal,personal
+urn:cspace:core.collectionspace.org:vocabularies:name(addresstype):item:name(streetaddress)'street address',street address,streetaddress
+urn:cspace:core.collectionspace.org:vocabularies:name(agentinfotype):item:name(editor)'Editor',Editor,editor
+urn:cspace:core.collectionspace.org:vocabularies:name(agentinfotype):item:name(writer)'Writer',Writer,writer
+urn:cspace:core.collectionspace.org:vocabularies:name(agequalifier):item:name(approximately)'approximately',approximately,approximately
+urn:cspace:core.collectionspace.org:vocabularies:name(agequalifier):item:name(olderthan)'older than',older than,olderthan
+urn:cspace:core.collectionspace.org:vocabularies:name(agequalifier):item:name(youngerthan)'younger than',younger than,youngerthan
+urn:cspace:core.collectionspace.org:vocabularies:name(publishto):item:name(all)'All',All,all
+urn:cspace:core.collectionspace.org:vocabularies:name(publishto):item:name(cultureobject)'Culture Object',Culture Object,cultureobject
+urn:cspace:core.collectionspace.org:vocabularies:name(publishto):item:name(dpla)'DPLA',DPLA,dpla
+urn:cspace:core.collectionspace.org:vocabularies:name(publishto):item:name(none)'None',None,none
+urn:cspace:core.collectionspace.org:vocabularies:name(publishto):item:name(omeka)'Omeka',Omeka,omeka
+urn:cspace:core.collectionspace.org:vocabularies:name(castingprocesses):item:name(centrifugal_casting)'centrifugal casting',centrifugal casting,centrifugal_casting
+urn:cspace:core.collectionspace.org:vocabularies:name(castingprocesses):item:name(die_casting)'die casting',die casting,die_casting
+urn:cspace:core.collectionspace.org:vocabularies:name(castingprocesses):item:name(floating)'floating',floating,floating
+urn:cspace:core.collectionspace.org:vocabularies:name(castingprocesses):item:name(investment_casting)'investment casting',investment casting,investment_casting
+urn:cspace:core.collectionspace.org:vocabularies:name(castingprocesses):item:name(sand_casting)'sand casting',sand casting,sand_casting
+urn:cspace:core.collectionspace.org:vocabularies:name(castingprocesses):item:name(slip_casting)'slip casting',slip casting,slip_casting
+urn:cspace:core.collectionspace.org:vocabularies:name(castingprocesses):item:name(slumping)'slumping',slumping,slumping
+urn:cspace:core.collectionspace.org:vocabularies:name(citationtermflag):item:name(abbreviation)'abbreviation',abbreviation,abbreviation
+urn:cspace:core.collectionspace.org:vocabularies:name(citationtermflag):item:name(ABCStore1556908336486)'ABC Store',ABC Store,ABCStore1556908336486
+urn:cspace:core.collectionspace.org:vocabularies:name(citationtermflag):item:name(Brick1556908434558)'Brick',Brick,Brick1556908434558
+urn:cspace:core.collectionspace.org:vocabularies:name(citationtermflag):item:name(CAPITALIZATION1556908352890)'CAPITALIZATION',CAPITALIZATION,CAPITALIZATION1556908352890
+urn:cspace:core.collectionspace.org:vocabularies:name(citationtermflag):item:name(common)'common term',common term,common
+urn:cspace:core.collectionspace.org:vocabularies:name(citationtermflag):item:name(full)'full term',full term,full
+urn:cspace:core.collectionspace.org:vocabularies:name(citationtermflag):item:name(Vegetable1556908426147)'Vegetable',Vegetable,Vegetable1556908426147
+urn:cspace:core.collectionspace.org:vocabularies:name(citationtermtype):item:name(atlas)'Atlas',Atlas,atlas
+urn:cspace:core.collectionspace.org:vocabularies:name(citationtermtype):item:name(biography)'Biography',Biography,biography
+urn:cspace:core.collectionspace.org:vocabularies:name(citationtermtype):item:name(birthcert)'Birth certificate',Birth certificate,birthcert
+urn:cspace:core.collectionspace.org:vocabularies:name(citationtermtype):item:name(brochure)'Brochure',Brochure,brochure
+urn:cspace:core.collectionspace.org:vocabularies:name(citationtermtype):item:name(conditionreport)'Condition report',Condition report,conditionreport
+urn:cspace:core.collectionspace.org:vocabularies:name(citationtermtype):item:name(contract)'Contract',Contract,contract
+urn:cspace:core.collectionspace.org:vocabularies:name(citationtermtype):item:name(criticism)'Criticism',Criticism,criticism
+urn:cspace:core.collectionspace.org:vocabularies:name(citationtermtype):item:name(diary)'Diary',Diary,diary
+urn:cspace:core.collectionspace.org:vocabularies:name(citationtermtype):item:name(dictionary)'Dictionary',Dictionary,dictionary
+urn:cspace:core.collectionspace.org:vocabularies:name(citationtermtype):item:name(dissertation)'Dissertation',Dissertation,dissertation
+urn:cspace:core.collectionspace.org:vocabularies:name(citationtermtype):item:name(encyclopedia)'Encyclopedia',Encyclopedia,encyclopedia
+urn:cspace:core.collectionspace.org:vocabularies:name(citationtermtype):item:name(catalog)'Exhibition catalog',Exhibition catalog,catalog
+urn:cspace:core.collectionspace.org:vocabularies:name(citationtermtype):item:name(exhibitionchecklist)'Exhibition checklist',Exhibition checklist,exhibitionchecklist
+urn:cspace:core.collectionspace.org:vocabularies:name(citationtermtype):item:name(exhibitionreview)'Exhibition review',Exhibition review,exhibitionreview
+urn:cspace:core.collectionspace.org:vocabularies:name(citationtermtype):item:name(Festschrift)'Festschrift',Festschrift,Festschrift
+urn:cspace:core.collectionspace.org:vocabularies:name(citationtermtype):item:name(gazetteer)'Gazetteer',Gazetteer,gazetteer
+urn:cspace:core.collectionspace.org:vocabularies:name(citationtermtype):item:name(guide)'Guide book',Guide book,guide
+urn:cspace:core.collectionspace.org:vocabularies:name(citationtermtype):item:name(history)'History',History,history
+urn:cspace:core.collectionspace.org:vocabularies:name(citationtermtype):item:name(inventory)'Inventory',Inventory,inventory
+urn:cspace:core.collectionspace.org:vocabularies:name(citationtermtype):item:name(journal)'Journal article',Journal article,journal
+urn:cspace:core.collectionspace.org:vocabularies:name(citationtermtype):item:name(letter)'Letter',Letter,letter
+urn:cspace:core.collectionspace.org:vocabularies:name(citationtermtype):item:name(monograph)'Monograph',Monograph,monograph
+urn:cspace:core.collectionspace.org:vocabularies:name(citationtermtype):item:name(newspaper)'Newspaper article',Newspaper article,newspaper
+urn:cspace:core.collectionspace.org:vocabularies:name(citationtermtype):item:name(obituary)'Obituary',Obituary,obituary
+urn:cspace:core.collectionspace.org:vocabularies:name(citationtermtype):item:name(verbalopinion)'Verbal opinion',Verbal opinion,verbalopinion
+urn:cspace:core.collectionspace.org:vocabularies:name(collectionmethod):item:name(borehole)'borehole',borehole,borehole
+urn:cspace:core.collectionspace.org:vocabularies:name(collectionmethod):item:name(commissioned)'commissioned',commissioned,commissioned
+urn:cspace:core.collectionspace.org:vocabularies:name(collectionmethod):item:name(donation)'donation',donation,donation
+urn:cspace:core.collectionspace.org:vocabularies:name(collectionmethod):item:name(excavation)'excavation',excavation,excavation
+urn:cspace:core.collectionspace.org:vocabularies:name(collectionmethod):item:name(exchanged)'exchanged',exchanged,exchanged
+urn:cspace:core.collectionspace.org:vocabularies:name(collectionmethod):item:name(founddead)'found dead',found dead,founddead
+urn:cspace:core.collectionspace.org:vocabularies:name(collectionmethod):item:name(metaldetector)'metal detector',metal detector,metaldetector
+urn:cspace:core.collectionspace.org:vocabularies:name(collectionmethod):item:name(netted)'netted',netted,netted
+urn:cspace:core.collectionspace.org:vocabularies:name(collectionmethod):item:name(photographed)'photographed',photographed,photographed
+urn:cspace:core.collectionspace.org:vocabularies:name(collectionmethod):item:name(purchased)'purchased',purchased,purchased
+urn:cspace:core.collectionspace.org:vocabularies:name(collectionmethod):item:name(salvaged)'salvaged',salvaged,salvaged
+urn:cspace:core.collectionspace.org:vocabularies:name(collectionmethod):item:name(shot)'shot',shot,shot
+urn:cspace:core.collectionspace.org:vocabularies:name(collectionmethod):item:name(trapped)'trapped',trapped,trapped
+urn:cspace:core.collectionspace.org:vocabularies:name(concepttermflag):item:name(abbreviation)'abbreviation',abbreviation,abbreviation
+urn:cspace:core.collectionspace.org:vocabularies:name(concepttermflag):item:name(common)'common term',common term,common
+urn:cspace:core.collectionspace.org:vocabularies:name(concepttermflag):item:name(full)'full term',full term,full
+urn:cspace:core.collectionspace.org:vocabularies:name(concepttermflag):item:name(jargonslang)'jargon/slang',jargon/slang,jargonslang
+urn:cspace:core.collectionspace.org:vocabularies:name(concepttermflag):item:name(scientific)'scientific term',scientific term,scientific
+urn:cspace:core.collectionspace.org:vocabularies:name(concepttype):item:name(category1561138445234)'category',category,category1561138445234
+urn:cspace:core.collectionspace.org:vocabularies:name(concepttype):item:name(class1561138445252)'class ',class ,class1561138445252
+urn:cspace:core.collectionspace.org:vocabularies:name(concepttype):item:name(class)'class (MO)',class (MO),class
+urn:cspace:core.collectionspace.org:vocabularies:name(concepttype):item:name(family)'family (MO)',family (MO),family
+urn:cspace:core.collectionspace.org:vocabularies:name(concepttype):item:name(generic)'generic (MO)',generic (MO),generic
+urn:cspace:core.collectionspace.org:vocabularies:name(concepttype):item:name(primaryobjectterm1561138445268)'primary object term',primary object term,primaryobjectterm1561138445268
+urn:cspace:core.collectionspace.org:vocabularies:name(concepttype):item:name(secondaryobjectterm1561138445285)'secondary object term',secondary object term,secondaryobjectterm1561138445285
+urn:cspace:core.collectionspace.org:vocabularies:name(concepttype):item:name(subclass1561139537547)'subclass',subclass,subclass1561139537547
+urn:cspace:core.collectionspace.org:vocabularies:name(concepttype):item:name(tertiaryobjectterm1561138445301)'tertiary object term',tertiary object term,tertiaryobjectterm1561138445301
+urn:cspace:core.collectionspace.org:vocabularies:name(conditioncheckmethod):item:name(observed)'Observed',Observed,observed
+urn:cspace:core.collectionspace.org:vocabularies:name(conditioncheckmethod):item:name(xrayed)'X-Rayed',X-Rayed,xrayed
+urn:cspace:core.collectionspace.org:vocabularies:name(conditioncheckreason):item:name(conservation)'Conservation',Conservation,conservation
+urn:cspace:core.collectionspace.org:vocabularies:name(conditioncheckreason):item:name(consideration)'Consideration',Consideration,consideration
+urn:cspace:core.collectionspace.org:vocabularies:name(conditioncheckreason):item:name(damagedintransit)'Damaged in transit',Damaged in transit,damagedintransit
+urn:cspace:core.collectionspace.org:vocabularies:name(conditioncheckreason):item:name(enquiry)'Enquiry',Enquiry,enquiry
+urn:cspace:core.collectionspace.org:vocabularies:name(conditioncheckreason):item:name(loanin)'Loan in',Loan in,loanin
+urn:cspace:core.collectionspace.org:vocabularies:name(conditionfitness):item:name(dangerous)'Dangerous',Dangerous,dangerous
+urn:cspace:core.collectionspace.org:vocabularies:name(conditionfitness):item:name(reasonable)'Reasonable',Reasonable,reasonable
+urn:cspace:core.collectionspace.org:vocabularies:name(conditionfitness):item:name(suitable)'Suitable',Suitable,suitable
+urn:cspace:core.collectionspace.org:vocabularies:name(conditionfitness):item:name(unsuitable)'Unsuitable',Unsuitable,unsuitable
+urn:cspace:core.collectionspace.org:vocabularies:name(conservationstatus):item:name(analysisapproved)'Analysis approved',Analysis approved,analysisapproved
+urn:cspace:core.collectionspace.org:vocabularies:name(conservationstatus):item:name(analysiscomplete)'Analysis complete',Analysis complete,analysiscomplete
+urn:cspace:core.collectionspace.org:vocabularies:name(conservationstatus):item:name(analysisinprogress)'Analysis in progress',Analysis in progress,analysisinprogress
+urn:cspace:core.collectionspace.org:vocabularies:name(conservationstatus):item:name(analysisproposed)'Analysis proposed',Analysis proposed,analysisproposed
+urn:cspace:core.collectionspace.org:vocabularies:name(conservationstatus):item:name(treatmentapproved)'Treatment approved',Treatment approved,treatmentapproved
+urn:cspace:core.collectionspace.org:vocabularies:name(conservationstatus):item:name(treatmentcomplete)'Treatment complete',Treatment complete,treatmentcomplete
+urn:cspace:core.collectionspace.org:vocabularies:name(conservationstatus):item:name(treatmentinprogress)'Treatment in progress',Treatment in progress,treatmentinprogress
+urn:cspace:core.collectionspace.org:vocabularies:name(conservationstatus):item:name(treatmentproposed)'Treatment proposed',Treatment proposed,treatmentproposed
+urn:cspace:core.collectionspace.org:vocabularies:name(datecertainty):item:name(after)'After',After,after
+urn:cspace:core.collectionspace.org:vocabularies:name(datecertainty):item:name(approximate)'Approximate',Approximate,approximate
+urn:cspace:core.collectionspace.org:vocabularies:name(datecertainty):item:name(before)'Before',Before,before
+urn:cspace:core.collectionspace.org:vocabularies:name(datecertainty):item:name(circa)'Circa',Circa,circa
+urn:cspace:core.collectionspace.org:vocabularies:name(datecertainty):item:name(possibly)'Possibly',Possibly,possibly
+urn:cspace:core.collectionspace.org:vocabularies:name(datecertainty):item:name(probably)'Probably',Probably,probably
+urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(bce)'BCE',BCE,bce
+urn:cspace:core.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE',CE,ce
+urn:cspace:core.collectionspace.org:vocabularies:name(datequalifier):item:name(days)'Day(s)',Day(s),days
+urn:cspace:core.collectionspace.org:vocabularies:name(datequalifier):item:name(month)'Month(s)',Month(s),month
+urn:cspace:core.collectionspace.org:vocabularies:name(datequalifier):item:name(years)'Year(s)',Year(s),years
+urn:cspace:core.collectionspace.org:vocabularies:name(deaccessionapprovalgroup):item:name(board_of_trustees)'board of trustees',board of trustees,board_of_trustees
+urn:cspace:core.collectionspace.org:vocabularies:name(deaccessionapprovalgroup):item:name(collection_committee)'collection committee',collection committee,collection_committee
+urn:cspace:core.collectionspace.org:vocabularies:name(deaccessionapprovalgroup):item:name(executive_committee)'executive committee',executive committee,executive_committee
+urn:cspace:core.collectionspace.org:vocabularies:name(deaccessionapprovalstatus):item:name(approved)'approved',approved,approved
+urn:cspace:core.collectionspace.org:vocabularies:name(deaccessionapprovalstatus):item:name(not_approved)'not approved',not approved,not_approved
+urn:cspace:core.collectionspace.org:vocabularies:name(deaccessionapprovalstatus):item:name(not_required)'not required',not required,not_required
+urn:cspace:core.collectionspace.org:vocabularies:name(deformingprocesses):item:name(aeration)'aeration',aeration,aeration
+urn:cspace:core.collectionspace.org:vocabularies:name(deformingprocesses):item:name(bending)'bending',bending,bending
+urn:cspace:core.collectionspace.org:vocabularies:name(deformingprocesses):item:name(blowing)'blowing',blowing,blowing
+urn:cspace:core.collectionspace.org:vocabularies:name(deformingprocesses):item:name(corrugating)'corrugating',corrugating,corrugating
+urn:cspace:core.collectionspace.org:vocabularies:name(deformingprocesses):item:name(diecutting)'diecutting',diecutting,diecutting
+urn:cspace:core.collectionspace.org:vocabularies:name(deformingprocesses):item:name(embossing)'embossing',embossing,embossing
+urn:cspace:core.collectionspace.org:vocabularies:name(deformingprocesses):item:name(expanding)'expanding',expanding,expanding
+urn:cspace:core.collectionspace.org:vocabularies:name(deformingprocesses):item:name(extrusion)'extrusion',extrusion,extrusion
+urn:cspace:core.collectionspace.org:vocabularies:name(deformingprocesses):item:name(forging)'forging',forging,forging
+urn:cspace:core.collectionspace.org:vocabularies:name(deformingprocesses):item:name(inflating)'inflating',inflating,inflating
+urn:cspace:core.collectionspace.org:vocabularies:name(deformingprocesses):item:name(jiggering)'jiggering',jiggering,jiggering
+urn:cspace:core.collectionspace.org:vocabularies:name(deformingprocesses):item:name(jollying)'jollying',jollying,jollying
+urn:cspace:core.collectionspace.org:vocabularies:name(deformingprocesses):item:name(melting)'melting',melting,melting
+urn:cspace:core.collectionspace.org:vocabularies:name(deformingprocesses):item:name(perforating)'perforating',perforating,perforating
+urn:cspace:core.collectionspace.org:vocabularies:name(deformingprocesses):item:name(pressing)'pressing',pressing,pressing
+urn:cspace:core.collectionspace.org:vocabularies:name(deformingprocesses):item:name(pultrusion)'pultrusion',pultrusion,pultrusion
+urn:cspace:core.collectionspace.org:vocabularies:name(deformingprocesses):item:name(rolling)'rolling',rolling,rolling
+urn:cspace:core.collectionspace.org:vocabularies:name(deformingprocesses):item:name(rotary_swaging)'rotary swaging',rotary swaging,rotary_swaging
+urn:cspace:core.collectionspace.org:vocabularies:name(deformingprocesses):item:name(shearing)'shearing',shearing,shearing
+urn:cspace:core.collectionspace.org:vocabularies:name(deformingprocesses):item:name(spinning)'spinning',spinning,spinning
+urn:cspace:core.collectionspace.org:vocabularies:name(deformingprocesses):item:name(stamping)'stamping',stamping,stamping
+urn:cspace:core.collectionspace.org:vocabularies:name(deformingprocesses):item:name(vacuum_melting)'vacuum melting',vacuum melting,vacuum_melting
+urn:cspace:core.collectionspace.org:vocabularies:name(disposalmethod):item:name(destruction)'destruction',destruction,destruction
+urn:cspace:core.collectionspace.org:vocabularies:name(disposalmethod):item:name(donation)'donation',donation,donation
+urn:cspace:core.collectionspace.org:vocabularies:name(disposalmethod):item:name(exchange)'exchange',exchange,exchange
+urn:cspace:core.collectionspace.org:vocabularies:name(disposalmethod):item:name(private_sale)'private sale',private sale,private_sale
+urn:cspace:core.collectionspace.org:vocabularies:name(disposalmethod):item:name(public_auction)'public auction',public auction,public_auction
+urn:cspace:core.collectionspace.org:vocabularies:name(disposalmethod):item:name(repatriation)'repatriation',repatriation,repatriation
+urn:cspace:core.collectionspace.org:vocabularies:name(disposalmethod):item:name(return_to_donor)'return to donor',return to donor,return_to_donor
+urn:cspace:core.collectionspace.org:vocabularies:name(disposalmethod):item:name(transfer)'transfer',transfer,transfer
+urn:cspace:core.collectionspace.org:vocabularies:name(durabilityproperties):item:name(abrasion_resistant)'abrasion resistant',abrasion resistant,abrasion_resistant
+urn:cspace:core.collectionspace.org:vocabularies:name(durabilityproperties):item:name(animal_resistant)'animal resistant',animal resistant,animal_resistant
+urn:cspace:core.collectionspace.org:vocabularies:name(durabilityproperties):item:name(bacterial_resistant)'bacterial resistant',bacterial resistant,bacterial_resistant
+urn:cspace:core.collectionspace.org:vocabularies:name(durabilityproperties):item:name(chemical_resistant)'chemical resistant (acid and alkaline)',chemical resistant (acid and alkaline),chemical_resistant
+urn:cspace:core.collectionspace.org:vocabularies:name(durabilityproperties):item:name(corrosion_resistant)'corrosion resistant',corrosion resistant,corrosion_resistant
+urn:cspace:core.collectionspace.org:vocabularies:name(durabilityproperties):item:name(dimensionally_stable)'dimensionally-stable',dimensionally-stable,dimensionally_stable
+urn:cspace:core.collectionspace.org:vocabularies:name(durabilityproperties):item:name(emi_interference)'electromagnetic interference (EMI)',electromagnetic interference (EMI),emi_interference
+urn:cspace:core.collectionspace.org:vocabularies:name(durabilityproperties):item:name(fade_resistant)'fade resistant',fade resistant,fade_resistant
+urn:cspace:core.collectionspace.org:vocabularies:name(durabilityproperties):item:name(fire_resistant)'fire resistant',fire resistant,fire_resistant
+urn:cspace:core.collectionspace.org:vocabularies:name(durabilityproperties):item:name(freeze_thaw_resistant)'freeze/thaw resistant',freeze/thaw resistant,freeze_thaw_resistant
+urn:cspace:core.collectionspace.org:vocabularies:name(durabilityproperties):item:name(fungal_resistant)'fungal resistant',fungal resistant,fungal_resistant
+urn:cspace:core.collectionspace.org:vocabularies:name(durabilityproperties):item:name(heat_resistant)'heat resistant',heat resistant,heat_resistant
+urn:cspace:core.collectionspace.org:vocabularies:name(durabilityproperties):item:name(impact_resistant)'impact resistant',impact resistant,impact_resistant
+urn:cspace:core.collectionspace.org:vocabularies:name(durabilityproperties):item:name(lightfastness)'lightfastness',lightfastness,lightfastness
+urn:cspace:core.collectionspace.org:vocabularies:name(durabilityproperties):item:name(rf_shielding)'radio frequency shielding',radio frequency shielding,rf_shielding
+urn:cspace:core.collectionspace.org:vocabularies:name(durabilityproperties):item:name(shock_damping)'shock-damping',shock-damping,shock_damping
+urn:cspace:core.collectionspace.org:vocabularies:name(durabilityproperties):item:name(stain_resistant)'stain resistant',stain resistant,stain_resistant
+urn:cspace:core.collectionspace.org:vocabularies:name(durabilityproperties):item:name(tear_resistant)'tear resistant',tear resistant,tear_resistant
+urn:cspace:core.collectionspace.org:vocabularies:name(durabilityproperties):item:name(uv_resistant)'UV resistant',UV resistant,uv_resistant
+urn:cspace:core.collectionspace.org:vocabularies:name(durabilityproperties):item:name(waterproof)'waterproof',waterproof,waterproof
+urn:cspace:core.collectionspace.org:vocabularies:name(durabilityproperties):item:name(water_repellent)'water-repellent',water-repellent,water_repellent
+urn:cspace:core.collectionspace.org:vocabularies:name(durabilityproperties):item:name(water_resistant)'water resistant',water resistant,water_resistant
+urn:cspace:core.collectionspace.org:vocabularies:name(ecologicalcertifications):item:name(leed)'LEED',LEED,leed
+urn:cspace:core.collectionspace.org:vocabularies:name(electricalproperties):item:name(anti_static)'anti-static',anti-static,anti_static
+urn:cspace:core.collectionspace.org:vocabularies:name(electricalproperties):item:name(electrical_resistivity_conductor)'electrical resistivity - conductor',electrical resistivity - conductor,electrical_resistivity_conductor
+urn:cspace:core.collectionspace.org:vocabularies:name(electricalproperties):item:name(electrical_resistivity_insulator)'electrical resistivity - insulator',electrical resistivity - insulator,electrical_resistivity_insulator
+urn:cspace:core.collectionspace.org:vocabularies:name(electricalproperties):item:name(electrical_resistivity_semiconductor)'electrical resistivity - semiconductor',electrical resistivity - semiconductor,electrical_resistivity_semiconductor
+urn:cspace:core.collectionspace.org:vocabularies:name(energyunits):item:name(MJ_per_kg)'MJ/kg',MJ/kg,MJ_per_kg
+urn:cspace:core.collectionspace.org:vocabularies:name(energyunits):item:name(tCO2)'tCO?',tCO?,tCO2
+urn:cspace:core.collectionspace.org:vocabularies:name(entrymethod):item:name(foundondoorstep)'Found on doorstep',Found on doorstep,foundondoorstep
+urn:cspace:core.collectionspace.org:vocabularies:name(entrymethod):item:name(inperson)'In person',In person,inperson
+urn:cspace:core.collectionspace.org:vocabularies:name(entrymethod):item:name(post)'Post',Post,post
+urn:cspace:core.collectionspace.org:vocabularies:name(examinationphase):item:name(aftertreatment)'after treatment',after treatment,aftertreatment
+urn:cspace:core.collectionspace.org:vocabularies:name(examinationphase):item:name(beforetreatment)'before treatment',before treatment,beforetreatment
+urn:cspace:core.collectionspace.org:vocabularies:name(examinationphase):item:name(duringtreatment)'during treatment',during treatment,duringtreatment
+urn:cspace:core.collectionspace.org:vocabularies:name(exhibitionpersonrole):item:name(conservator)'Conservator',Conservator,conservator
+urn:cspace:core.collectionspace.org:vocabularies:name(exhibitionpersonrole):item:name(curator)'Curator',Curator,curator
+urn:cspace:core.collectionspace.org:vocabularies:name(exhibitionpersonrole):item:name(curatorialassistant)'Curatorial assistant',Curatorial assistant,curatorialassistant
+urn:cspace:core.collectionspace.org:vocabularies:name(exhibitionpersonrole):item:name(educator)'Educator',Educator,educator
+urn:cspace:core.collectionspace.org:vocabularies:name(exhibitionpersonrole):item:name(exhibitdesigner)'Exhibit designer',Exhibit designer,exhibitdesigner
+urn:cspace:core.collectionspace.org:vocabularies:name(exhibitionpersonrole):item:name(exhibitioncoordinator)'Exhibition coordinator',Exhibition coordinator,exhibitioncoordinator
+urn:cspace:core.collectionspace.org:vocabularies:name(exhibitionpersonrole):item:name(imagemediaresearcher)'Image/media researcher',Image/media researcher,imagemediaresearcher
+urn:cspace:core.collectionspace.org:vocabularies:name(exhibitionpersonrole):item:name(preparator)'Preparator',Preparator,preparator
+urn:cspace:core.collectionspace.org:vocabularies:name(exhibitionpersonrole):item:name(publicist)'Publicist',Publicist,publicist
+urn:cspace:core.collectionspace.org:vocabularies:name(exhibitionpersonrole):item:name(publicprogramscoordinator)'Public programs coordinator',Public programs coordinator,publicprogramscoordinator
+urn:cspace:core.collectionspace.org:vocabularies:name(exhibitionpersonrole):item:name(webdesigner)'Web designer',Web designer,webdesigner
+urn:cspace:core.collectionspace.org:vocabularies:name(exhibitionpersonrole):item:name(webdeveloper)'Web developer',Web developer,webdeveloper
+urn:cspace:core.collectionspace.org:vocabularies:name(exhibitionreferencetype):item:name(catalog)'Catalog',Catalog,catalog
+urn:cspace:core.collectionspace.org:vocabularies:name(exhibitionreferencetype):item:name(mention)'Mention',Mention,mention
+urn:cspace:core.collectionspace.org:vocabularies:name(exhibitionreferencetype):item:name(newsarticle)'News article',News article,newsarticle
+urn:cspace:core.collectionspace.org:vocabularies:name(exhibitionreferencetype):item:name(pressrelease)'Press release',Press release,pressrelease
+urn:cspace:core.collectionspace.org:vocabularies:name(exhibitionreferencetype):item:name(research)'Research',Research,research
+urn:cspace:core.collectionspace.org:vocabularies:name(exhibitionreferencetype):item:name(review)'Review',Review,review
+urn:cspace:core.collectionspace.org:vocabularies:name(exhibitionstatus):item:name(finalobjectlistdetermined)'Final object list determined',Final object list determined,finalobjectlistdetermined
+urn:cspace:core.collectionspace.org:vocabularies:name(exhibitionstatus):item:name(labelswritten)'Labels written',Labels written,labelswritten
+urn:cspace:core.collectionspace.org:vocabularies:name(exhibitionstatus):item:name(preliminaryobjectlistcreated)'Preliminary object list created',Preliminary object list created,preliminaryobjectlistcreated
+urn:cspace:core.collectionspace.org:vocabularies:name(exhibitionstatus):item:name(sectionsdetermined)'Sections determined',Sections determined,sectionsdetermined
+urn:cspace:core.collectionspace.org:vocabularies:name(exhibitionstatus):item:name(themeselected)'Theme selected',Theme selected,themeselected
+urn:cspace:core.collectionspace.org:vocabularies:name(exhibitiontype):item:name(permanent)'Permanent',Permanent,permanent
+urn:cspace:core.collectionspace.org:vocabularies:name(exhibitiontype):item:name(temporary)'Temporary',Temporary,temporary
+urn:cspace:core.collectionspace.org:vocabularies:name(exhibitiontype):item:name(traveling)'Traveling',Traveling,traveling
+urn:cspace:core.collectionspace.org:vocabularies:name(hygrothermalproperties):item:name(emissivity)'emissivity',emissivity,emissivity
+urn:cspace:core.collectionspace.org:vocabularies:name(hygrothermalproperties):item:name(flammability)'flammability',flammability,flammability
+urn:cspace:core.collectionspace.org:vocabularies:name(hygrothermalproperties):item:name(melting_point)'melting point',melting point,melting_point
+urn:cspace:core.collectionspace.org:vocabularies:name(hygrothermalproperties):item:name(porosity)'porosity',porosity,porosity
+urn:cspace:core.collectionspace.org:vocabularies:name(hygrothermalproperties):item:name(specific_heat)'specific heat',specific heat,specific_heat
+urn:cspace:core.collectionspace.org:vocabularies:name(hygrothermalproperties):item:name(thermal_expansion_coefficient)'thermal expansion coefficient',thermal expansion coefficient,thermal_expansion_coefficient
+urn:cspace:core.collectionspace.org:vocabularies:name(hygrothermalproperties):item:name(thermal_resistivity)'thermal resistivity',thermal resistivity,thermal_resistivity
+urn:cspace:core.collectionspace.org:vocabularies:name(hygrothermalproperties):item:name(vapor_permeability)'vapor permeability',vapor permeability,vapor_permeability
+urn:cspace:core.collectionspace.org:vocabularies:name(hygrothermalproperties):item:name(water_absorption)'water absorption',water absorption,water_absorption
+urn:cspace:core.collectionspace.org:vocabularies:name(hygrothermalpropertyunits):item:name(degC)'?C',?C,degC
+urn:cspace:core.collectionspace.org:vocabularies:name(hygrothermalpropertyunits):item:name(J_per_kg_degC)'J/kg?C',J/kg?C,J_per_kg_degC
+urn:cspace:core.collectionspace.org:vocabularies:name(hygrothermalpropertyunits):item:name(m_degC_per_W)'m?C/W',m?C/W,m_degC_per_W
+urn:cspace:core.collectionspace.org:vocabularies:name(hygrothermalpropertyunits):item:name(pct)'% (percent)',% (percent),pct
+urn:cspace:core.collectionspace.org:vocabularies:name(hygrothermalpropertyunits):item:name(microstrain_per_degC)'?strain/?C',?strain/?C,microstrain_per_degC
+urn:cspace:core.collectionspace.org:vocabularies:name(inventorystatus):item:name(accessioned)'accessioned',accessioned,accessioned
+urn:cspace:core.collectionspace.org:vocabularies:name(inventorystatus):item:name(accessionstatusunclear)'accession status unclear',accession status unclear,accessionstatusunclear
+urn:cspace:core.collectionspace.org:vocabularies:name(inventorystatus):item:name(deaccessioned)'deaccessioned',deaccessioned,deaccessioned
+urn:cspace:core.collectionspace.org:vocabularies:name(inventorystatus):item:name(destroyed)'destroyed',destroyed,destroyed
+urn:cspace:core.collectionspace.org:vocabularies:name(inventorystatus):item:name(destructiveanalysis)'destructive analysis',destructive analysis,destructiveanalysis
+urn:cspace:core.collectionspace.org:vocabularies:name(inventorystatus):item:name(discarded)'discarded',discarded,discarded
+urn:cspace:core.collectionspace.org:vocabularies:name(inventorystatus):item:name(exchanged)'exchanged',exchanged,exchanged
+urn:cspace:core.collectionspace.org:vocabularies:name(inventorystatus):item:name(intendedfortransfer)'intended for transfer',intended for transfer,intendedfortransfer
+urn:cspace:core.collectionspace.org:vocabularies:name(inventorystatus):item:name(irregularmuseumnumber)'irregular museum number',irregular museum number,irregularmuseumnumber
+urn:cspace:core.collectionspace.org:vocabularies:name(inventorystatus):item:name(missing)'missing',missing,missing
+urn:cspace:core.collectionspace.org:vocabularies:name(inventorystatus):item:name(missingininventory)'missing in inventory',missing in inventory,missingininventory
+urn:cspace:core.collectionspace.org:vocabularies:name(inventorystatus):item:name(notcataloged)'not cataloged',not cataloged,notcataloged
+urn:cspace:core.collectionspace.org:vocabularies:name(inventorystatus):item:name(notlocated)'not located',not located,notlocated
+urn:cspace:core.collectionspace.org:vocabularies:name(inventorystatus):item:name(notreceived)'not received',not received,notreceived
+urn:cspace:core.collectionspace.org:vocabularies:name(inventorystatus):item:name(numbernotused)'number not used',number not used,numbernotused
+urn:cspace:core.collectionspace.org:vocabularies:name(inventorystatus):item:name(objectmount)'object mount',object mount,objectmount
+urn:cspace:core.collectionspace.org:vocabularies:name(inventorystatus):item:name(onloan)'on loan',on loan,onloan
+urn:cspace:core.collectionspace.org:vocabularies:name(inventorystatus):item:name(partiallydeaccessioned)'partially deaccessioned',partially deaccessioned,partiallydeaccessioned
+urn:cspace:core.collectionspace.org:vocabularies:name(inventorystatus):item:name(partiallyexchanged)'partially exchanged',partially exchanged,partiallyexchanged
+urn:cspace:core.collectionspace.org:vocabularies:name(inventorystatus):item:name(partiallyrecataloged)'partially recataloged',partially recataloged,partiallyrecataloged
+urn:cspace:core.collectionspace.org:vocabularies:name(inventorystatus):item:name(returnedloanobject)'returned loan object',returned loan object,returnedloanobject
+urn:cspace:core.collectionspace.org:vocabularies:name(inventorystatus):item:name(Roubado1558661533675)'Roubado',Roubado,Roubado1558661533675
+urn:cspace:core.collectionspace.org:vocabularies:name(inventorystatus):item:name(sold)'sold',sold,sold
+urn:cspace:core.collectionspace.org:vocabularies:name(inventorystatus):item:name(stolen)'stolen',stolen,stolen
+urn:cspace:core.collectionspace.org:vocabularies:name(inventorystatus):item:name(transferred)'transferred',transferred,transferred
+urn:cspace:core.collectionspace.org:vocabularies:name(inventorystatus):item:name(unknown)'unknown',unknown,unknown
+urn:cspace:core.collectionspace.org:vocabularies:name(joiningprocesses):item:name(bonding)'bonding',bonding,bonding
+urn:cspace:core.collectionspace.org:vocabularies:name(joiningprocesses):item:name(doweling)'doweling',doweling,doweling
+urn:cspace:core.collectionspace.org:vocabularies:name(joiningprocesses):item:name(fastening)'fastening',fastening,fastening
+urn:cspace:core.collectionspace.org:vocabularies:name(joiningprocesses):item:name(felting)'felting',felting,felting
+urn:cspace:core.collectionspace.org:vocabularies:name(joiningprocesses):item:name(filament_winding)'filament winding',filament winding,filament_winding
+urn:cspace:core.collectionspace.org:vocabularies:name(joiningprocesses):item:name(flexible_adhesives)'flexible adhesives',flexible adhesives,flexible_adhesives
+urn:cspace:core.collectionspace.org:vocabularies:name(joiningprocesses):item:name(heat_bonding)'heat-bonding',heat-bonding,heat_bonding
+urn:cspace:core.collectionspace.org:vocabularies:name(joiningprocesses):item:name(knitting)'knitting',knitting,knitting
+urn:cspace:core.collectionspace.org:vocabularies:name(joiningprocesses):item:name(laminating)'laminating',laminating,laminating
+urn:cspace:core.collectionspace.org:vocabularies:name(joiningprocesses):item:name(nonwoven)'nonwoven',nonwoven,nonwoven
+urn:cspace:core.collectionspace.org:vocabularies:name(joiningprocesses):item:name(polymerizing)'polymerizing',polymerizing,polymerizing
+urn:cspace:core.collectionspace.org:vocabularies:name(joiningprocesses):item:name(rigid_adhesives)'rigid adhesives',rigid adhesives,rigid_adhesives
+urn:cspace:core.collectionspace.org:vocabularies:name(joiningprocesses):item:name(soldering)'soldering',soldering,soldering
+urn:cspace:core.collectionspace.org:vocabularies:name(joiningprocesses):item:name(spun_bonding)'spun-bonding',spun-bonding,spun_bonding
+urn:cspace:core.collectionspace.org:vocabularies:name(joiningprocesses):item:name(stacking)'stacking',stacking,stacking
+urn:cspace:core.collectionspace.org:vocabularies:name(joiningprocesses):item:name(weaving)'weaving',weaving,weaving
+urn:cspace:core.collectionspace.org:vocabularies:name(joiningprocesses):item:name(welding)'welding',welding,welding
+urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(grc)'Ancient Greek',Ancient Greek,grc
+urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(ara)'Arabic',Arabic,ara
+urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(hye)'Armenian',Armenian,hye
+urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(zho)'Chinese',Chinese,zho
+urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(eng)'English',English,eng
+urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(fra)'French',French,fra
+urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(deu)'German',German,deu
+urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(heb)'Hebrew',Hebrew,heb
+urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(ind)'Indonesian',Indonesian,ind
+urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(ita)'Italian',Italian,ita
+urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(jpn)'Japanese',Japanese,jpn
+urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(kor)'Korean',Korean,kor
+urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(lat)'Latin',Latin,lat
+urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(mal)'Malaysian',Malaysian,mal
+urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(enm)'Middle English',Middle English,enm
+urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(ang)'Old English',Old English,ang
+urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(por)'Portuguese',Portuguese,por
+urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(ron)'Romanian',Romanian,ron
+urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(rus)'Russian',Russian,rus
+urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(spa)'Spanish',Spanish,spa
+urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(swa)'Swahili',Swahili,swa
+urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(swe)'Swedish',Swedish,swe
+urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(tgl)'Tagalog',Tagalog,tgl
+urn:cspace:core.collectionspace.org:vocabularies:name(languages):item:name(yor)'Yoruba',Yoruba,yor
+urn:cspace:core.collectionspace.org:vocabularies:name(lifecyclecomponents):item:name(biodegradable)'Biodegradable',Biodegradable,biodegradable
+urn:cspace:core.collectionspace.org:vocabularies:name(lifecyclecomponents):item:name(landfillable)'Landfillable',Landfillable,landfillable
+urn:cspace:core.collectionspace.org:vocabularies:name(lifecyclecomponents):item:name(recyclable)'Recyclable',Recyclable,recyclable
+urn:cspace:core.collectionspace.org:vocabularies:name(lifecyclecomponents):item:name(renewable_resource)'Renewable resource',Renewable resource,renewable_resource
+urn:cspace:core.collectionspace.org:vocabularies:name(loanoutstatus):item:name(agreed)'Agreed',Agreed,agreed
+urn:cspace:core.collectionspace.org:vocabularies:name(loanoutstatus):item:name(authorized)'Authorized',Authorized,authorized
+urn:cspace:core.collectionspace.org:vocabularies:name(loanoutstatus):item:name(conservation)'Conservation',Conservation,conservation
+urn:cspace:core.collectionspace.org:vocabularies:name(loanoutstatus):item:name(photographyrequested)'Photography requested',Photography requested,photographyrequested
+urn:cspace:core.collectionspace.org:vocabularies:name(loanoutstatus):item:name(refused)'Refused',Refused,refused
+urn:cspace:core.collectionspace.org:vocabularies:name(loanoutstatus):item:name(renewed)'Renewed',Renewed,renewed
+urn:cspace:core.collectionspace.org:vocabularies:name(loanoutstatus):item:name(requested)'Requested',Requested,requested
+urn:cspace:core.collectionspace.org:vocabularies:name(loanoutstatus):item:name(returned)'Returned',Returned,returned
+urn:cspace:core.collectionspace.org:vocabularies:name(loanoutstatus):item:name(sent)'Sent',Sent,sent
+urn:cspace:core.collectionspace.org:vocabularies:name(locationtermflag):item:name(abbreviation)'abbreviation',abbreviation,abbreviation
+urn:cspace:core.collectionspace.org:vocabularies:name(locationtermflag):item:name(full)'full term',full term,full
+urn:cspace:core.collectionspace.org:vocabularies:name(locationtype):item:name(building)'Building',Building,building
+urn:cspace:core.collectionspace.org:vocabularies:name(locationtype):item:name(drawer)'Drawer',Drawer,drawer
+urn:cspace:core.collectionspace.org:vocabularies:name(locationtype):item:name(room)'Room',Room,room
+urn:cspace:core.collectionspace.org:vocabularies:name(locationtype):item:name(shelf)'Shelf',Shelf,shelf
+urn:cspace:core.collectionspace.org:vocabularies:name(locationtype):item:name(tray)'Tray',Tray,tray
+urn:cspace:core.collectionspace.org:vocabularies:name(locationtype):item:name(unit)'Unit',Unit,unit
+urn:cspace:core.collectionspace.org:vocabularies:name(machiningprocesses):item:name(blanking)'blanking',blanking,blanking
+urn:cspace:core.collectionspace.org:vocabularies:name(machiningprocesses):item:name(cnc_cutting)'CNC-cutting',CNC-cutting,cnc_cutting
+urn:cspace:core.collectionspace.org:vocabularies:name(machiningprocesses):item:name(cnc_routing)'CNC-routing',CNC-routing,cnc_routing
+urn:cspace:core.collectionspace.org:vocabularies:name(machiningprocesses):item:name(drilling)'drilling',drilling,drilling
+urn:cspace:core.collectionspace.org:vocabularies:name(machiningprocesses):item:name(ebm)'electron-beam machining (EBM)',electron-beam machining (EBM),ebm
+urn:cspace:core.collectionspace.org:vocabularies:name(machiningprocesses):item:name(grinding)'grinding',grinding,grinding
+urn:cspace:core.collectionspace.org:vocabularies:name(machiningprocesses):item:name(laser_beam_cutting)'laser-beam cutting',laser-beam cutting,laser_beam_cutting
+urn:cspace:core.collectionspace.org:vocabularies:name(machiningprocesses):item:name(lathing)'lathing',lathing,lathing
+urn:cspace:core.collectionspace.org:vocabularies:name(machiningprocesses):item:name(milling)'milling',milling,milling
+urn:cspace:core.collectionspace.org:vocabularies:name(machiningprocesses):item:name(nibbling)'nibbling',nibbling,nibbling
+urn:cspace:core.collectionspace.org:vocabularies:name(machiningprocesses):item:name(oxyacetylene_cutting)'oxyacetylene cutting',oxyacetylene cutting,oxyacetylene_cutting
+urn:cspace:core.collectionspace.org:vocabularies:name(machiningprocesses):item:name(plasma_arc_cutting)'plasma-arc cutting',plasma-arc cutting,plasma_arc_cutting
+urn:cspace:core.collectionspace.org:vocabularies:name(machiningprocesses):item:name(punching)'punching',punching,punching
+urn:cspace:core.collectionspace.org:vocabularies:name(machiningprocesses):item:name(water_jet_abrasion)'water-jet abrasion',water-jet abrasion,water_jet_abrasion
+urn:cspace:core.collectionspace.org:vocabularies:name(machiningprocesses):item:name(water_jet_cutting)'water-jet cutting',water-jet cutting,water_jet_cutting
+urn:cspace:core.collectionspace.org:vocabularies:name(machiningprocesses):item:name(wire_cutting)'wire cutting',wire cutting,wire_cutting
+urn:cspace:core.collectionspace.org:vocabularies:name(machiningprocesses):item:name(wedm)'wire electrical discharge machining (W-EDM)',wire electrical discharge machining (W-EDM),wedm
+urn:cspace:core.collectionspace.org:vocabularies:name(materialform):item:name(aggregate)'aggregate',aggregate,aggregate
+urn:cspace:core.collectionspace.org:vocabularies:name(materialform):item:name(angle)'angle',angle,angle
+urn:cspace:core.collectionspace.org:vocabularies:name(materialform):item:name(bar)'bar',bar,bar
+urn:cspace:core.collectionspace.org:vocabularies:name(materialform):item:name(batt)'batt',batt,batt
+urn:cspace:core.collectionspace.org:vocabularies:name(materialform):item:name(board)'board',board,board
+urn:cspace:core.collectionspace.org:vocabularies:name(materialform):item:name(cell)'cell',cell,cell
+urn:cspace:core.collectionspace.org:vocabularies:name(materialform):item:name(channel)'channel',channel,channel
+urn:cspace:core.collectionspace.org:vocabularies:name(materialform):item:name(cloth)'cloth',cloth,cloth
+urn:cspace:core.collectionspace.org:vocabularies:name(materialform):item:name(coating)'coating',coating,coating
+urn:cspace:core.collectionspace.org:vocabularies:name(materialform):item:name(fiber)'fiber',fiber,fiber
+urn:cspace:core.collectionspace.org:vocabularies:name(materialform):item:name(fiberoptic)'fiber-optic',fiber-optic,fiberoptic
+urn:cspace:core.collectionspace.org:vocabularies:name(materialform):item:name(gabion)'gabion',gabion,gabion
+urn:cspace:core.collectionspace.org:vocabularies:name(materialform):item:name(geotextile)'geotextile',geotextile,geotextile
+urn:cspace:core.collectionspace.org:vocabularies:name(materialform):item:name(grating)'grating',grating,grating
+urn:cspace:core.collectionspace.org:vocabularies:name(materialform):item:name(grille)'grille',grille,grille
+urn:cspace:core.collectionspace.org:vocabularies:name(materialform):item:name(laminate)'laminate',laminate,laminate
+urn:cspace:core.collectionspace.org:vocabularies:name(materialform):item:name(leather)'leather',leather,leather
+urn:cspace:core.collectionspace.org:vocabularies:name(materialform):item:name(lens)'lens',lens,lens
+urn:cspace:core.collectionspace.org:vocabularies:name(materialform):item:name(lumber)'lumber',lumber,lumber
+urn:cspace:core.collectionspace.org:vocabularies:name(materialform):item:name(mulch)'mulch',mulch,mulch
+urn:cspace:core.collectionspace.org:vocabularies:name(materialform):item:name(net)'net',net,net
+urn:cspace:core.collectionspace.org:vocabularies:name(materialform):item:name(paint)'paint',paint,paint
+urn:cspace:core.collectionspace.org:vocabularies:name(materialform):item:name(paper)'paper',paper,paper
+urn:cspace:core.collectionspace.org:vocabularies:name(materialform):item:name(pellets)'pellets',pellets,pellets
+urn:cspace:core.collectionspace.org:vocabularies:name(materialform):item:name(plank)'plank',plank,plank
+urn:cspace:core.collectionspace.org:vocabularies:name(materialform):item:name(plywood)'plywood',plywood,plywood
+urn:cspace:core.collectionspace.org:vocabularies:name(materialform):item:name(pole)'pole',pole,pole
+urn:cspace:core.collectionspace.org:vocabularies:name(materialform):item:name(rod)'rod',rod,rod
+urn:cspace:core.collectionspace.org:vocabularies:name(materialform):item:name(sphere)'sphere',sphere,sphere
+urn:cspace:core.collectionspace.org:vocabularies:name(materialform):item:name(spheres)'spheres',spheres,spheres
+urn:cspace:core.collectionspace.org:vocabularies:name(materialform):item:name(tube)'tube',tube,tube
+urn:cspace:core.collectionspace.org:vocabularies:name(materialform):item:name(veneer)'veneer',veneer,veneer
+urn:cspace:core.collectionspace.org:vocabularies:name(materialform):item:name(wire)'wire',wire,wire
+urn:cspace:core.collectionspace.org:vocabularies:name(materialformtype):item:name(block)'block',block,block
+urn:cspace:core.collectionspace.org:vocabularies:name(materialformtype):item:name(cord)'cord',cord,cord
+urn:cspace:core.collectionspace.org:vocabularies:name(materialformtype):item:name(cord_rope)'cord - rope',cord - rope,cord_rope
+urn:cspace:core.collectionspace.org:vocabularies:name(materialformtype):item:name(cord_tape)'cord - tape',cord - tape,cord_tape
+urn:cspace:core.collectionspace.org:vocabularies:name(materialformtype):item:name(cord_thread)'cord - thread',cord - thread,cord_thread
+urn:cspace:core.collectionspace.org:vocabularies:name(materialformtype):item:name(film)'film',film,film
+urn:cspace:core.collectionspace.org:vocabularies:name(materialformtype):item:name(fluid)'fluid',fluid,fluid
+urn:cspace:core.collectionspace.org:vocabularies:name(materialformtype):item:name(fluid_foam)'fluid - foam',fluid - foam,fluid_foam
+urn:cspace:core.collectionspace.org:vocabularies:name(materialformtype):item:name(fluid_gas)'fluid - gas',fluid - gas,fluid_gas
+urn:cspace:core.collectionspace.org:vocabularies:name(materialformtype):item:name(fluid_liquid)'fluid - liquid',fluid - liquid,fluid_liquid
+urn:cspace:core.collectionspace.org:vocabularies:name(materialformtype):item:name(granule)'granule',granule,granule
+urn:cspace:core.collectionspace.org:vocabularies:name(materialformtype):item:name(granule_irregular)'granule - irregular',granule - irregular,granule_irregular
+urn:cspace:core.collectionspace.org:vocabularies:name(materialformtype):item:name(granule_powder)'granule - powder',granule - powder,granule_powder
+urn:cspace:core.collectionspace.org:vocabularies:name(materialformtype):item:name(granule_regular)'granule - regular',granule - regular,granule_regular
+urn:cspace:core.collectionspace.org:vocabularies:name(materialformtype):item:name(honeycomb)'honeycomb',honeycomb,honeycomb
+urn:cspace:core.collectionspace.org:vocabularies:name(materialformtype):item:name(honeycomb_flexible)'honeycomb - flexible',honeycomb - flexible,honeycomb_flexible
+urn:cspace:core.collectionspace.org:vocabularies:name(materialformtype):item:name(honeycomb_rigid)'honeycomb - rigid',honeycomb - rigid,honeycomb_rigid
+urn:cspace:core.collectionspace.org:vocabularies:name(materialformtype):item:name(mesh)'mesh',mesh,mesh
+urn:cspace:core.collectionspace.org:vocabularies:name(materialformtype):item:name(mesh_flexible)'mesh - flexible',mesh - flexible,mesh_flexible
+urn:cspace:core.collectionspace.org:vocabularies:name(materialformtype):item:name(mesh_rigid)'mesh - rigid',mesh - rigid,mesh_rigid
+urn:cspace:core.collectionspace.org:vocabularies:name(materialformtype):item:name(panel)'panel',panel,panel
+urn:cspace:core.collectionspace.org:vocabularies:name(materialformtype):item:name(panel_flexible)'panel - flexible',panel - flexible,panel_flexible
+urn:cspace:core.collectionspace.org:vocabularies:name(materialformtype):item:name(panel_rigid)'panel - rigid',panel - rigid,panel_rigid
+urn:cspace:core.collectionspace.org:vocabularies:name(materialformtype):item:name(profile)'profile',profile,profile
+urn:cspace:core.collectionspace.org:vocabularies:name(materialformtype):item:name(profile_hollow)'profile - hollow',profile - hollow,profile_hollow
+urn:cspace:core.collectionspace.org:vocabularies:name(materialformtype):item:name(profile_open)'profile - open',profile - open,profile_open
+urn:cspace:core.collectionspace.org:vocabularies:name(materialformtype):item:name(profile_solid)'profile - solid',profile - solid,profile_solid
+urn:cspace:core.collectionspace.org:vocabularies:name(materialformtype):item:name(semisolid)'semisolid',semisolid,semisolid
+urn:cspace:core.collectionspace.org:vocabularies:name(materialformtype):item:name(semisolid_gel)'semisolid - gel',semisolid - gel,semisolid_gel
+urn:cspace:core.collectionspace.org:vocabularies:name(materialformtype):item:name(semisolid_paste)'semisolid - paste',semisolid - paste,semisolid_paste
+urn:cspace:core.collectionspace.org:vocabularies:name(materialformtype):item:name(sheet)'sheet',sheet,sheet
+urn:cspace:core.collectionspace.org:vocabularies:name(materialformtype):item:name(sheet_flexible)'sheet - flexible',sheet - flexible,sheet_flexible
+urn:cspace:core.collectionspace.org:vocabularies:name(materialformtype):item:name(sheet_rigid)'sheet - rigid',sheet - rigid,sheet_rigid
+urn:cspace:core.collectionspace.org:vocabularies:name(materialformtype):item:name(textile)'textile',textile,textile
+urn:cspace:core.collectionspace.org:vocabularies:name(materialformtype):item:name(textile_fabric)'textile - fabric',textile - fabric,textile_fabric
+urn:cspace:core.collectionspace.org:vocabularies:name(materialformtype):item:name(textile_mat)'textile - mat',textile - mat,textile_mat
+urn:cspace:core.collectionspace.org:vocabularies:name(materialformtype):item:name(tile)'tile',tile,tile
+urn:cspace:core.collectionspace.org:vocabularies:name(materialproductionrole):item:name(distributor)'distributor',distributor,distributor
+urn:cspace:core.collectionspace.org:vocabularies:name(materialproductionrole):item:name(manufacturer)'manufacturer',manufacturer,manufacturer
+urn:cspace:core.collectionspace.org:vocabularies:name(materialproductionrole):item:name(origin)'origin',origin,origin
+urn:cspace:core.collectionspace.org:vocabularies:name(materialresource):item:name(csi)'CSI',CSI,csi
+urn:cspace:core.collectionspace.org:vocabularies:name(materialresource):item:name(granta)'Granta',Granta,granta
+urn:cspace:core.collectionspace.org:vocabularies:name(materialtermflag):item:name(abbreviation)'abbreviation',abbreviation,abbreviation
+urn:cspace:core.collectionspace.org:vocabularies:name(materialtermflag):item:name(commercial)'commercial',commercial,commercial
+urn:cspace:core.collectionspace.org:vocabularies:name(materialtermflag):item:name(common)'common',common,common
+urn:cspace:core.collectionspace.org:vocabularies:name(materialtermflag):item:name(scientific)'scientific name',scientific name,scientific
+urn:cspace:core.collectionspace.org:vocabularies:name(materialuse):item:name(cladding)'cladding',cladding,cladding
+urn:cspace:core.collectionspace.org:vocabularies:name(materialuse):item:name(decking)'decking',decking,decking
+urn:cspace:core.collectionspace.org:vocabularies:name(materialuse):item:name(drainage)'drainage',drainage,drainage
+urn:cspace:core.collectionspace.org:vocabularies:name(materialuse):item:name(erosion_control)'erosion control',erosion control,erosion_control
+urn:cspace:core.collectionspace.org:vocabularies:name(materialuse):item:name(filling)'filling',filling,filling
+urn:cspace:core.collectionspace.org:vocabularies:name(materialuse):item:name(finishing)'finishing',finishing,finishing
+urn:cspace:core.collectionspace.org:vocabularies:name(materialuse):item:name(fireproofing)'fireproofing',fireproofing,fireproofing
+urn:cspace:core.collectionspace.org:vocabularies:name(materialuse):item:name(flooring)'flooring',flooring,flooring
+urn:cspace:core.collectionspace.org:vocabularies:name(materialuse):item:name(framing)'framing',framing,framing
+urn:cspace:core.collectionspace.org:vocabularies:name(materialuse):item:name(glazing)'glazing',glazing,glazing
+urn:cspace:core.collectionspace.org:vocabularies:name(materialuse):item:name(packaging)'packaging',packaging,packaging
+urn:cspace:core.collectionspace.org:vocabularies:name(materialuse):item:name(paving)'paving',paving,paving
+urn:cspace:core.collectionspace.org:vocabularies:name(materialuse):item:name(roofing)'roofing',roofing,roofing
+urn:cspace:core.collectionspace.org:vocabularies:name(materialuse):item:name(shingling)'shingling',shingling,shingling
+urn:cspace:core.collectionspace.org:vocabularies:name(materialuse):item:name(sound_control)'sound control',sound control,sound_control
+urn:cspace:core.collectionspace.org:vocabularies:name(materialuse):item:name(thermal_protection)'thermal protection',thermal protection,thermal_protection
+urn:cspace:core.collectionspace.org:vocabularies:name(materialuse):item:name(upholstery)'upholstery',upholstery,upholstery
+urn:cspace:core.collectionspace.org:vocabularies:name(materialuse):item:name(vapor_control)'vapor control',vapor control,vapor_control
+urn:cspace:core.collectionspace.org:vocabularies:name(materialuse):item:name(waterproofing)'waterproofing',waterproofing,waterproofing
+urn:cspace:core.collectionspace.org:vocabularies:name(materialuse):item:name(weatherproofing)'weatherproofing',weatherproofing,weatherproofing
+urn:cspace:core.collectionspace.org:vocabularies:name(mechanicalproperties):item:name(bending_strength)'bending strength',bending strength,bending_strength
+urn:cspace:core.collectionspace.org:vocabularies:name(mechanicalproperties):item:name(compressive_strength)'compressive strength',compressive strength,compressive_strength
+urn:cspace:core.collectionspace.org:vocabularies:name(mechanicalproperties):item:name(density)'density',density,density
+urn:cspace:core.collectionspace.org:vocabularies:name(mechanicalproperties):item:name(elongation)'elongation',elongation,elongation
+urn:cspace:core.collectionspace.org:vocabularies:name(mechanicalproperties):item:name(fatigue_limit)'fatigue limit',fatigue limit,fatigue_limit
+urn:cspace:core.collectionspace.org:vocabularies:name(mechanicalproperties):item:name(hardness)'hardness',hardness,hardness
+urn:cspace:core.collectionspace.org:vocabularies:name(mechanicalproperties):item:name(shear_strength)'shear strength',shear strength,shear_strength
+urn:cspace:core.collectionspace.org:vocabularies:name(mechanicalproperties):item:name(tensile_strength)'tensile strength',tensile strength,tensile_strength
+urn:cspace:core.collectionspace.org:vocabularies:name(mechanicalproperties):item:name(yield_strength)'yield strength',yield strength,yield_strength
+urn:cspace:core.collectionspace.org:vocabularies:name(mechanicalproperties):item:name(youngs_modulus)'young's modulus',young's modulus,youngs_modulus
+urn:cspace:core.collectionspace.org:vocabularies:name(mechanicalpropertyunits):item:name(HV)'HV',HV,HV
+urn:cspace:core.collectionspace.org:vocabularies:name(mechanicalpropertyunits):item:name(kg_per_m3)'kg/m?',kg/m?,kg_per_m3
+urn:cspace:core.collectionspace.org:vocabularies:name(mechanicalpropertyunits):item:name(MPa)'MPa',MPa,MPa
+urn:cspace:core.collectionspace.org:vocabularies:name(mechanicalpropertyunits):item:name(pct)'% (percent)',% (percent),pct
+urn:cspace:core.collectionspace.org:vocabularies:name(moldingprocesses):item:name(autoclave_molding)'autoclave molding',autoclave molding,autoclave_molding
+urn:cspace:core.collectionspace.org:vocabularies:name(moldingprocesses):item:name(back_pressure_forming)'back-pressure forming',back-pressure forming,back_pressure_forming
+urn:cspace:core.collectionspace.org:vocabularies:name(moldingprocesses):item:name(blow_molding)'blow molding',blow molding,blow_molding
+urn:cspace:core.collectionspace.org:vocabularies:name(moldingprocesses):item:name(bubble_forming)'bubble forming',bubble forming,bubble_forming
+urn:cspace:core.collectionspace.org:vocabularies:name(moldingprocesses):item:name(cavity_forming)'cavity forming',cavity forming,cavity_forming
+urn:cspace:core.collectionspace.org:vocabularies:name(moldingprocesses):item:name(cip)'cold isostatic pressing (CIP)',cold isostatic pressing (CIP),cip
+urn:cspace:core.collectionspace.org:vocabularies:name(moldingprocesses):item:name(compression_molding)'compression molding',compression molding,compression_molding
+urn:cspace:core.collectionspace.org:vocabularies:name(moldingprocesses):item:name(contact_molding)'contact molding',contact molding,contact_molding
+urn:cspace:core.collectionspace.org:vocabularies:name(moldingprocesses):item:name(diaphragm_forming)'diaphragm forming',diaphragm forming,diaphragm_forming
+urn:cspace:core.collectionspace.org:vocabularies:name(moldingprocesses):item:name(dip_molding)'dip molding',dip molding,dip_molding
+urn:cspace:core.collectionspace.org:vocabularies:name(moldingprocesses):item:name(electroforming)'electroforming',electroforming,electroforming
+urn:cspace:core.collectionspace.org:vocabularies:name(moldingprocesses):item:name(explosive_forming)'explosive forming',explosive forming,explosive_forming
+urn:cspace:core.collectionspace.org:vocabularies:name(moldingprocesses):item:name(foam_molding)'foam molding',foam molding,foam_molding
+urn:cspace:core.collectionspace.org:vocabularies:name(moldingprocesses):item:name(hip)'hot isostatic pressing (HIP)',hot isostatic pressing (HIP),hip
+urn:cspace:core.collectionspace.org:vocabularies:name(moldingprocesses):item:name(hydroforming_or_fluid_forming)'hydroforming or fluid forming',hydroforming or fluid forming,hydroforming_or_fluid_forming
+urn:cspace:core.collectionspace.org:vocabularies:name(moldingprocesses):item:name(injection_molding)'injection molding',injection molding,injection_molding
+urn:cspace:core.collectionspace.org:vocabularies:name(moldingprocesses):item:name(powder_molding)'powder molding',powder molding,powder_molding
+urn:cspace:core.collectionspace.org:vocabularies:name(moldingprocesses):item:name(rotational_molding)'rotational molding',rotational molding,rotational_molding
+urn:cspace:core.collectionspace.org:vocabularies:name(moldingprocesses):item:name(thermoforming)'thermoforming',thermoforming,thermoforming
+urn:cspace:core.collectionspace.org:vocabularies:name(moldingprocesses):item:name(transfer_molding)'transfer molding',transfer molding,transfer_molding
+urn:cspace:core.collectionspace.org:vocabularies:name(moldingprocesses):item:name(vacuum_forming)'vacuum forming',vacuum forming,vacuum_forming
+urn:cspace:core.collectionspace.org:vocabularies:name(moldingprocesses):item:name(vip)'vacuum infusion forming (VIP)',vacuum infusion forming (VIP),vip
+urn:cspace:core.collectionspace.org:vocabularies:name(opticalproperties):item:name(iridescent)'iridescent',iridescent,iridescent
+urn:cspace:core.collectionspace.org:vocabularies:name(opticalproperties):item:name(light_diffusing)'light diffusing',light diffusing,light_diffusing
+urn:cspace:core.collectionspace.org:vocabularies:name(opticalproperties):item:name(light_emitting)'light emitting',light emitting,light_emitting
+urn:cspace:core.collectionspace.org:vocabularies:name(opticalproperties):item:name(prismatic)'prismatic',prismatic,prismatic
+urn:cspace:core.collectionspace.org:vocabularies:name(opticalproperties):item:name(reflectance_diffuse)'reflectance - diffuse (matte)',reflectance - diffuse (matte),reflectance_diffuse
+urn:cspace:core.collectionspace.org:vocabularies:name(opticalproperties):item:name(reflectance_medium)'reflectance - medium (satin)',reflectance - medium (satin),reflectance_medium
+urn:cspace:core.collectionspace.org:vocabularies:name(opticalproperties):item:name(reflectance_specular)'reflectance - specular (glossy)',reflectance - specular (glossy),reflectance_specular
+urn:cspace:core.collectionspace.org:vocabularies:name(opticalproperties):item:name(transparency_opaque)'transparency - opaque',transparency - opaque,transparency_opaque
+urn:cspace:core.collectionspace.org:vocabularies:name(opticalproperties):item:name(transparency_translucent)'transparency - translucent',transparency - translucent,transparency_translucent
+urn:cspace:core.collectionspace.org:vocabularies:name(opticalproperties):item:name(transparency_transparent)'transparency - transparent',transparency - transparent,transparency_transparent
+urn:cspace:core.collectionspace.org:vocabularies:name(orgtermflag):item:name(official)'official name',official name,official
+urn:cspace:core.collectionspace.org:vocabularies:name(orgtermflag):item:name(popular)'popular name',popular name,popular
+urn:cspace:core.collectionspace.org:vocabularies:name(organizationtype):item:name(corporatebody)'corporate body',corporate body,corporatebody
+urn:cspace:core.collectionspace.org:vocabularies:name(organizationtype):item:name(family)'family',family,family
+urn:cspace:core.collectionspace.org:vocabularies:name(organizationtype):item:name(repository)'repository',repository,repository
+urn:cspace:core.collectionspace.org:vocabularies:name(organizationtype):item:name(studio)'studio',studio,studio
+urn:cspace:core.collectionspace.org:vocabularies:name(organizationtype):item:name(workshop)'workshop',workshop,workshop
+urn:cspace:core.collectionspace.org:vocabularies:name(otherpartyrole):item:name(conservator)'Conservator',Conservator,conservator
+urn:cspace:core.collectionspace.org:vocabularies:name(otherpartyrole):item:name(preparator)'Preparator',Preparator,preparator
+urn:cspace:core.collectionspace.org:vocabularies:name(otherpartyrole):item:name(technician)'Technician',Technician,technician
+urn:cspace:core.collectionspace.org:vocabularies:name(persontermflag):item:name(birth)'birth name',birth name,birth
+urn:cspace:core.collectionspace.org:vocabularies:name(persontermflag):item:name(pseudonym)'pseudonym',pseudonym,pseudonym
+urn:cspace:core.collectionspace.org:vocabularies:name(persontermtype):item:name(artist)'Artist',Artist,artist
+urn:cspace:core.collectionspace.org:vocabularies:name(persontermtype):item:name(donor)'Donor',Donor,donor
+urn:cspace:core.collectionspace.org:vocabularies:name(persontermtype):item:name(employee)'Employee',Employee,employee
+urn:cspace:core.collectionspace.org:vocabularies:name(placetermflag):item:name(iso)'ISO 3-number',ISO 3-number,iso
+urn:cspace:core.collectionspace.org:vocabularies:name(placetermflag):item:name(official)'official name',official name,official
+urn:cspace:core.collectionspace.org:vocabularies:name(placetermflag):item:name(pseudonym)'pseudonym',pseudonym,pseudonym
+urn:cspace:core.collectionspace.org:vocabularies:name(placetermflag):item:name(site)'site name',site name,site
+urn:cspace:core.collectionspace.org:vocabularies:name(rapidprototypingprocesses):item:name(3d_printing)'3D printing',3D printing,3d_printing
+urn:cspace:core.collectionspace.org:vocabularies:name(rapidprototypingprocesses):item:name(contour_crafting)'contour crafting',contour crafting,contour_crafting
+urn:cspace:core.collectionspace.org:vocabularies:name(rapidprototypingprocesses):item:name(fdm)'fused deposition modeling (FDM)',fused deposition modeling (FDM),fdm
+urn:cspace:core.collectionspace.org:vocabularies:name(rapidprototypingprocesses):item:name(laminated_object_manufacturing)'laminated object manufacturing',laminated object manufacturing,laminated_object_manufacturing
+urn:cspace:core.collectionspace.org:vocabularies:name(rapidprototypingprocesses):item:name(physical_vapor_deposition)'physical vapor deposition (PVD)',physical vapor deposition (PVD),physical_vapor_deposition
+urn:cspace:core.collectionspace.org:vocabularies:name(rapidprototypingprocesses):item:name(printing)'printing',printing,printing
+urn:cspace:core.collectionspace.org:vocabularies:name(rapidprototypingprocesses):item:name(slm)'selective laser melting (SLM)',selective laser melting (SLM),slm
+urn:cspace:core.collectionspace.org:vocabularies:name(rapidprototypingprocesses):item:name(sls)'selective laser sintering (SLS)',selective laser sintering (SLS),sls
+urn:cspace:core.collectionspace.org:vocabularies:name(rapidprototypingprocesses):item:name(sintering)'sintering',sintering,sintering
+urn:cspace:core.collectionspace.org:vocabularies:name(rapidprototypingprocesses):item:name(stl)'stereolithography (STL)',stereolithography (STL),stl
+urn:cspace:core.collectionspace.org:vocabularies:name(rapidprototypingprocesses):item:name(vacuum_deposition)'vacuum deposition',vacuum deposition,vacuum_deposition
+urn:cspace:core.collectionspace.org:vocabularies:name(rapidprototypingprocesses):item:name(weaving_3d)'weaving (3D)',weaving (3D),weaving_3d
+urn:cspace:core.collectionspace.org:vocabularies:name(recycledcontentqualifiers):item:name(postconsumer)'Post-consumer',Post-consumer,postconsumer
+urn:cspace:core.collectionspace.org:vocabularies:name(recycledcontentqualifiers):item:name(postindustrial)'Post industrial',Post industrial,postindustrial
+urn:cspace:core.collectionspace.org:vocabularies:name(recycledcontentqualifiers):item:name(unknown)'Unknown',Unknown,unknown
+urn:cspace:core.collectionspace.org:vocabularies:name(relationtypetype):item:name(exhibition)'Exhibition',Exhibition,exhibition
+urn:cspace:core.collectionspace.org:vocabularies:name(relationtypetype):item:name(facsimile)'Facsimile of',Facsimile of,facsimile
+urn:cspace:core.collectionspace.org:vocabularies:name(relationtypetype):item:name(magazine)'Magazine (published in)',Magazine (published in),magazine
+urn:cspace:core.collectionspace.org:vocabularies:name(relationtypetype):item:name(monography)'Monography (published in)',Monography (published in),monography
+urn:cspace:core.collectionspace.org:vocabularies:name(resourceidtype):item:name(isbn)'ISBN',ISBN,isbn
+urn:cspace:core.collectionspace.org:vocabularies:name(resourceidtype):item:name(issn)'ISSN',ISSN,issn
+urn:cspace:core.collectionspace.org:vocabularies:name(resourceidtype):item:name(permalink)'Permalink',Permalink,permalink
+urn:cspace:core.collectionspace.org:vocabularies:name(sensorialproperties):item:name(smell_odorous)'smell - odorous',smell - odorous,smell_odorous
+urn:cspace:core.collectionspace.org:vocabularies:name(sensorialproperties):item:name(taste_bitter)'taste - bitter',taste - bitter,taste_bitter
+urn:cspace:core.collectionspace.org:vocabularies:name(sensorialproperties):item:name(taste_salty)'taste - salty',taste - salty,taste_salty
+urn:cspace:core.collectionspace.org:vocabularies:name(sensorialproperties):item:name(taste_sour)'taste - sour',taste - sour,taste_sour
+urn:cspace:core.collectionspace.org:vocabularies:name(sensorialproperties):item:name(taste_spicy)'taste - spicy',taste - spicy,taste_spicy
+urn:cspace:core.collectionspace.org:vocabularies:name(sensorialproperties):item:name(taste_sweet)'taste - sweet',taste - sweet,taste_sweet
+urn:cspace:core.collectionspace.org:vocabularies:name(sensorialproperties):item:name(touch_hard)'touch - hard',touch - hard,touch_hard
+urn:cspace:core.collectionspace.org:vocabularies:name(sensorialproperties):item:name(touch_heavy)'touch - heavy',touch - heavy,touch_heavy
+urn:cspace:core.collectionspace.org:vocabularies:name(sensorialproperties):item:name(touch_lightweight)'touch - lightweight',touch - lightweight,touch_lightweight
+urn:cspace:core.collectionspace.org:vocabularies:name(sensorialproperties):item:name(touch_rough)'touch - rough',touch - rough,touch_rough
+urn:cspace:core.collectionspace.org:vocabularies:name(sensorialproperties):item:name(touch_smooth)'touch - smooth',touch - smooth,touch_smooth
+urn:cspace:core.collectionspace.org:vocabularies:name(sensorialproperties):item:name(touch_soft)'touch - soft',touch - soft,touch_soft
+urn:cspace:core.collectionspace.org:vocabularies:name(sensorialproperties):item:name(touch_sticky)'touch - sticky',touch - sticky,touch_sticky
+urn:cspace:core.collectionspace.org:vocabularies:name(sensorialproperties):item:name(vision_colorfulness_intensity_medium)'vision - colorfulness intensity (medium)',vision - colorfulness intensity (medium),vision_colorfulness_intensity_medium
+urn:cspace:core.collectionspace.org:vocabularies:name(sensorialproperties):item:name(vision_colorfulness_low)'vision - colorfulness (low)',vision - colorfulness (low),vision_colorfulness_low
+urn:cspace:core.collectionspace.org:vocabularies:name(sensorialproperties):item:name(vision_colorfulness_medium)'vision - colorfulness (medium)',vision - colorfulness (medium),vision_colorfulness_medium
+urn:cspace:core.collectionspace.org:vocabularies:name(sensorialproperties):item:name(vision_intensity_high)'vision - intensity (high)',vision - intensity (high),vision_intensity_high
+urn:cspace:core.collectionspace.org:vocabularies:name(smartmaterialproperties):item:name(dichroic)'dichroic',dichroic,dichroic
+urn:cspace:core.collectionspace.org:vocabularies:name(smartmaterialproperties):item:name(electroluminescent)'electroluminescent',electroluminescent,electroluminescent
+urn:cspace:core.collectionspace.org:vocabularies:name(smartmaterialproperties):item:name(magnetorheological)'magnetorheological',magnetorheological,magnetorheological
+urn:cspace:core.collectionspace.org:vocabularies:name(smartmaterialproperties):item:name(phase_changing)'phase changing',phase changing,phase_changing
+urn:cspace:core.collectionspace.org:vocabularies:name(smartmaterialproperties):item:name(photocatalytic)'photocatalytic',photocatalytic,photocatalytic
+urn:cspace:core.collectionspace.org:vocabularies:name(smartmaterialproperties):item:name(photochromatic)'photochromatic',photochromatic,photochromatic
+urn:cspace:core.collectionspace.org:vocabularies:name(smartmaterialproperties):item:name(photoluminescent)'photoluminescent',photoluminescent,photoluminescent
+urn:cspace:core.collectionspace.org:vocabularies:name(smartmaterialproperties):item:name(photovoltaic)'photovoltaic',photovoltaic,photovoltaic
+urn:cspace:core.collectionspace.org:vocabularies:name(smartmaterialproperties):item:name(self_cleaning)'self-cleaning',self-cleaning,self_cleaning
+urn:cspace:core.collectionspace.org:vocabularies:name(smartmaterialproperties):item:name(self_healing)'self-healing',self-healing,self_healing
+urn:cspace:core.collectionspace.org:vocabularies:name(smartmaterialproperties):item:name(self_leveling)'self-leveling',self-leveling,self_leveling
+urn:cspace:core.collectionspace.org:vocabularies:name(smartmaterialproperties):item:name(shape_memory)'shape memory',shape memory,shape_memory
+urn:cspace:core.collectionspace.org:vocabularies:name(smartmaterialproperties):item:name(thermochromatic)'thermochromatic',thermochromatic,thermochromatic
+urn:cspace:core.collectionspace.org:vocabularies:name(smartmaterialproperties):item:name(time_releasing)'time-releasing',time-releasing,time_releasing
+urn:cspace:core.collectionspace.org:vocabularies:name(currency):item:name(AustralianDollar1558591829341)'Australian Dollar',Australian Dollar,AustralianDollar1558591829341
+urn:cspace:core.collectionspace.org:vocabularies:name(currency):item:name(CAD)'Canadian Dollar',Canadian Dollar,CAD
+urn:cspace:core.collectionspace.org:vocabularies:name(currency):item:name(DKK)'Danish Krone',Danish Krone,DKK
+urn:cspace:core.collectionspace.org:vocabularies:name(currency):item:name(EUR)'Euro',Euro,EUR
+urn:cspace:core.collectionspace.org:vocabularies:name(currency):item:name(GBP)'Pound Sterling',Pound Sterling,GBP
+urn:cspace:core.collectionspace.org:vocabularies:name(currency):item:name(SEK)'Swedish Krona',Swedish Krona,SEK
+urn:cspace:core.collectionspace.org:vocabularies:name(currency):item:name(CHF)'Swiss Franc',Swiss Franc,CHF
+urn:cspace:core.collectionspace.org:vocabularies:name(currency):item:name(USD)'US Dollar',US Dollar,USD
+urn:cspace:core.collectionspace.org:vocabularies:name(surfacingprocesses):item:name(acid_washing)'acid-washing',acid-washing,acid_washing
+urn:cspace:core.collectionspace.org:vocabularies:name(surfacingprocesses):item:name(anodizing)'anodizing',anodizing,anodizing
+urn:cspace:core.collectionspace.org:vocabularies:name(surfacingprocesses):item:name(calendering)'calendering',calendering,calendering
+urn:cspace:core.collectionspace.org:vocabularies:name(surfacingprocesses):item:name(coating)'coating',coating,coating
+urn:cspace:core.collectionspace.org:vocabularies:name(surfacingprocesses):item:name(cubic_printing)'cubic printing',cubic printing,cubic_printing
+urn:cspace:core.collectionspace.org:vocabularies:name(surfacingprocesses):item:name(etching)'etching',etching,etching
+urn:cspace:core.collectionspace.org:vocabularies:name(surfacingprocesses):item:name(flame_hardening)'flame hardening',flame hardening,flame_hardening
+urn:cspace:core.collectionspace.org:vocabularies:name(surfacingprocesses):item:name(galvanizing)'galvanizing',galvanizing,galvanizing
+urn:cspace:core.collectionspace.org:vocabularies:name(surfacingprocesses):item:name(inkjet_printing)'inkjet printing',inkjet printing,inkjet_printing
+urn:cspace:core.collectionspace.org:vocabularies:name(surfacingprocesses):item:name(laser_hardening)'laser hardening',laser hardening,laser_hardening
+urn:cspace:core.collectionspace.org:vocabularies:name(surfacingprocesses):item:name(over_mold_surfacing)'over-mold surfacing',over-mold surfacing,over_mold_surfacing
+urn:cspace:core.collectionspace.org:vocabularies:name(surfacingprocesses):item:name(pad_printing)'pad printing',pad printing,pad_printing
+urn:cspace:core.collectionspace.org:vocabularies:name(surfacingprocesses):item:name(photo_etching)'photo-etching',photo-etching,photo_etching
+urn:cspace:core.collectionspace.org:vocabularies:name(surfacingprocesses):item:name(photolithography)'photolithography',photolithography,photolithography
+urn:cspace:core.collectionspace.org:vocabularies:name(surfacingprocesses):item:name(sandblasting)'sandblasting',sandblasting,sandblasting
+urn:cspace:core.collectionspace.org:vocabularies:name(surfacingprocesses):item:name(silk_screen_printing)'silk screen printing',silk screen printing,silk_screen_printing
+urn:cspace:core.collectionspace.org:vocabularies:name(surfacingprocesses):item:name(spraying)'spraying',spraying,spraying
+urn:cspace:core.collectionspace.org:vocabularies:name(surfacingprocesses):item:name(spray_painting)'spray painting',spray painting,spray_painting
+urn:cspace:core.collectionspace.org:vocabularies:name(taxontermflag):item:name(invalid)'invalid',invalid,invalid
+urn:cspace:core.collectionspace.org:vocabularies:name(taxontermflag):item:name(valid)'valid',valid,valid
+urn:cspace:core.collectionspace.org:vocabularies:name(treatmentpurpose):item:name(appraisal)'Appraisal',Appraisal,appraisal
+urn:cspace:core.collectionspace.org:vocabularies:name(treatmentpurpose):item:name(damage)'Damage',Damage,damage
+urn:cspace:core.collectionspace.org:vocabularies:name(treatmentpurpose):item:name(exhibition)'Exhibition',Exhibition,exhibition
+urn:cspace:core.collectionspace.org:vocabularies:name(treatmentpurpose):item:name(insurance)'Insurance',Insurance,insurance
+urn:cspace:core.collectionspace.org:vocabularies:name(treatmentpurpose):item:name(loanout)'Loan Out',Loan Out,loanout
+urn:cspace:core.collectionspace.org:vocabularies:name(treatmentpurpose):item:name(loanreturn)'Loan Return',Loan Return,loanreturn
+urn:cspace:core.collectionspace.org:vocabularies:name(treatmentpurpose):item:name(purchase)'Purchase',Purchase,purchase
+urn:cspace:core.collectionspace.org:vocabularies:name(uocmethods):item:name(class)'Class',Class,class
+urn:cspace:core.collectionspace.org:vocabularies:name(uocmethods):item:name(exhibition)'Exhibition',Exhibition,exhibition
+urn:cspace:core.collectionspace.org:vocabularies:name(uocmethods):item:name(publication)'Publication',Publication,publication
+urn:cspace:core.collectionspace.org:vocabularies:name(uocmethods):item:name(research)'Research',Research,research
+urn:cspace:core.collectionspace.org:vocabularies:name(uocusertypes):item:name(exhibitionorganizer)'Exhibition organizer',Exhibition organizer,exhibitionorganizer
+urn:cspace:core.collectionspace.org:vocabularies:name(uocusertypes):item:name(faculty)'Faculty',Faculty,faculty
+urn:cspace:core.collectionspace.org:vocabularies:name(uocusertypes):item:name(lecturer)'Lecturer',Lecturer,lecturer
+urn:cspace:core.collectionspace.org:vocabularies:name(uocusertypes):item:name(presenter)'Presenter',Presenter,presenter
+urn:cspace:core.collectionspace.org:vocabularies:name(uocusertypes):item:name(publisher)'Publisher',Publisher,publisher
+urn:cspace:core.collectionspace.org:vocabularies:name(uocusertypes):item:name(researcher)'Researcher',Researcher,researcher
+urn:cspace:core.collectionspace.org:vocabularies:name(workcreatortype):item:name(architect)'Architect',Architect,architect
+urn:cspace:core.collectionspace.org:vocabularies:name(workcreatortype):item:name(artist)'Artist',Artist,artist
+urn:cspace:core.collectionspace.org:vocabularies:name(workcreatortype):item:name(choreographer)'Choreographer',Choreographer,choreographer
+urn:cspace:core.collectionspace.org:vocabularies:name(workcreatortype):item:name(composer)'Composer',Composer,composer
+urn:cspace:core.collectionspace.org:vocabularies:name(workcreatortype):item:name(director)'Director',Director,director
+urn:cspace:core.collectionspace.org:vocabularies:name(workcreatortype):item:name(painter)'Painter',Painter,painter
+urn:cspace:core.collectionspace.org:vocabularies:name(workcreatortype):item:name(sculptor)'Sculptor',Sculptor,sculptor
+urn:cspace:core.collectionspace.org:vocabularies:name(workcreatortype):item:name(writer)'Writer',Writer,writer
+urn:cspace:core.collectionspace.org:vocabularies:name(workpublishertype):item:name(distributor)'Distributor',Distributor,distributor
+urn:cspace:core.collectionspace.org:vocabularies:name(workpublishertype):item:name(publisher)'Publisher',Publisher,publisher
+urn:cspace:core.collectionspace.org:vocabularies:name(worktermflag):item:name(assigned)'assigned by artist',assigned by artist,assigned
+urn:cspace:core.collectionspace.org:vocabularies:name(worktermflag):item:name(collection)'collection',collection,collection
+urn:cspace:core.collectionspace.org:vocabularies:name(worktermflag):item:name(generic)'generic',generic,generic
+urn:cspace:core.collectionspace.org:vocabularies:name(worktermflag):item:name(popular)'popular',popular,popular
+urn:cspace:core.collectionspace.org:vocabularies:name(worktermflag):item:name(series)'series',series,series
+urn:cspace:core.collectionspace.org:vocabularies:name(worktermflag):item:name(trade)'trade',trade,trade
+urn:cspace:core.collectionspace.org:vocabularies:name(worktype):item:name(built)'Built',Built,built
+urn:cspace:core.collectionspace.org:vocabularies:name(worktype):item:name(dance)'Dance',Dance,dance
+urn:cspace:core.collectionspace.org:vocabularies:name(worktype):item:name(movable)'Movable',Movable,movable
+urn:cspace:core.collectionspace.org:vocabularies:name(worktype):item:name(movingimage)'Moving Image',Moving Image,movingimage
+urn:cspace:core.collectionspace.org:vocabularies:name(worktype):item:name(music)'Music',Music,music
+urn:cspace:core.collectionspace.org:vocabularies:name(worktype):item:name(performance)'Performance',Performance,performance
+urn:cspace:core.collectionspace.org:vocabularies:name(worktype):item:name(theater)'Theater',Theater,theater

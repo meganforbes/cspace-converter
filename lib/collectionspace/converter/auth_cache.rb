@@ -9,18 +9,6 @@ module CollectionSpace
           @file = file
         end
 
-        def parse_keys(object)
-          object.each do |k1, v1|
-            v1.each do |k2, v2|
-              v2.each do |k3, v3|
-                parts = [k1, k2, k3]
-                value = v3
-                yield parts, value
-              end
-            end
-          end
-        end
-
         # FILE CACHE FORMAT
         # "citationauthorities" "citation" "getty aat" => "getty_att"
         # "acquisition" "acquisitionReferenceNumber" "$id" => "$csid"
@@ -30,16 +18,19 @@ module CollectionSpace
             Rails.logger.warn "No authority cache file found at #{file}"
             return
           end
-          Rails.logger.debug "The file name is #{file}."
-          file_cache = JSON.parse(File.read(file))
-          parse_keys(file_cache) do |parts, value|
-            Rails.cache.write(AuthCache.cache_key(parts), value)
+          SmarterCSV.process(file, {
+            chunk_size: 100
+          }) do |chunk|
+            chunk.each do |item|
+              subtype = CSURN.parse_subtype item[:refname]
+              type    = CSURN.parse_type item[:refname]
+              parts   = [type, subtype, item[:displayname]]
+              value   = item[:shortidentifier]
+              Rails.logger.debug "Cached: #{item[:refname]}"
+              Rails.cache.write(AuthCache.cache_key(parts), value)
+            end
           end
         end
-      end
-
-      # AuthCache::ApiLoader.new(client).setup
-      class ApiLoader
       end
 
       def self.cache_key(parts = [])
