@@ -16,6 +16,7 @@ namespace :db do
 
   namespace :import do
     def process(job_class, config)
+      Rake::Task['cache:setup'].invoke
       counter = 1
       # process in chunks of 100 rows
       SmarterCSV.process(config[:filename], {
@@ -30,7 +31,7 @@ namespace :db do
       end
     end
 
-    # rake db:import:data[data/SampleCatalogingData.csv,cataloging1,Core,cataloging]
+    # rake db:import:data[data/sample/SampleCatalogingData.csv,cataloging1,Core,cataloging]
     task :data, [:filename, :batch, :module, :profile, :use_auth_cache_file] => :environment do |t, args|
       config = {
         filename:  args[:filename],
@@ -47,8 +48,8 @@ namespace :db do
       Rails.logger.debug "Data import complete!"
     end
 
-    # rake db:import:authorities[data/SamplePerson.csv,person1,Core,name,Person]
-    # rake db:import:authorities[data/SampleMaterial.csv,materials1,Core,materials,Concept,materials_ca]
+    # rake db:import:authorities[data/sample/SamplePerson.csv,person1,Core,name,Person]
+    # rake db:import:authorities[data/sample/SampleMaterial.csv,materials1,Core,materials,Concept,materials_ca]
     task :authorities, [:filename, :batch, :module, :id_field, :type, :subtype, :use_auth_cache_file] => :environment do |t, args|
       config = {
         filename:   args[:filename],

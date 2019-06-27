@@ -24,5 +24,13 @@ describe "CollectionSpace" do
         CSURN.get_vocab_urn('languages', 'English')
       ).to eq vocab_urn_with_cache
     end
+
+    it "can parse type from vocabulary refname" do
+      expect(CSURN.parse_type(vocab_urn_with_cache)).to eq 'vocabularies'
+    end
+
+    it "can parse subtype from vocabulary refname" do
+      expect(CSURN.parse_subtype(vocab_urn_with_cache)).to eq 'languages'
+    end
   end
 end

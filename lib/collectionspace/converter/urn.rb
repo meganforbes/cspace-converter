@@ -17,8 +17,12 @@ module CollectionSpace
       )
     end
 
-    def self.get_vocab_urn(vocabulary, display_name)
+    def self.get_vocab_urn(vocabulary, display_name, required = false)
       identifier = AuthCache.vocabulary(vocabulary, display_name)
+      if required && identifier.nil?
+        raise "Required vocabulary item not found: #{vocabulary}, #{display_name}"
+      end
+
       identifier ||= display_name.downcase
       generate(
         Rails.application.config.domain,
@@ -27,6 +31,14 @@ module CollectionSpace
         identifier,
         display_name
       )
+    end
+
+    def self.parse_subtype(refname)
+      refname.split(':')[4].match(/\((.*)\)/).captures[0]
+    end
+
+    def self.parse_type(refname)
+      refname.split(':')[3]
     end
   end
 end
