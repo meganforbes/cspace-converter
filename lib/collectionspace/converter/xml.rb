@@ -95,13 +95,13 @@ module CollectionSpace
     module Helpers
 
       def self.add_authority(xml, field, authority_type, authority, value)
-        CSXML.add xml, field, get_authority_urn(authority_type, authority, value)
+        CSXML.add xml, field, CSURN.get_authority_urn(authority_type, authority, value)
       end
 
       def self.add_authorities(xml, field, authority_type, authority, values = [], method)
         values = values.map do |value|
           {
-              field => get_authority_urn(authority_type, authority, value),
+              field => CSURN.get_authority_urn(authority_type, authority, value),
           }
         end
         # we are crudely forcing pluralization for repeats (this may need to be revisited)
