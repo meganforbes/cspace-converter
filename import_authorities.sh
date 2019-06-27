@@ -8,4 +8,4 @@ export ID_COLUMN=${4}
 # data/sample/SampleOrganization.csv,organization_batch,PublicArt,termdisplayname
 
 ./bin/rake \
-  db:import:authorities[${FILE},$BATCH,$MODULE,$ID_COLUMN]
+  import:authorities[${FILE},$BATCH,$MODULE,$ID_COLUMN]

@@ -36,7 +36,7 @@ class ImportAuthorityJob < ActiveJob::Base
         service.add_authority(identifier_field, authority_type, authority_subtype)
         service.update_status(import_status: 1, import_message: 'ok')
       rescue Exception => ex
-        logger.error "Failed to import row #{row_count}: #{ex.message}"
+        logger.error "Error for import row #{row_count}: #{ex.message}"
         service.update_status(import_status: 0, import_message: ex.message)
       end
       row_count += 1

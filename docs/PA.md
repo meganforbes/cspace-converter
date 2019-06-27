@@ -16,12 +16,12 @@ Process:
 ./import_procedures.sh data/sample/100_artworks.csv cataloging PublicArt cataloging
 
 # transfer/import cataloging records to CollectionSpace
-./bin/rake remote:action:transfer[CollectionObject,all]
+./bin/rake remote:transfer[CollectionObject,all]
 
 # transfer/import authority records to CollectionSpace
-./bin/rake remote:action:transfer[Concept,all]
-./bin/rake remote:action:transfer[Organization,all]
-./bin/rake remote:action:transfer[Person,all]
+./bin/rake remote:transfer[Concept,all]
+./bin/rake remote:transfer[Organization,all]
+./bin/rake remote:transfer[Person,all]
 
 ```
 
@@ -29,12 +29,12 @@ To undo:
 
 ```
 # delete imported cataloging records from CollectionSpace
-./bin/rake remote:action:delete[CollectionObject,all]
+./bin/rake remote:delete[CollectionObject,all]
 
 # delete imported authority records from CollectionSpace
-./bin/rake remote:action:delete[Concept,all]
-./bin/rake remote:action:delete[Organization,all]
-./bin/rake remote:action:delete[Person,all]
+./bin/rake remote:delete[Concept,all]
+./bin/rake remote:delete[Organization,all]
+./bin/rake remote:delete[Person,all]
 
 ```
 

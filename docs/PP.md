@@ -18,18 +18,18 @@ Process:
 ./import_procedures.sh data/sample/PPSdata_photos.csv pp_photos1 PastPerfect photos
 
 # procedures
-./bin/rake remote:action:transfer[Acquisition,all]
-./bin/rake remote:action:transfer[CollectionObject,all]
-./bin/rake remote:action:transfer[Media,all]
-./bin/rake remote:action:transfer[Movement,all]
-./bin/rake remote:action:transfer[ValuationControl,all]
+./bin/rake remote:transfer[Acquisition,all]
+./bin/rake remote:transfer[CollectionObject,all]
+./bin/rake remote:transfer[Media,all]
+./bin/rake remote:transfer[Movement,all]
+./bin/rake remote:transfer[ValuationControl,all]
 
 # authorities
-./bin/rake remote:action:transfer[Concept,all]
-./bin/rake remote:action:transfer[Location,all]
-./bin/rake remote:action:transfer[Organization,all]
-./bin/rake remote:action:transfer[Person,all]
-./bin/rake remote:action:transfer[Place,all]
+./bin/rake remote:transfer[Concept,all]
+./bin/rake remote:transfer[Location,all]
+./bin/rake remote:transfer[Organization,all]
+./bin/rake remote:transfer[Person,all]
+./bin/rake remote:transfer[Place,all]
 
 # after other transfers
 ./bin/rake relationships:generate[pp_accession1]
@@ -38,25 +38,25 @@ Process:
 ./bin/rake relationships:generate[pp_objects1]
 ./bin/rake relationships:generate[pp_photos1]
 
-./bin/rake remote:action:transfer[Relationship,all]
+./bin/rake remote:transfer[Relationship,all]
 ```
 
 To undo:
 
 ```
-./bin/rake remote:action:delete[Acquisition,all]
-./bin/rake remote:action:delete[CollectionObject,all]
-./bin/rake remote:action:delete[Media,all]
-./bin/rake remote:action:delete[Movement,all]
-./bin/rake remote:action:delete[ValuationControl,all]
+./bin/rake remote:delete[Acquisition,all]
+./bin/rake remote:delete[CollectionObject,all]
+./bin/rake remote:delete[Media,all]
+./bin/rake remote:delete[Movement,all]
+./bin/rake remote:delete[ValuationControl,all]
 
-./bin/rake remote:action:delete[Concept,all]
-./bin/rake remote:action:delete[Location,all]
-./bin/rake remote:action:delete[Organization,all]
-./bin/rake remote:action:delete[Person,all]
-./bin/rake remote:action:delete[Place,all]
+./bin/rake remote:delete[Concept,all]
+./bin/rake remote:delete[Location,all]
+./bin/rake remote:delete[Organization,all]
+./bin/rake remote:delete[Person,all]
+./bin/rake remote:delete[Place,all]
 
-./bin/rake remote:action:delete[Relationship,all]
+./bin/rake remote:delete[Relationship,all]
 ```
 
 ## Checks
