@@ -71,8 +71,7 @@ For authorities:
 ```
 # authority
 ./import_authorities.sh [FILE] [BATCH] [MODULE] [ID_COLUMN] [AUTH_TYPE] [AUTH_INSTANCE]
-./import_authorities.sh data/sample/SamplePlace.csv place1 PublicArt termdisplayname
-bundle exec rake db:import:authorities[data/sample/SamplePerson.csv,person1,Core,termdisplayname]
+./import_authorities.sh data/sample/SamplePerson.csv person1 Core termdisplayname
 ```
 
 Note: authoritiy csv files must contain both `authority_type` and `authority_subtype` fields.

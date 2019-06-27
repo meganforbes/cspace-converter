@@ -28,7 +28,7 @@ namespace :db do
         Delayed::Worker.new.run(Delayed::Job.last)
         counter += 1
       end
-      Rails.logger.debug "Data import complete. Review logs for possible errors."
+      Rails.logger.debug "Data import complete. Use db:import:errors task to view any errors."
     end
 
     # rake db:import:data[data/sample/SampleCatalogingData.csv,cataloging1,Core,cataloging]
@@ -45,6 +45,13 @@ namespace :db do
       end
       Rails.logger.debug "Project #{config[:module]}; Batch #{config[:batch]}; Profile #{config[:profile]}"
       process ImportProcedureJob, config
+    end
+
+    # rake db:import:errors
+    task :errors => :environment do |t, args|
+      DataObject.where(import_status: 0).each do |object|
+        Rails.logger.info object.inspect
+      end
     end
 
     # rake db:import:authorities[data/sample/SamplePerson.csv,person1,Core,name]
