@@ -9,7 +9,7 @@
       <div class="col-md-12">
         <%= page_entries_info @objects, entry_name: 'object' %>
         <span class="errors" style="float: right;">
-          <%= link_to "Filter Errors", request.params.merge(errors: true) %>
+          <%= link_to "Filter Errors", current_page_params.merge(errors: true) %>
         </span>
       </div>
     </div>
