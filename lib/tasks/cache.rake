@@ -1,12 +1,4 @@
 namespace :cache do
-  def auth_cache_path
-    File.join('data', 'auth_cache', ENV.fetch('CSPACE_CONVERTER_DOMAIN'))
-  end
-
-  def auth_cache_vocabularies_file
-    File.join(auth_cache_path, 'vocabularies.csv')
-  end
-
   # bundle exec rake cache:clear
   task :clear => :environment do |t, args|
     Rails.cache.clear
@@ -14,14 +6,14 @@ namespace :cache do
 
   # bundle exec rake cache:setup
   task :setup => :environment do |t, args|
-    file = auth_cache_vocabularies_file
+    file = AuthCache.auth_cache_vocabularies_file
     AuthCache::FileLoader.new(file).setup
   end
 
   # bundle exec rake cache:download_vocabularies
   task :download_vocabularies => :environment do |t, args|
-    path = auth_cache_path
-    file = auth_cache_vocabularies_file
+    path = AuthCache.auth_cache_path
+    file = AuthCache.auth_cache_vocabularies_file
     FileUtils.mkdir_p path
     FileUtils.rm_f file
 

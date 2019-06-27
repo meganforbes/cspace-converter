@@ -33,6 +33,14 @@ module CollectionSpace
         end
       end
 
+      def self.auth_cache_path
+        Rails.root.join('data', 'auth_cache', ENV.fetch('CSPACE_CONVERTER_DOMAIN'))
+      end
+
+      def self.auth_cache_vocabularies_file
+        Rails.root.join(auth_cache_path, 'vocabularies.csv')
+      end
+
       def self.cache_key(parts = [])
         Digest::MD5.hexdigest parts.map(&:downcase).join('.')
       end
