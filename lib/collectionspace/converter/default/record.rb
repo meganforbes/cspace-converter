@@ -80,10 +80,6 @@ module CollectionSpace
 
       class Concept < Record
 
-        def self.get_service_path
-
-        end
-
         def run(wrapper: "common")
           common = wrapper == "common" ? true : false
           super 'concepts', 'concept', common

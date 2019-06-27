@@ -37,7 +37,7 @@ module CollectionSpace
             path: "loansout", schema: "loansout"
           },
           "Location" => {
-              id: "locationauthorities", path: "locationauthorities/urn:cspace:name(#{subtype})/items", schema: "locations"
+            id: "locationauthorities", path: "locationauthorities/urn:cspace:name(#{subtype})/items", schema: "locations"
           },
           "Media" => {
             path: "media", schema: "media"
@@ -52,16 +52,16 @@ module CollectionSpace
             id: "orgauthorities", path: "orgauthorities/urn:cspace:name(#{subtype})/items", schema: "organizations"
           },
           "Person" => {
-              id: "personauthorities", path: "personauthorities/urn:cspace:name(#{subtype})/items", schema: "persons"
+            id: "personauthorities", path: "personauthorities/urn:cspace:name(#{subtype})/items", schema: "persons"
           },
           "Place" => {
-              id: "placeauthorities", path: "placeauthorities/urn:cspace:name(#{subtype})/items", schema: "places"
+            id: "placeauthorities", path: "placeauthorities/urn:cspace:name(#{subtype})/items", schema: "places"
           },
           "Relationship" => {
             path: "relations", schema: "relations"
           },
           "Taxon" => {
-            path: "taxonomyauthority/urn:cspace:name(#{subtype})/items", schema: "taxon"
+            id: "taxonomyauthority", path: "taxonomyauthority/urn:cspace:name(#{subtype})/items", schema: "taxon"
           },
           "ValuationControl" => {
             path: "valuationcontrols", schema: "valuationcontrols"
