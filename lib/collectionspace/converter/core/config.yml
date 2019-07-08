@@ -1,4 +1,8 @@
 ---
+registered_authorities:
+  - orgauthorities
+  - personauthorities
+  - placeauthorities
 registered_procedures:
   - CollectionObject
   - Exhibition

@@ -9,6 +9,10 @@ module CollectionSpace
         )
       end
 
+      def self.registered_authorities
+        config['registered_authorities']
+      end
+
       def self.registered_procedures
         config['registered_procedures']
       end

@@ -8,4 +8,6 @@ Dir["#{Rails.root.join('lib', 'collectionspace')}/**/*.rb"].each do |lib|
   require lib
 end
 
-AuthCache::FileLoader.new(AuthCache.auth_cache_vocabularies_file).setup
+[AuthCache.auth_cache_authorities_file, AuthCache.auth_cache_vocabularies_file].each do |file|
+  AuthCache::FileLoader.new(file).setup
+end unless ENV.fetch('CSPACE_CONVERTER_AUTH_CACHE_INITIALIZE', 'false') == 'false'
