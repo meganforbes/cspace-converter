@@ -22,9 +22,10 @@ module CollectionSpace
             chunk_size: 100
           }) do |chunk|
             chunk.each do |item|
+              name    = item.key?(:displayname) ? item[:displayname] : item[:termdisplayname]
               subtype = CSURN.parse_subtype item[:refname]
               type    = CSURN.parse_type item[:refname]
-              parts   = [type, subtype, item[:displayname]]
+              parts   = [type, subtype, name].map(&:to_s)
               value   = item[:shortidentifier]
               Rails.logger.debug "Cached: #{item[:refname]}"
               Rails.cache.write(AuthCache.cache_key(parts), value)
@@ -33,12 +34,16 @@ module CollectionSpace
         end
       end
 
-      def self.auth_cache_path
-        Rails.root.join('data', 'auth_cache', ENV.fetch('CSPACE_CONVERTER_DOMAIN'))
+      def self.auth_cache_path(domain)
+        Rails.root.join('data', 'auth_cache', domain)
       end
 
-      def self.auth_cache_vocabularies_file
-        Rails.root.join(auth_cache_path, 'vocabularies.csv')
+      def self.auth_cache_authorities_file(domain = ENV.fetch('CSPACE_CONVERTER_DOMAIN'))
+        Rails.root.join(auth_cache_path(domain), 'authorities.csv')
+      end
+
+      def self.auth_cache_vocabularies_file(domain = ENV.fetch('CSPACE_CONVERTER_DOMAIN'))
+        Rails.root.join(auth_cache_path(domain), 'vocabularies.csv')
       end
 
       def self.cache_key(parts = [])
