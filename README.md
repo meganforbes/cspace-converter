@@ -44,6 +44,25 @@ docker run --name mongo -d -p 27017:27017 mongo:3.2
 You should be able to access MongDB on `http://localhost:27017`.  To test the
 connection: https://docs.mongodb.com/v3.0/tutorial/getting-started-with-the-mongo-shell/
 
+**Setup the cache (optional)**
+
+To match csv fields to existing CollectionSpace authority and vocabulary terms:
+
+```bash
+# clear things out if starting over
+bundle exec rake db:nuke
+bundle exec rake cache:clear
+
+# populate the database with terms
+bundle exec rake cache:download_authorities[core]
+bundle exec rake cache:download_vocabularies
+
+# prime the cache
+bundle exec rake cache:setup
+```
+
+Alternatively set `CSPACE_CONVERTER_AUTH_CACHE_INITIALIZE=true` in `.env.local`.
+
 **Stage the data to MongoDB**
 
 The general format for the command is:

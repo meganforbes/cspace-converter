@@ -2,48 +2,23 @@ module CollectionSpace
   module Converter
     module AuthCache
       ::AuthCache = Converter::AuthCache
-      # AuthCache::FileLoader.new(file).setup
-      class FileLoader
-        attr_reader :file, :type
-        def initialize(file)
-          @file = file
-        end
+      # CACHE FORMAT
+      # "citationauthorities" "citation" "getty aat" => "getty_att"
+      # "acquisition" "acquisitionReferenceNumber" "$id" => "$csid"
+      # "vocabularies" "socialmediatype" "facebook" => "facebook"
 
-        # FILE CACHE FORMAT
-        # "citationauthorities" "citation" "getty aat" => "getty_att"
-        # "acquisition" "acquisitionReferenceNumber" "$id" => "$csid"
-        # "vocabularies" "socialmediatype" "facebook" => "facebook"
+      class Loader
         def setup
-          unless File.file? file
-            Rails.logger.warn "No authority cache file found at #{file}"
-            return
-          end
-          SmarterCSV.process(file, {
-            chunk_size: 100
-          }) do |chunk|
-            chunk.each do |item|
-              name    = item.key?(:displayname) ? item[:displayname] : item[:termdisplayname]
-              subtype = CSURN.parse_subtype item[:refname]
-              type    = CSURN.parse_type item[:refname]
-              parts   = [type, subtype, name].map(&:to_s)
-              value   = item[:shortidentifier]
-              Rails.logger.debug "Cached: #{item[:refname]}"
-              Rails.cache.write(AuthCache.cache_key(parts), value)
-            end
+          CacheObject.all.each do |object|
+            name    = object.name
+            subtype = object.subtype
+            type    = object.type
+            parts   = [type, subtype, name].map(&:to_s)
+            value   = object.identifier
+            Rails.logger.debug "Cached: #{object.refname}"
+            Rails.cache.write(AuthCache.cache_key(parts), value)
           end
         end
-      end
-
-      def self.auth_cache_path(domain)
-        Rails.root.join('data', 'auth_cache', domain)
-      end
-
-      def self.auth_cache_authorities_file(domain = ENV.fetch('CSPACE_CONVERTER_DOMAIN'))
-        Rails.root.join(auth_cache_path(domain), 'authorities.csv')
-      end
-
-      def self.auth_cache_vocabularies_file(domain = ENV.fetch('CSPACE_CONVERTER_DOMAIN'))
-        Rails.root.join(auth_cache_path(domain), 'vocabularies.csv')
       end
 
       def self.cache_key(parts = [])

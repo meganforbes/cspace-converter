@@ -3,6 +3,12 @@ require 'spec_helper'
 describe "CollectionSpace" do
 
   describe "Authority Cache" do
+    let(:cache_object) {
+      build(
+        :cache_object,
+      )
+    }
+
     let(:vocabulary_items) {
       [
         {
@@ -15,6 +21,14 @@ describe "CollectionSpace" do
         }
       ]
     }
+
+    it "can load and retrieve cache objects" do
+      cache_object.save
+      AuthCache::Loader.new.setup
+      expect(
+        AuthCache.authority('orgauthorities', 'organization', 'Barnes Foundation')
+      ).to eq 'BarnesFoundation1542642516661'
+    end
 
     it "can add to and retrieve vocabularies from the cache" do
       vocabulary_items.each do |vocab|

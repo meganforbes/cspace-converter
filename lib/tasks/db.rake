@@ -1,5 +1,5 @@
 namespace :db do
-  # rake db:nuke
+  # bundle exec rake db:nuke
   task :nuke => :environment do |t|
     CollectionSpace::Converter::Nuke.everything!
     Rails.logger.debug "Database nuked!"

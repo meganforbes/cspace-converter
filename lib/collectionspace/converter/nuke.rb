@@ -3,6 +3,7 @@ module CollectionSpace
     class Nuke
       def self.everything!
         [
+          CacheObject,
           DataObject,
           CollectionSpaceObject,
           Delayed::Job,
