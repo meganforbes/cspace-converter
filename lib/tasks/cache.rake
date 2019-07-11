@@ -37,6 +37,9 @@ namespace :cache do
     )
   end
 
+  # task :export [to csv]
+  # task :import [from csv]
+
   # bundle exec rake cache:setup
   task :setup => :environment do |t, args|
     AuthCache::Loader.new.setup
