@@ -15,7 +15,6 @@ class CacheObject
     type    = CSURN.parse_type(refname)
     subtype = CSURN.parse_subtype(refname)
     key     = AuthCache.cache_key([type, subtype, name])
-    Rails.logger.info("#{refname}:#{key}")
     write_attribute :type, type
     write_attribute :subtype, subtype
     write_attribute :key, key

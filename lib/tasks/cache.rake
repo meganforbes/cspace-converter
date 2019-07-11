@@ -3,7 +3,7 @@ namespace :cache do
     endpoints.each do |endpoint|
       $collectionspace_client.all(endpoint).each do |list|
         $collectionspace_client.all("#{list["uri"]}/items").each do |item|
-          # Rails.logger.debug item["uri"]
+          Rails.logger.debug item["uri"]
           refname, name, identifier = item.values_at(*headers)
           CacheObject.create(
             refname: refname,
