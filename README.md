@@ -10,16 +10,31 @@ The converter tool is a [Ruby on Rails](https://rubyonrails.org/) application.
 See `.ruby-version` for the recommended version of Ruby. The database backend is
 [MongoDB](https://www.mongodb.com/) (v3.2).
 
+Install Ruby and bundler then run:
+
 ```bash
 bundle install
+```
+
+## Configuration
+
+There is a default `.env` file that provides example configuration. Override it
+by creating a `.env.local` file with custom settings.
+
+```bash
+# DEVELOPMENT .env
+export CSPACE_CONVERTER_DB_HOST=127.0.0.1
+export CSPACE_CONVERTER_BASE_URI=http://localhost:8180/cspace-services
+export CSPACE_CONVERTER_DOMAIN=core.collectionspace.org
+export CSPACE_CONVERTER_MODULE=Core
+export CSPACE_CONVERTER_USERNAME=admin@core.collectionspace.org
+export CSPACE_CONVERTER_PASSWORD=Administrator
 ```
 
 ## Setup CSV Data to be Imported
 
 Before the *cspace-converter* tool can import CSV data into CollectionSpace, it first
 "stages" the data from the CSV files into a MongoDB database.
-
-**Setup CSV file(s)**
 
 Create a data directory and add the CSV files. For example:
 
@@ -54,7 +69,7 @@ bundle exec rake db:nuke
 bundle exec rake cache:clear
 
 # populate the database with terms
-bundle exec rake cache:download_authorities[core]
+bundle exec rake cache:download_authorities
 bundle exec rake cache:download_vocabularies
 
 # prime the cache
@@ -71,9 +86,9 @@ The general format for the command is:
 ./import_procedures.sh [FILE] [BATCH] [PROFILE]
 ```
 
-- `FILE`: name of import file in data directory
-- `BATCH`: import batch label (for reference)
-- `PROFILE`: profile key from config (`_config.rb` registered_profiles)
+- `FILE`: path to the import file
+- `BATCH`: import batch label (for future reference)
+- `PROFILE`: profile key from config (`config.yml` registered_profiles)
 
 For example:
 
@@ -88,30 +103,13 @@ For authorities:
 
 ```
 # authority
-./import_authorities.sh [FILE] [BATCH] [ID_COLUMN] [AUTH_TYPE] [AUTH_INSTANCE]
+./import_authorities.sh [FILE] [BATCH] [ID_COLUMN]
 ./import_authorities.sh data/sample/SamplePerson.csv person1 termdisplayname
 ```
 
 Note: authoritiy csv files must contain both `authority_type` and `authority_subtype` fields.
 
 ## Import Staged Data from MongoDB to CollectionSpace
-
-**Set the environment**
-
-There is a default `.env` file that provides example configuration. Override it
-by creating a `.env.local` file with custom settings.
-
-```bash
-# DEVELOPMENT .env
-export CSPACE_CONVERTER_DB_HOST=127.0.0.1
-export CSPACE_CONVERTER_BASE_URI=http://localhost:8180/cspace-services
-export CSPACE_CONVERTER_DOMAIN=core.collectionspace.org
-export CSPACE_CONVERTER_MODULE=Core
-export CSPACE_CONVERTER_USERNAME=admin@core.collectionspace.org
-export CSPACE_CONVERTER_PASSWORD=Administrator
-```
-
-**Start CollectionSpace Server**
 
 If you don't want to install and run CollectionSpace directly, you can
 use a Docker image to run CollectionSpace

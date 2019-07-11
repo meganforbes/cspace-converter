@@ -1,0 +1,19 @@
+---
+registered_authorities:
+  - orgauthorities
+  - personauthorities
+  - placeauthorities
+registered_procedures:
+  - CollectionObject
+  - Exhibition
+  - LoanIn
+  - LoanOut
+  - Media
+  - Intake
+  - Acquisition
+  - Group
+  - ValuationControl
+  - Movement
+  - ConditionCheck
+  - ObjectExit
+registered_profiles: []
