@@ -22,12 +22,11 @@ namespace :import do
     end
   end
 
-  # rake import:procedures[data/sample/SampleCatalogingData.csv,cataloging1,Core,cataloging]
-  task :procedures, [:filename, :batch, :module, :profile] => :environment do |t, args|
+  # rake import:procedures[data/sample/SampleCatalogingData.csv,cataloging1,cataloging]
+  task :procedures, [:filename, :batch, :profile] => :environment do |t, args|
     config = {
       filename:  args[:filename],
       batch:     args[:batch],
-      module:    args[:module],
       profile:   args[:profile],
     }
     unless File.file? config[:filename]
@@ -38,13 +37,12 @@ namespace :import do
     process ImportProcedureJob, config
   end
 
-  # rake import:authorities[data/sample/SamplePerson.csv,person1,Core,name]
-  # rake import:authorities[data/sample/SampleMaterial.csv,materials1,Core,materials]
-  task :authorities, [:filename, :batch, :module, :id_field] => :environment do |t, args|
+  # rake import:authorities[data/sample/SamplePerson.csv,person1,name]
+  # rake import:authorities[data/sample/SampleMaterial.csv,materials1,materials]
+  task :authorities, [:filename, :batch, :id_field] => :environment do |t, args|
     config = {
       filename:   args[:filename],
       batch:      args[:batch],
-      module:     args[:module],
       id_field:   args[:id_field],
     }
     unless File.file? config[:filename]

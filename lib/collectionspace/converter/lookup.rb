@@ -4,17 +4,19 @@ module CollectionSpace
       ::Lookup = CollectionSpace::Converter::Lookup
       CONVERTER_BASE    = "CollectionSpace::Converter"
       CONVERTER_DEFAULT = "#{CONVERTER_BASE}::Default"
+      CONVERTER_MODULE  = ENV.fetch('CSPACE_CONVERTER_MODULE')
+
       # i.e. #{CONVERTER_BASE}::Core::CoreMaterials
-      def self.authority_class(converter_module, authority)
-        "#{CONVERTER_BASE}::#{converter_module}::#{converter_module}#{authority}".constantize
+      def self.authority_class(authority)
+        "#{CONVERTER_BASE}::#{CONVERTER_MODULE}::#{CONVERTER_MODULE}#{authority}".constantize
       end
 
       def self.category_class(category)
         "#{CONVERTER_BASE}::#{category}".constantize
       end
 
-      def self.converter_class(converter_module)
-        "#{CONVERTER_BASE}::#{converter_module}".constantize
+      def self.converter_class
+        "#{CONVERTER_BASE}::#{CONVERTER_MODULE}".constantize
       end
 
       def self.default_authority_class(authority)
@@ -30,8 +32,8 @@ module CollectionSpace
       end
 
       # i.e. #{CONVERTER_BASE}::PBM::PBMCollectionObject
-      def self.procedure_class(converter_module, procedure)
-        "#{CONVERTER_BASE}::#{converter_module}::#{converter_module}#{procedure}".constantize
+      def self.procedure_class(procedure)
+        "#{CONVERTER_BASE}::#{CONVERTER_MODULE}::#{CONVERTER_MODULE}#{procedure}".constantize
       end
     end
   end

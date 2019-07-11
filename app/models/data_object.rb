@@ -9,6 +9,8 @@ class DataObject
   validates_presence_of :import_category
   validate :module_and_profile_exist
 
+  before_validation :set_module
+
   field :converter_module,  type: String # ex: Core
   field :converter_profile, type: String # ex: cataloging
   field :object_data,       type: Hash
@@ -20,7 +22,7 @@ class DataObject
   field :row_count,         type: Integer
 
   def converter_class
-    Lookup.converter_class(converter_module)
+    Lookup.converter_class
   end
 
   def delimiter
@@ -36,6 +38,10 @@ class DataObject
       end
     end
     @profile
+  end
+
+  def set_module
+    write_attribute :converter_module, ENV.fetch('CSPACE_CONVERTER_MODULE').capitalize
   end
 
   def add_authority(type:, subtype:, name:, identifier: nil, from_procedure: false)
@@ -61,7 +67,7 @@ class DataObject
         "termType"        => "#{CSIDF.authority_term_type(type)}Term",
       }
     else
-      converter    = Lookup.authority_class(converter_module, type)
+      converter    = Lookup.authority_class(type)
       content_data = object_data
     end
 
@@ -74,7 +80,7 @@ class DataObject
   end
 
   def add_procedure(procedure, attributes)
-    converter = Lookup.procedure_class(converter_module, procedure)
+    converter = Lookup.procedure_class(procedure)
 
     data = {}
     data[:batch]            = import_batch

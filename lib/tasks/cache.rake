@@ -20,10 +20,9 @@ namespace :cache do
     Rails.cache.clear
   end
 
-  # bundle exec rake cache:download_authorities[core]
-  task :download_authorities, [:module] => :environment do |t, args|
-    converter_module = args[:module] ||= 'core'
-    authorities      = Lookup.converter_class(converter_module.capitalize).registered_authorities
+  # bundle exec rake cache:download_authorities
+  task :download_authorities => :environment do |t, args|
+    authorities = Lookup.converter_class.registered_authorities
     download(
       ['refName', 'termDisplayName', 'shortIdentifier'],
       authorities

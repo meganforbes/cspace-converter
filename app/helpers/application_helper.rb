@@ -16,19 +16,14 @@ module ApplicationHelper
     Rails.application.secrets[:collectionspace_username]
   end
 
-  def modules
-    CollectionSpace::Converter.constants.find_all do |c|
-      "CollectionSpace::Converter::#{c}".constantize.respond_to?(:registered_profiles)
-    end.sort.promote(:Default)
+  def converter_module
+    Lookup::CONVERTER_MODULE
   end
 
   def profiles
-    profiles = ['Default', 'Default', class: 'Default']
-    modules.each do |c|
-      converter = "CollectionSpace::Converter::#{c}".constantize
-      converter.registered_profiles.keys.sort.each do |profile|
-        profiles << [profile, profile, class: c.to_s]
-      end
+    profiles = []
+    Lookup.converter_class.registered_profiles.keys.sort.each do |profile|
+      profiles << [profile, profile, class: Lookup::CONVERTER_MODULE]
     end
     profiles
   end

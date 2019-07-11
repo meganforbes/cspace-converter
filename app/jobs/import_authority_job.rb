@@ -5,7 +5,6 @@ class ImportAuthorityJob < ActiveJob::Base
 
   def perform(config, rows = [])
     data_object_attributes = {
-      converter_module:  config[:module],
       converter_profile: 'authority',
       object_data:       {},
       import_batch:      config[:batch],

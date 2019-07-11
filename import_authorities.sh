@@ -2,10 +2,9 @@
 
 export FILE=${1}
 export BATCH=${2}
-export MODULE=${3}
-export ID_COLUMN=${4}
+export ID_COLUMN=${3}
 
-# data/sample/SampleOrganization.csv,organization_batch,PublicArt,termdisplayname
+# data/sample/SampleOrganization.csv,organization_batch,termdisplayname
 
 ./bin/rake \
-  import:authorities[${FILE},$BATCH,$MODULE,$ID_COLUMN]
+  import:authorities[${FILE},$BATCH,$ID_COLUMN]

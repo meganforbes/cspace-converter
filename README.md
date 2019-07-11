@@ -68,29 +68,28 @@ Alternatively set `CSPACE_CONVERTER_AUTH_CACHE_INITIALIZE=true` in `.env.local`.
 The general format for the command is:
 
 ```bash
-./import_procedures.sh [FILE] [BATCH] [MODULE] [PROFILE]
+./import_procedures.sh [FILE] [BATCH] [PROFILE]
 ```
 
 - `FILE`: name of import file in data directory
 - `BATCH`: import batch label (for reference)
-- `MODULE`: converter module name (`CollectionSpace::Converter::$NAME`)
 - `PROFILE`: profile key from config (`_config.rb` registered_profiles)
 
 For example:
 
 ```bash
 # procedure / object
-./import_procedures.sh data/sample/SampleCatalogingData.csv cataloging Core cataloging
+./import_procedures.sh data/sample/SampleCatalogingData.csv cataloging cataloging
 # NOTE: for media csv blob_uri field will attempt to create the image
-./import_procedures.sh data/sample/SampleMediaUrl.csv media1 Core media
+./import_procedures.sh data/sample/SampleMediaUrl.csv media1 media
 ```
 
 For authorities:
 
 ```
 # authority
-./import_authorities.sh [FILE] [BATCH] [MODULE] [ID_COLUMN] [AUTH_TYPE] [AUTH_INSTANCE]
-./import_authorities.sh data/sample/SamplePerson.csv person1 Core termdisplayname
+./import_authorities.sh [FILE] [BATCH] [ID_COLUMN] [AUTH_TYPE] [AUTH_INSTANCE]
+./import_authorities.sh data/sample/SamplePerson.csv person1 termdisplayname
 ```
 
 Note: authoritiy csv files must contain both `authority_type` and `authority_subtype` fields.
@@ -107,6 +106,7 @@ by creating a `.env.local` file with custom settings.
 export CSPACE_CONVERTER_DB_HOST=127.0.0.1
 export CSPACE_CONVERTER_BASE_URI=http://localhost:8180/cspace-services
 export CSPACE_CONVERTER_DOMAIN=core.collectionspace.org
+export CSPACE_CONVERTER_MODULE=Core
 export CSPACE_CONVERTER_USERNAME=admin@core.collectionspace.org
 export CSPACE_CONVERTER_PASSWORD=Administrator
 ```
@@ -156,7 +156,7 @@ docker-compose up
 # to run commands
 docker exec -it converter ./bin/rails c
 docker exec -it converter \
-  ./import_procedures.sh data/sample/SampleCatalogingData.csv cataloging Core cataloging
+  ./import_procedures.sh data/sample/SampleCatalogingData.csv cataloging cataloging
 docker exec -it converter ./bin/rake db:nuke
 ```
 

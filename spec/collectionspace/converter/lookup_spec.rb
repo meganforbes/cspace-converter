@@ -6,7 +6,7 @@ RSpec.describe Lookup do
 
     it "returns the authority class" do
       expect(
-        Lookup.authority_class('Core', 'Person')
+        Lookup.authority_class('Person')
       ).to eq CollectionSpace::Converter::Core::CorePerson
     end
 
@@ -24,7 +24,7 @@ RSpec.describe Lookup do
 
     it "returns the converter class" do
       expect(
-        Lookup.converter_class('Core')
+        Lookup.converter_class
       ).to eq CollectionSpace::Converter::Core
     end
 
@@ -48,7 +48,7 @@ RSpec.describe Lookup do
 
     it "returns the procedure class" do
       expect(
-        Lookup.procedure_class('Core', 'CollectionObject')
+        Lookup.procedure_class('CollectionObject')
       ).to eq CollectionSpace::Converter::Core::CoreCollectionObject
     end
 

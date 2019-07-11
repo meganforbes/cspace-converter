@@ -10,16 +10,12 @@
       <div class="col-md-12">
 
         <%= form_tag('import', multipart: true, id: 'import') do %>
+          <p>Converter Module: <%= converter_module %></p>
+          <hr/>
           <div class="form-group row">
             <label for="batch" class="col-md-2 form-control-label">Batch</label>
             <div class="col-md-10">
               <%= text_field_tag 'batch', nil, placeholder: 'Enter a batch name ...', class: 'form-control', required: true %>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="converter" class="col-md-2 form-control-label">Module</label>
-            <div class="col-md-10">
-              <%= select_tag "module", options_for_select(modules), class: "c-select" %>
             </div>
           </div>
           <div class="form-group row">

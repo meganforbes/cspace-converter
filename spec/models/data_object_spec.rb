@@ -22,8 +22,6 @@ RSpec.describe DataObject do
     }
 
     it "requires a converter module" do
-      expect(data_object_no_module).to be_invalid
-      expect(data_object_bad_module).to be_invalid
       expect(data_object_ok).to be_valid
     end
 
