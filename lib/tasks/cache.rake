@@ -1,4 +1,6 @@
 namespace :cache do
+  CSV_HEADERS = ['refname', 'name', 'identifier']
+
   def download(headers, endpoints)
     endpoints.each do |endpoint|
       $collectionspace_client.all(endpoint).each do |list|
@@ -37,8 +39,43 @@ namespace :cache do
     )
   end
 
-  # task :export [to csv]
-  # task :import [from csv]
+  # bundle exec rake cache:export[~/.cspace-converter,cache.csv]
+  task :export, [:path, :file] => :environment do |t, args|
+    path = File.expand_path args[:path]
+    file = args[:file]
+    raise "Invalid path #{path}" unless File.directory? path
+
+    headers = CSV_HEADERS
+    output  = File.join(path, file)
+    FileUtils.rm_f output
+
+    CSV.open(output, 'a') do |csv|
+      csv << headers
+    end
+
+    CacheObject.all.each do |object|
+      CSV.open(output, 'a') do |csv|
+        csv << object.attributes.values_at(*headers)
+      end
+    end
+  end
+
+  # bundle exec rake cache:import[~/.cspace-converter/cache.csv]
+  task :import, [:file] => :environment do |t, args|
+    file = File.expand_path args[:file]
+    raise "Invalid file #{file}" unless File.file? file
+
+    headers = CSV_HEADERS
+
+    CSV.foreach(file, headers: true) do |row|
+      refname, name, identifier = row.values_at(*headers)
+      CacheObject.create(
+        refname: refname,
+        name: name,
+        identifier: identifier
+      )
+    end
+  end
 
   # bundle exec rake cache:setup
   task :setup => :environment do |t, args|
