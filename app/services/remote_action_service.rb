@@ -4,78 +4,88 @@ class RemoteActionService
 
   attr_reader :object, :service
 
+  Status = Struct.new(
+    :ok,
+    :message,
+    keyword_init: true
+  )
+
   def initialize(object)
     @object  = object
     @service = CollectionSpace::Converter::Service.lookup object.type, object.subtype
   end
 
   def remote_delete
-    ok, message = true, ''
+    status = Status.new(ok: true, message: '')
     if object.has_csid_and_uri?
       Rails.logger.debug("Deleting: #{object.identifier}")
       begin
         response = $collectionspace_client.delete(object.uri)
         if response.status_code.to_s =~ /^2/
           object.update_attributes!( csid: nil, uri:  nil )
-          message = "Deleted: #{object.identifier}"
+          status.message = "Deleted: #{object.identifier}"
         end
       rescue Exception => ex
-        ok, message = false, "Error during delete: #{object.inspect}.\n#{ex.backtrace}"
-        Rails.logger.error(message)
+        status.ok      = false
+        status.message = "Error during delete: #{object.inspect}.\n#{ex.backtrace}"
+        Rails.logger.error(status.message)
       end
     else
-      ok, message = false, "Delete requires existing csid and uri."
+      status.ok      = false
+      status.message = "Delete requires existing csid and uri."
     end
-    return ok, message
+    status
   end
 
   def remote_transfer
-    ok, message = true, ''
+    status = Status.new(ok: true, message: '')
     unless object.has_csid_and_uri?
       Rails.logger.debug("Transferring: #{object.identifier}")
       begin
         blob_uri = object.data_object.object_data.fetch('blob_uri', nil)
-        if blob_uri.blank? == false
-          blob_uri = URI.encode blob_uri
-        end
-        params   = (blob_uri and object.type == 'Media') ? { query: { 'blobUri' => blob_uri } } : {}
+        blob_uri = URI.encode blob_uri if !blob_uri.blank?
+        params   = (blob_uri && object.type == 'Media') ? { query: { 'blobUri' => blob_uri } } : {}
         response = $collectionspace_client.post(service[:path], object.content, params)
         if response.status_code.to_s =~ /^2/
           # http://localhost:1980/cspace-services/collectionobjects/7e5abd18-5aec-4b7f-a10c
           csid = response.headers["Location"].split("/")[-1]
           uri  = "#{service[:path]}/#{csid}"
           object.update_attributes!( csid: csid, uri:  uri )
-          message = "Transferred: #{object.identifier}"
+          status.message = "Transferred: #{object.identifier}"
         end
       rescue Exception => ex
-        ok, message = false, "Error during transfer: #{object.inspect}.\n#{ex.backtrace}"
-        Rails.logger.error(message)
+        status.ok      = false
+        status.message = "Error during transfer: #{object.inspect}.\n#{ex.backtrace}"
+        Rails.logger.error(status.message)
       end
     else
-      ok, message = false, "Transfer requires no pre-existing csid and uri."
+      status.ok      = false
+      status.message = "Transfer requires no pre-existing csid and uri."
     end
-    return ok, message
+    status
   end
 
   def remote_update
-    ok, message = true, ''
+    status = Status.new(ok: true, message: '')
     if object.has_csid_and_uri?
       Rails.logger.debug("Updating: #{object.identifier}")
       begin
         $collectionspace_client.put(object.uri, object.content)
-        message = "Updated: #{object.identifier}"
+        status.message = "Updated: #{object.identifier}"
       rescue Exception => ex
-        ok, message = false, "Error during update: #{object.inspect}.\n#{ex.backtrace}"
-        Rails.logger.error(message)
+        status.ok      = false
+        status.message = "Error during update: #{object.inspect}.\n#{ex.backtrace}"
+        Rails.logger.error(status.message)
       end
     else
-      ok, message = false, "Update requires existing csid and uri."
+      status.ok      = false
+      status.message = "Update requires existing csid and uri."
     end
-    return ok, message
+    status
   end
 
   def remote_ping
-    ok, message = false, 'Record was not found.'
+    status = Status.new(ok: true, message: '')
     search_args = {
       path: service[:path],
       type: "#{service[:schema]}_common",
@@ -105,13 +115,14 @@ class RemoteActionService
           csid: parsed_response[list_type][list_item]["csid"],
           uri:  parsed_response[list_type][list_item]["uri"].gsub(/^\//, '')
         )
-        ok, message = true, 'Record was found.'
+        status.ok      = true
+        status.message = 'Record was found.'
       else
         raise "Ambiguous result count (#{result_count.to_s}) for #{message_string}" if result_count > 1
         # TODO: set csid and uri to nil if 0?
       end
     end
-    return ok, message
+    status
   end
 
 end

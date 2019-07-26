@@ -28,8 +28,8 @@ module RemoteActionable
     service  = RemoteActionService.new(@object)
 
     begin
-      ok, message = service.send(action_method)
-      flash[flash_type_for_action(ok)] = message
+      status = service.send(action_method)
+      flash[flash_type_for_action(status.ok)] = message
     rescue Exception => ex
       logger.error("Connection error: #{ex.backtrace}")
       flash[:error] = "Connection error: #{ex.message} #{service.inspect}"
