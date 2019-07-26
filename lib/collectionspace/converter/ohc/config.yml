@@ -16,4 +16,16 @@ registered_procedures:
   - Movement
   - ConditionCheck
   - ObjectExit
-registered_profiles: []
+registered_profiles:
+  acquisition:
+    Procedures:
+      Acquisition:
+        identifier_field: acquisitionReferenceNumber
+        identifier: acquisition_reference_number
+        title: acquisition_reference_number
+    Authorities:
+      Person:
+      - acquisition_authorizer
+      - owner
+    Relationships:
+    - {}

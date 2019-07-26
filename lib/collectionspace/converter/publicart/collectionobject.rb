@@ -2,14 +2,10 @@ module CollectionSpace
   module Converter
     module PublicArt
       include Default
-
       COMMON_ERA_URN = "urn:cspace:publicart.collectionspace.org:vocabularies:name(dateera):item:name(ce)'CE'"
-
       class PublicArtCollectionObject < CollectionObject
-
         def convert
           run(wrapper: "document") do |xml|
-
             xml.send(
                 "ns2:collectionobjects_common",
                 "xmlns:ns2" => "http://collectionspace.org/services/collectionobject",

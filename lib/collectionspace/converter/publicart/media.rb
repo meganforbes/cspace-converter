@@ -2,9 +2,7 @@ module CollectionSpace
   module Converter
     module PublicArt
       include Default
-
       class PublicArtMedia < Media
-
         def convert
           run(wrapper: "document") do |xml|
 
@@ -52,9 +50,7 @@ module CollectionSpace
               end
               CSXML.add_repeat(xml, 'publishToList', publishto_urns) if publishto_urns.empty? == false
             end
-
           end
-
         end
       end
     end

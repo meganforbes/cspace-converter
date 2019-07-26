@@ -2,9 +2,7 @@ module CollectionSpace
   module Converter
     module Core
       include Default
-
       class CoreMedia < Media
-
         def convert
           run do |xml|
             CSXML.add xml, 'identificationNumber', attributes["identification_number"]
@@ -13,9 +11,7 @@ module CollectionSpace
             CSXML.add xml, 'description', scrub_fields([attributes["description"]])
           end
         end
-
       end
-
     end
   end
 end

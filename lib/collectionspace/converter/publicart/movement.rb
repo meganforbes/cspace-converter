@@ -2,9 +2,7 @@ module CollectionSpace
   module Converter
     module PublicArt
       include Default
-
       class PublicArtMovement < Movement
-
         def convert
           run do |xml|
             CSXML.add xml, 'movementReferenceNumber', attributes["movementreferencenumber"]
@@ -14,7 +12,7 @@ module CollectionSpace
             if current_location
               CSXML::Helpers.add_place xml, 'currentLocation', current_location
             end
-            
+
             CSXML.add xml, 'locationDate', attributes["location_date"]
 
             CSXML::Helpers.add_persons xml, 'borrowersAuthorizer', [attributes["movement_contact"]]
@@ -25,7 +23,6 @@ module CollectionSpace
 
             CSXML.add xml, 'currentLocationNote', scrub_fields([attributes["currentlocationnote"]])
           end
-
         end
       end
     end

@@ -2,9 +2,7 @@ module CollectionSpace
   module Converter
     module PastPerfect
       include Default
-
       class PastPerfectValuationControl < ValuationControl
-
         def convert
           run(wrapper: "document") do |xml|
             xml.send(
@@ -16,7 +14,7 @@ module CollectionSpace
               xml.parent.namespace = nil
               # doing double duty bewtween accessions and objects et al.
               CSXML.add xml, 'valuationcontrolRefNumber', attributes.fetch("accessno", "objectid")
-              
+
               value_source = attributes["appraisor"]
               CSXML::Helpers.add_organization 'valueSource', value_source if value_source
               # CSXML.add 'valueType', attributes[""]
@@ -40,12 +38,9 @@ module CollectionSpace
                 "bmValueAmount" => price,
               }] if price
             end
-
           end
         end
-
       end
-
     end
   end
 end

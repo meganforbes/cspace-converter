@@ -2,9 +2,7 @@ module CollectionSpace
   module Converter
     module PublicArt
       include Default
-
       class PublicArtObjectExit < ObjectExit
-
         def convert
           run do |xml|
             #exitNumber
@@ -25,7 +23,6 @@ module CollectionSpace
 
             #exitNote
             CSXML.add xml, 'exitNote', attributes["exit_note"]
-
           end
         end
       end

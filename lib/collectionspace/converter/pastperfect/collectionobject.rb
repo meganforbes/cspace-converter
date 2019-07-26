@@ -2,9 +2,7 @@ module CollectionSpace
   module Converter
     module PastPerfect
       include Default
-
       class PastPerfectCollectionObject < CollectionObject
-
         def convert
           run(wrapper: "document") do |xml|
             xml.send(
@@ -224,9 +222,7 @@ module CollectionSpace
             end
           end
         end
-
       end
-
     end
   end
 end

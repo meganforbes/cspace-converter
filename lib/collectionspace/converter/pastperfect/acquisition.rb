@@ -2,9 +2,7 @@ module CollectionSpace
   module Converter
     module PastPerfect
       include Default
-
       class PastPerfectAcquisition < Acquisition
-
         def convert
           run do |xml|
             CSXML.add xml, 'acquisitionReferenceNumber', attributes["accessno"]
@@ -32,9 +30,7 @@ module CollectionSpace
             CSXML.add_group xml, 'accessionDate', { "dateDisplayDate" => accession_date } if accession_date
           end
         end
-
       end
-
     end
   end
 end

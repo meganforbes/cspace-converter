@@ -2,9 +2,7 @@ module CollectionSpace
   module Converter
     module Core
       include Default
-
       class CoreAcquisition < Acquisition
-
         def convert
           run do |xml|
             #acquisitionReferenceNumber
@@ -37,12 +35,9 @@ module CollectionSpace
 
             #creditLine
             CSXML.add xml, 'creditLine', attributes["credit_line"]
-
           end
         end
-
       end
-
     end
   end
 end

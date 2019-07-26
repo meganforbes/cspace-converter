@@ -2,9 +2,7 @@ module CollectionSpace
   module Converter
     module PublicArt
       include Default
-
       class PublicArtLoanIn < LoanIn
-
         def convert
           run do |xml|
             #loanInNumber
@@ -30,12 +28,9 @@ module CollectionSpace
 
             #loanInNote
             CSXML.add xml, 'loanInNote', scrub_fields([attributes["loan_in_note"]])
-
           end
         end
-
       end
-
     end
   end
 end

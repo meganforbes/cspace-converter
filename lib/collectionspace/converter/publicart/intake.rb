@@ -2,9 +2,7 @@ module CollectionSpace
   module Converter
     module PublicArt
       include Default
-
       class PublicArtIntake < Intake
-
         def convert
           run do |xml|
             #entryNumber
@@ -15,16 +13,15 @@ module CollectionSpace
 
             #entryReason
             CSXML.add xml, 'entryReason', attributes["entry_reason"].downcase!
-            
+
             #currentOwner
             CSXML::Helpers.add_person xml, 'currentOwner', attributes["current_owner"] if attributes["current_owner"]
-            
+
             #entryNote
             CSXML.add xml, 'entryNote', attributes["entry_note"]
 
             #packingNote
             CSXML.add xml, 'packingNote', attributes["packing_note"]
-
           end
         end
       end

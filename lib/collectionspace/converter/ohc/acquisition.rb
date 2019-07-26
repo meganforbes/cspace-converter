@@ -1,11 +1,11 @@
 module CollectionSpace
   module Converter
-    module Core
+    module OHC
       include Default
-      class CoreConcept < Concept
+      class OHCAcquisition < Acquisition
         def convert
           run do |xml|
-            # TODO: implement
+            CSXML.add xml, 'acquisitionReferenceNumber', attributes['acquisition_reference_number']
           end
         end
       end

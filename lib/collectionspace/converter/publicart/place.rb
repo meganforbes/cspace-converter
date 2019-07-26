@@ -2,9 +2,7 @@ module CollectionSpace
   module Converter
     module PublicArt
       include Default
-
       class PublicArtPlace < Place
-
         def convert
           run(wrapper: "document") do |xml|
 
@@ -58,12 +56,9 @@ module CollectionSpace
               end
               CSXML.add_repeat(xml, 'placementTypes', placement_types_urns) if attributes["placementtype"]
             end
-
           end
         end
-
       end
-
     end
   end
 end

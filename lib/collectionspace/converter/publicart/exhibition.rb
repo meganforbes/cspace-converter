@@ -2,9 +2,7 @@ module CollectionSpace
   module Converter
     module PublicArt
       include Default
-
       class PublicArtExhibition < Exhibition
-
         def convert
           run do |xml|
             #exhibitionNumber
@@ -23,12 +21,9 @@ module CollectionSpace
 
             #boilerplateText
             CSXML.add xml, 'boilerplateText', scrub_fields([attributes["boilerplate_text"]])
-
           end
         end
-
       end
-
     end
   end
 end

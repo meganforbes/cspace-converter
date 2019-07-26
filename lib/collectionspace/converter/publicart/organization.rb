@@ -2,9 +2,7 @@ module CollectionSpace
   module Converter
     module PublicArt
       include Default
-
       class PublicArtOrganization < Organization
-
         def convert
           run(wrapper: "document") do |xml|
 
@@ -51,12 +49,9 @@ module CollectionSpace
                                         "webAddressType" => attributes["webaddresstype"],
                                     }]
             end
-
           end
         end
-
       end
-
     end
   end
 end

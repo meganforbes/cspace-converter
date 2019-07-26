@@ -2,9 +2,7 @@ module CollectionSpace
   module Converter
     module PastPerfect
       include Default
-
       class PastPerfectMovement < Movement
-
         def convert
           run do |xml|
             CSXML.add xml, 'movementReferenceNumber', attributes["objectid"]
@@ -20,9 +18,7 @@ module CollectionSpace
             end
           end
         end
-
       end
-
     end
   end
 end

@@ -2,9 +2,7 @@ module CollectionSpace
   module Converter
     module Core
       include Default
-
       class CoreCollectionObject < CollectionObject
-
         def convert
           run do |xml|
             # objectNumber
@@ -167,13 +165,9 @@ module CollectionSpace
             CSXML.add_repeat xml, 'fieldColEventNames', [{
               "fieldColEventName" => attributes["field_collection_event_name"]
             }]
-
-
           end
         end
-
       end
-
     end
   end
 end

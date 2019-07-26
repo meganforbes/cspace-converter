@@ -2,9 +2,7 @@ module CollectionSpace
   module Converter
     module PublicArt
       include Default
-
       class PublicArtGroup < Group
-
         def convert
           run do |xml|
             #owner
@@ -15,12 +13,9 @@ module CollectionSpace
 
             #loanInNote
             CSXML.add xml, 'scopeNote', scrub_fields([attributes["scope_note"]])
-
           end
         end
-
       end
-
     end
   end
 end
