@@ -97,7 +97,10 @@ class RemoteActionService
     query    = CollectionSpace::Search.new.from_hash search_args
     response = $collectionspace_client.search(query)
     unless response.status_code.to_s =~ /^2/
-      raise "Error searching #{message_string}"
+      status.ok      = false
+      status.message = "Error searching #{message_string}"
+      Rails.logger.error(status.message)
+      return status
     end
     parsed_response = response.parsed
 
@@ -106,23 +109,25 @@ class RemoteActionService
     list_type = service[:path] == "relations" ? "relations_common_list" : "abstract_common_list"
     list_item = service[:path] == "relations" ? "relation_list_item" : "list_item"
 
-    # relation search not consistent, skip for now (this means duplication is possible)
-    unless relation
-      result_count = parsed_response[list_type]["totalItems"].to_i
-      if result_count == 1
-        # set csid and uri in case they are lost (i.e. batch was deleted)
-        object.update_attributes!(
-          csid: parsed_response[list_type][list_item]["csid"],
-          uri:  parsed_response[list_type][list_item]["uri"].gsub(/^\//, '')
-        )
-        status.ok      = true
-        status.message = 'Record was found.'
-      else
-        raise "Ambiguous result count (#{result_count.to_s}) for #{message_string}" if result_count > 1
-        # TODO: set csid and uri to nil if 0?
-      end
+    return status if relation # cannot reliably search on relations
+
+    result_count = parsed_response[list_type]["totalItems"].to_i
+    if result_count == 0
+      object.update_attributes!(
+        csid: nil,
+        uri:  nil
+      )
+      status.message = 'Record was not found.'
+    elsif result_count == 1
+      object.update_attributes!(
+        csid: parsed_response[list_type][list_item]["csid"],
+        uri:  parsed_response[list_type][list_item]["uri"].gsub(/^\//, '')
+      )
+      status.message = 'Record was found.'
+    else
+      status.ok      = false
+      status.message = "Ambiguous result count (#{result_count}) for #{message_string}"
     end
     status
   end
-
 end
