@@ -4,11 +4,13 @@ class RemoteActionService
 
   attr_reader :object, :service
 
-  Status = Struct.new(
-    :ok,
-    :message,
-    keyword_init: true
-  )
+  class Status
+    attr_accessor :ok, :message
+    def initialize(ok: false, message: '')
+      @ok      = ok
+      @message = message
+    end
+  end
 
   def initialize(object)
     @object  = object
