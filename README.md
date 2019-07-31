@@ -160,6 +160,12 @@ docker exec -it converter \
 docker exec -it converter ./bin/rake db:nuke
 ```
 
+To test with the prebuilt Docker images:
+
+```
+docker-compose -f docker-compose-test.yml up
+```
+
 ## Deploying Converter to Amazon Elastic Beanstalk
 
 The converter can be easily deployed to [Amazon Elastic Beanstalk](https://aws.amazon.com/documentation/elastic-beanstalk/)

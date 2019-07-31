@@ -1,0 +1,19 @@
+version: '2'
+services:
+  converter:
+    image: lyrasis/cspace-converter:latest
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo
+    environment:
+      CSPACE_CONVERTER_AUTH_CACHE_INITIALIZE: "false"
+      CSPACE_CONVERTER_DB_HOST: mongo
+      CSPACE_CONVERTER_BASE_URI: https://core.collectionspace.org/cspace-services
+      CSPACE_CONVERTER_DOMAIN: core.collectionspace.org
+      CSPACE_CONVERTER_LOG_LEVEL: debug
+      CSPACE_CONVERTER_MODULE: Core
+      CSPACE_CONVERTER_USERNAME: admin@core.collectionspace.org
+      CSPACE_CONVERTER_PASSWORD: Administrator
+  mongo:
+    image: mongo:3.2
