@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   post 'authorities/:id/transfer', to: 'authority_objects#transfer'
   post 'authorities/:id/update', to: 'authority_objects#update'
 
+  get 'batches', to: 'batches#index'
+
   get 'connection', to: "sites#connection", as: 'connection'
 
   get  'import', to: 'imports#new'

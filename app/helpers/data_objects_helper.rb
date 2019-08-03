@@ -1,7 +1,7 @@
 module DataObjectsHelper
 
   def current_page_params
-    request.params.slice('errors')
+    request.params.slice('batch', 'errors', 'page')
   end
 
   def object_label(object)

@@ -4,6 +4,7 @@ class CollectionSpaceObject
 
   belongs_to :data_object, counter_cache: true
   validate   :identifier_is_unique_per_type
+  validates_uniqueness_of :fingerprint
 
   after_validation :log_errors, :if => Proc.new { |object| object.errors.any? }
   before_validation :set_fingerprint

@@ -4,6 +4,16 @@ class ImportProcedureJob < ActiveJob::Base
   queue_as :default
 
   def perform(config, rows = [])
+    batch = Batch.new(
+      type: self.class.to_s,
+      name: config[:batch],
+      status: 'running',
+      processed: 0,
+      failed: 0,
+      start: Time.now,
+      end: nil
+    )
+
     data_object_attributes = {
       converter_profile: config[:profile],
       object_data:       {},
@@ -28,8 +38,13 @@ class ImportProcedureJob < ActiveJob::Base
         logger.error "Error for import row #{row_count}: #{ex.message}"
         service.update_status(import_status: 0, import_message: ex.message)
         service.object.collection_space_objects.destroy_all
+        batch.failed += 1
       end
+      batch.processed = row_count
       row_count += 1
     end
+    batch.status = 'complete'
+    batch.end = Time.now
+    batch.save
   end
 end

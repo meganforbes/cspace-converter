@@ -3,9 +3,10 @@ module CollectionSpace
     class Nuke
       def self.everything!
         [
+          Batch,
           CacheObject,
-          DataObject,
           CollectionSpaceObject,
+          DataObject,
           Delayed::Job,
         ].each { |model| model.destroy_all }
       end

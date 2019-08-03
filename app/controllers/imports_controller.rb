@@ -22,7 +22,7 @@ class ImportsController < ApplicationController
         ImportProcedureJob.perform_later(config, chunk)
       end
       flash[:notice] = "Background import job running. Check back periodically for results."
-      redirect_to procedures_path
+      redirect_to batches_path
     else
       flash[:error] = "There was an error processing the uploaded file."
       redirect_to import_path

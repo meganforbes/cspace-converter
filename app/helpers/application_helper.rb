@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   def batches
-    ['all'].concat( DataObject.pluck('import_batch').uniq )
+    DataObject.pluck('import_batch').uniq
   end
 
   def collectionspace_base_uri
@@ -18,6 +18,14 @@ module ApplicationHelper
 
   def converter_module
     Lookup::CONVERTER_MODULE
+  end
+
+  def path_for_batch_type(batch)
+    if batch.type == 'TransferJob'
+      return batches_path
+    else
+      return objects_path(batch: batch.name)
+    end
   end
 
   def profiles
