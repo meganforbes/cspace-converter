@@ -1,0 +1,52 @@
+<div class="row">
+
+  <%= render partial: 'shared/sidebar' %>
+
+  <div class="col-md-10">
+    <%= render partial: 'shared/alerts' %>
+    <%= render partial: 'shared/title', :locals => { :title => 'Batches' } %>
+
+    <div class="row">
+      <div class="col-md-12">
+        <%= page_entries_info @objects, entry_name: 'batch' %>
+      </div>
+    </div>
+
+    <% if @objects.any? %>
+      <div class="row">
+        <div class="col-md-12">
+          <table class="table">
+            <thead class="">
+              <tr>
+                <th>Type</th>
+                <th>Name</th>
+                <th>Status</th>
+                <th>Processed</th>
+                <th>Failed</th>
+                <th>Start</th>
+                <th>End</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @objects.entries.each.with_index do |batch, i| %>
+                <tr>
+                  <td><%= batch.type %></td>
+                  <td><%= link_to batch.name, path_for_batch_type(batch) %></td>
+                  <td><%= batch.status %></td>
+                  <td><%= batch.processed %></td>
+                  <td><%= batch.failed %></td>
+                  <td><%= batch.start %></td>
+                  <td><%= batch.end %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <%= render partial: 'shared/pagination', :locals => { :objects => @objects } %>
+    <% end %>
+
+  </div>
+
+</div>
