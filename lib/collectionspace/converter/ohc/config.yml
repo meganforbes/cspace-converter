@@ -21,11 +21,13 @@ registered_profiles:
     Procedures:
       Acquisition:
         identifier_field: acquisitionReferenceNumber
-        identifier: acquisition_reference_number
-        title: acquisition_reference_number
+        identifier: acquisitionreferencenumber
+        title: acquisitionreferencenumber
     Authorities:
+      Organization:
+      - owner_organization
       Person:
-      - acquisition_authorizer
-      - owner
+      - acquisitionauthorizer
+      - owner_person
     Relationships:
     - {}

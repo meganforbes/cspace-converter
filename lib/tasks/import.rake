@@ -1,16 +1,13 @@
 namespace :import do
   def process(job_class, config)
-    counter = 1
     # process in chunks of 100 rows
     SmarterCSV.process(config[:filename], {
         chunk_size: 100,
         convert_values_to_numeric: false,
       }.merge(Rails.application.config.csv_parser_options)) do |chunk|
-      Rails.logger.debug "Processing #{config[:batch]} #{counter}"
       job_class.perform_later(config, chunk)
       # run the job immediately when using rake
       Delayed::Worker.new.run(Delayed::Job.last)
-      counter += 1
     end
     Rails.logger.debug "Data import complete. Use 'import:errors' task to review any errors."
   end
@@ -33,7 +30,7 @@ namespace :import do
       Rails.logger.error "Invalid file #{config[:filename]}"
       abort
     end
-    Rails.logger.debug "Project #{config[:module]}; Batch #{config[:batch]}; Profile #{config[:profile]}"
+    Rails.logger.debug "Batch #{config[:batch]}; Profile #{config[:profile]}"
     process ImportProcedureJob, config
   end
 
@@ -49,7 +46,7 @@ namespace :import do
       Rails.logger.error "Invalid file #{config[:filename]}"
       abort
     end
-    Rails.logger.debug "Project #{config[:module]}; Batch #{config[:batch]}"
+    Rails.logger.debug "Batch #{config[:batch]}"
     process ImportAuthorityJob, config
   end
 end

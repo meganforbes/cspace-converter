@@ -5,6 +5,7 @@ namespace :remote do
     remote_action_process "delete", type, batch
   end
 
+  # bundle exec rake remote:get[acquisitions]
   task :get, [:path] => :environment do |t, args|
     path = args[:path]
     puts $collectionspace_client.get(path).xml

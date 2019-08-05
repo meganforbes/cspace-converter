@@ -21,8 +21,7 @@
 /.env.*
 
 # Ignore data
-#/db/data/*
-#!/db/data/Sample*.csv
+data/private/
 
 # Ignore all logfiles and tempfiles.
 /log/*

@@ -15,6 +15,7 @@ class ImportAuthorityJob < ActiveJob::Base
       end: nil
     )
 
+    batch.processed += 1
     data_object_attributes = {
       converter_profile: 'authority',
       object_data:       {},
@@ -26,8 +27,6 @@ class ImportAuthorityJob < ActiveJob::Base
     # Authority config
     identifier_field  = config[:id_field]
 
-    # row_count is used to reference the current row in logging and error messages
-    row_count = 1
     rows.each do |data|
       authority_type    = data[:authority_type]
       authority_subtype = data[:authority_subtype]
@@ -37,22 +36,19 @@ class ImportAuthorityJob < ActiveJob::Base
       end
 
       data_object_attributes[:object_data] = data
-      data_object_attributes[:row_count]   = row_count
 
       begin
-        logger.debug "Importing row #{row_count}: #{data_object_attributes.inspect}"
+        logger.debug "Importing row: #{data_object_attributes.inspect}"
         service = ImportService.new(data_object_attributes)
         service.create_object
         service.add_authority(identifier_field, authority_type, authority_subtype)
         service.update_status(import_status: 1, import_message: 'ok')
       rescue Exception => ex
-        logger.error "Error for import row #{row_count}: #{ex.message}"
+        logger.error "Error for import row: #{ex.message}"
         service.update_status(import_status: 0, import_message: ex.message)
         service.object.collection_space_objects.destroy_all
         batch.failed += 1
       end
-      batch.processed = row_count
-      row_count += 1
     end
     batch.status = 'complete'
     batch.end = Time.now

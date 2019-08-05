@@ -5,7 +5,7 @@ module CollectionSpace
       class OHCAcquisition < Acquisition
         def convert
           run do |xml|
-            CSXML.add xml, 'acquisitionReferenceNumber', attributes['acquisition_reference_number']
+            CSXML.add xml, 'acquisitionReferenceNumber', attributes['acquisitionreferencenumber']
           end
         end
       end

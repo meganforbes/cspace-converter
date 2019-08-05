@@ -19,7 +19,6 @@ class DataObject
   field :import_message,    type: String, default: 'ok'
   field :import_status,     type: Integer, default: 1
   field :import_category,   type: String # ex: Procedure
-  field :row_count,         type: Integer
 
   def converter_class
     Lookup.converter_class

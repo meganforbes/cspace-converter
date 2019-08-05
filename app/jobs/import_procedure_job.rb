@@ -15,6 +15,7 @@ class ImportProcedureJob < ActiveJob::Base
       end: nil
     )
 
+    batch.processed += 1
     data_object_attributes = {
       converter_profile: config[:profile],
       object_data:       {},
@@ -23,26 +24,21 @@ class ImportProcedureJob < ActiveJob::Base
       import_file:       config[:filename],
     }
 
-    # row_count is used to reference the current row in logging and error messages
-    row_count = 1
     rows.each do |data|
       data_object_attributes[:object_data] = data
-      data_object_attributes[:row_count]   = row_count
       service = ImportService.new(data_object_attributes)
       begin
-        logger.debug "Importing row #{row_count}: #{data_object_attributes.inspect}"
+        logger.debug "Importing row: #{data_object_attributes.inspect}"
         service.create_object
         service.add_procedures
         service.add_authorities
         service.update_status(import_status: 1, import_message: 'ok')
       rescue Exception => ex
-        logger.error "Error for import row #{row_count}: #{ex.message}"
+        logger.error "Error for import row: #{ex.message}"
         service.update_status(import_status: 0, import_message: ex.message)
         service.object.collection_space_objects.destroy_all
         batch.failed += 1
       end
-      batch.processed = row_count
-      row_count += 1
     end
     batch.status = 'complete'
     batch.end = Time.now
