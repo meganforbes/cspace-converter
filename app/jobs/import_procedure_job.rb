@@ -6,6 +6,7 @@ class ImportProcedureJob < ActiveJob::Base
   def perform(config, rows = [])
     batch = Batch.new(
       type: self.class.to_s,
+      for: config[:profile],
       name: config[:batch],
       status: 'running',
       processed: 0,
