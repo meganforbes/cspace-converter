@@ -71,12 +71,13 @@ class DataObject
       content_data = object_data
     end
 
-    cspace_object = collection_space_objects.build(data)
+    cspace_object = CollectionSpaceObject.new(data)
     Task.generate_content(
       converter: converter,
       data: content_data,
       object: cspace_object,
     )
+    self.collection_space_objects << cspace_object if cspace_object.valid?
   end
 
   def add_procedure(procedure, attributes)
@@ -91,12 +92,13 @@ class DataObject
     data[:identifier]       = object_data[attributes["identifier"]]
     data[:title]            = object_data[attributes["title"]]
 
-    cspace_object = collection_space_objects.build(data)
+    cspace_object = CollectionSpaceObject.new(data)
     Task.generate_content(
       converter: converter,
       data: object_data,
       object: cspace_object,
     )
+    self.collection_space_objects << cspace_object if cspace_object.valid?
   end
 
   def add_relationship(from_procedure, from_field, to_procedure, to_field)
@@ -149,12 +151,13 @@ class DataObject
     data[:identifier]       = "#{from_csid}_#{to_csid}"
     data[:title]            = "#{from_prefix}:#{from_value}_#{to_prefix}:#{to_value}"
 
-    cspace_object = collection_space_objects.build(data)
+    cspace_object = CollectionSpaceObject.new(data)
     Task.generate_content(
       converter: converter,
       data: attributes,
       object: cspace_object,
     )
+    self.collection_space_objects << cspace_object if cspace_object.valid?
   end
 
   def module_and_profile_exist

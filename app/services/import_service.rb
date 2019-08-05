@@ -61,6 +61,7 @@ class ImportService
     procedures = object.profile.fetch("Procedures", {})
     procedures.each do |procedure, attributes|
       object.add_procedure procedure, attributes
+      object.save!
     end
   end
 
