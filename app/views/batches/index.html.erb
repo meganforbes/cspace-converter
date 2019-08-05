@@ -19,6 +19,7 @@
             <thead class="">
               <tr>
                 <th>Type</th>
+                <th>For</th>
                 <th>Name</th>
                 <th>Status</th>
                 <th>Processed</th>
@@ -31,6 +32,7 @@
               <% @objects.entries.each.with_index do |batch, i| %>
                 <tr>
                   <td><%= batch.type %></td>
+                  <td><%= batch.for %></td>
                   <td><%= link_to batch.name, path_for_batch_type(batch) %></td>
                   <td><%= batch.status %></td>
                   <td><%= batch.processed %></td>

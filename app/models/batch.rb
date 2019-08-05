@@ -3,6 +3,7 @@ class Batch
   validates_uniqueness_of :name, scope: :start
 
   field :type,      type: String
+  field :for,       type: String
   field :name,      type: String
   field :status,    type: String
   field :processed, type: Integer

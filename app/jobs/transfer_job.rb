@@ -7,6 +7,7 @@ class TransferJob < ActiveJob::Base
 
     batch = Batch.new(
       type: self.class.to_s,
+      for: type,
       name: batch_name,
       status: 'running',
       processed: 0,
