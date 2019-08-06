@@ -119,6 +119,15 @@ module CollectionSpace
         add_authorities xml, field, 'conceptauthorities', 'concept', values, method
       end
 
+      def self.add_date_group(xml, field, date)
+        CSXML.add_group xml, field, CSDTP.fields_for(date)
+      end
+
+      def self.add_date_group_list(xml, field, dates)
+        dates = dates.map { |d| CSDTP.fields_for(d) }
+        CSXML.add_group_list xml, field, dates
+      end
+
       def self.add_location(xml, field, value)
         add_authority xml, field, 'locationauthorities', 'location', value
       end
