@@ -14,7 +14,8 @@ Rails.application.routes.draw do
 
   get 'batches', to: 'batches#index'
 
-  get 'connection', to: "sites#connection", as: 'connection'
+  get 'cache',      to: 'cache_objects#index'
+  get 'connection', to: 'sites#connection', as: 'connection'
 
   get  'import', to: 'imports#new'
   post 'import', to: 'imports#create'

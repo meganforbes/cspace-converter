@@ -1,0 +1,46 @@
+<div class="row">
+
+  <%= render partial: 'shared/sidebar' %>
+
+  <div class="col-md-10">
+    <%= render partial: 'shared/alerts' %>
+    <%= render partial: 'shared/title', :locals => { :title => 'Cache' } %>
+
+    <div class="row">
+      <div class="col-md-12">
+        <%= page_entries_info @objects, entry_name: 'batch' %>
+      </div>
+    </div>
+
+    <% if @objects.any? %>
+      <div class="row">
+        <div class="col-md-12">
+          <table class="table">
+            <thead class="">
+              <tr>
+                <th>Identifier</th>
+                <th>Type</th>
+                <th>Subtype</th>
+                <th>Key</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @objects.entries.each.with_index do |object, i| %>
+                <tr>
+                  <td><%= object.identifier %></td>
+                  <td><%= object.type %></td>
+                  <td><%= object.subtype %></td>
+                  <td><%= object.key %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <%= render partial: 'shared/pagination', :locals => { :objects => @objects } %>
+    <% end %>
+
+  </div>
+
+</div>
