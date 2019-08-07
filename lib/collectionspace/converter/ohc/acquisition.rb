@@ -12,20 +12,31 @@ module CollectionSpace
             aa = attributes['acquisitionauthorizer']
             CSXML::Helpers.add_person xml, 'acquisitionAuthorizer', aa if aa
 
-            accdate = CSDTP::parse attributes['accessiondate'] rescue nil
+            accdate = CSDTP.parse(attributes['accessiondate']) rescue nil
             CSXML::Helpers.add_date_group xml, 'accessionDate', accdate if accdate
 
-            acqdate = CSDTP::parse(
+            acqdate = CSDTP.parse(
               attributes['acquisitiondatestart'],
               attributes['acquisitiondateend']
             ) rescue nil
             acqdates = [acqdate].compact
             CSXML::Helpers.add_date_group_list xml, 'acquisitionDate', acqdates if acqdate
 
-            # approvalStatus1status
-            # approvalStatus1date
-            # approvalStatus2status
-            # approvalStatus2date
+            app = [1, 2].map do |i|
+              data = {}
+              appdate = attributes["approvalstatus#{i}date"]
+              data['approvalDate'] = appdate
+              if appdate
+                data['approvalDate'] = CSDTP.parse(appdate).earliest_scalar
+              end
+              status = attributes["approvalstatus#{i}status"]
+              if status
+                status = CSURN.get_vocab_urn('deaccessionapprovalstatus', status, true)
+                data['approvalStatus'] = status
+              end
+              data
+            end
+            CSXML.add_group_list xml, 'approval', app
 
             owners = split_mvf(attributes, 'owner_organization').map do |o|
               urn = CSURN.get_authority_urn('orgauthorities', 'organization', o)
