@@ -7,7 +7,6 @@ services:
     depends_on:
       - mongo
     environment:
-      CSPACE_CONVERTER_AUTH_CACHE_INITIALIZE: "false"
       CSPACE_CONVERTER_DB_HOST: mongo
       CSPACE_CONVERTER_BASE_URI: https://core.collectionspace.org/cspace-services
       CSPACE_CONVERTER_DOMAIN: core.collectionspace.org

@@ -76,9 +76,4 @@ namespace :cache do
       )
     end
   end
-
-  # bundle exec rake cache:setup
-  task :setup => :environment do |t, args|
-    AuthCache::Loader.new.setup
-  end
 end

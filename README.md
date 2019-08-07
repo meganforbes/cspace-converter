@@ -23,7 +23,6 @@ by creating a `.env.local` file with custom settings.
 
 ```bash
 # DEVELOPMENT .env
-export CSPACE_CONVERTER_AUTH_CACHE_INITIALIZE=false
 export CSPACE_CONVERTER_DB_HOST=127.0.0.1
 export CSPACE_CONVERTER_BASE_URI=http://localhost:1980/cspace-services
 export CSPACE_CONVERTER_DOMAIN=core.collectionspace.org
@@ -70,15 +69,10 @@ To match csv fields to existing CollectionSpace authority and vocabulary terms:
 bundle exec rake db:nuke
 bundle exec rake cache:clear
 
-# populate the database with terms
+# populate the database with cache terms
 bundle exec rake cache:download_authorities
 bundle exec rake cache:download_vocabularies
-
-# prime the cache
-bundle exec rake cache:setup
 ```
-
-Alternatively set `CSPACE_CONVERTER_AUTH_CACHE_INITIALIZE=true` in `.env.local`.
 
 **Stage the data to MongoDB**
 

@@ -7,7 +7,3 @@ end
 Dir["#{Rails.root.join('lib', 'collectionspace')}/**/*.rb"].each do |lib|
   require lib
 end
-
-unless ENV.fetch('CSPACE_CONVERTER_AUTH_CACHE_INITIALIZE', 'false') == 'false'
-  AuthCache::Loader.new.setup
-end
