@@ -39,6 +39,9 @@ module CollectionSpace
           "Location" => {
             id: "locationauthorities", path: "locationauthorities/urn:cspace:name(#{subtype})/items", schema: "locations"
           },
+          "Material" => {
+            id: "materialauthorities", path: "materialauthorities/urn:cspace:name(#{subtype})/items", schema: "materials"
+          },
           "Media" => {
             path: "media", schema: "media"
           },

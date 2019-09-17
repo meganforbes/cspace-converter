@@ -159,6 +159,15 @@ module CollectionSpace
 
       end
 
+      class Material < Record
+
+        def run(wrapper: "common")
+          common = wrapper == "common" ? true : false
+          super 'materials', 'material', common
+        end
+
+      end
+
       class Media < Record
 
         def run(wrapper: "common")
