@@ -11,10 +11,6 @@ module CollectionSpace
         "#{CONVERTER_BASE}::#{CONVERTER_MODULE}::#{CONVERTER_MODULE}#{authority}".constantize
       end
 
-      def self.category_class(category)
-        "#{CONVERTER_BASE}::#{category}".constantize
-      end
-
       def self.converter_class
         "#{CONVERTER_BASE}::#{CONVERTER_MODULE}".constantize
       end
@@ -29,6 +25,10 @@ module CollectionSpace
 
       def self.default_relationship_class
         "#{CONVERTER_DEFAULT}::Relationship".constantize
+      end
+
+      def self.parts_for(category)
+        "#{CONVERTER_BASE}::Fingerprint::#{category}".constantize
       end
 
       # i.e. #{CONVERTER_BASE}::PBM::PBMCollectionObject
