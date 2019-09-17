@@ -43,7 +43,7 @@ class CollectionSpaceObject
   end
 
   def set_fingerprint
-    parts = Lookup.category_class(category).parts
+    parts = Lookup.parts_for(category).parts
     return unless parts.any?
     parts = parts.map { |p| read_attribute(p) }
     write_attribute 'fingerprint', Fingerprint.generate(parts)

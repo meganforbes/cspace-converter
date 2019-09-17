@@ -11,18 +11,6 @@ RSpec.describe Lookup do
     end
 
     it "returns the converter class" do
-      [
-        'Authority',
-        'Procedure',
-        'Relationship'
-      ].each do |category|
-        expect(
-          Lookup.category_class(category)
-        ).to eq "CollectionSpace::Converter::#{category}".constantize
-      end
-    end
-
-    it "returns the converter class" do
       expect(
         Lookup.converter_class
       ).to eq CollectionSpace::Converter::Core
@@ -44,6 +32,14 @@ RSpec.describe Lookup do
       expect(
         Lookup.default_relationship_class
       ).to eq CollectionSpace::Converter::Default::Relationship
+    end
+
+    it "returns the parts classes" do
+      ["Authority", "Procedure", "Relationship"].each do |type|
+        expect(
+          Lookup.parts_for(type)
+        ).to eq "CollectionSpace::Converter::Fingerprint::#{type}".constantize
+      end
     end
 
     it "returns the procedure class" do
