@@ -19,7 +19,7 @@ namespace :import do
     end
   end
 
-  # rake import:procedures[data/sample/SampleCatalogingData.csv,cataloging1,cataloging]
+  # rake import:procedures[data/sample/core/SampleCatalogingData.csv,cataloging1,cataloging]
   task :procedures, [:filename, :batch, :profile] => :environment do |t, args|
     config = {
       filename:  args[:filename],
@@ -34,8 +34,8 @@ namespace :import do
     process ImportProcedureJob, config
   end
 
-  # rake import:authorities[data/sample/SamplePerson.csv,person1,name]
-  # rake import:authorities[data/sample/SampleMaterial.csv,materials1,materials]
+  # rake import:authorities[data/sample/core/SamplePerson.csv,person1,name]
+  # rake import:authorities[data/sample/core/SampleMaterial.csv,materials1,materials]
   task :authorities, [:filename, :batch, :id_field] => :environment do |t, args|
     config = {
       filename:   args[:filename],

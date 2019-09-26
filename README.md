@@ -40,7 +40,7 @@ Before the *cspace-converter* tool can import CSV data into CollectionSpace, it 
 Create a data directory and add the CSV files. For example:
 
 ```txt
-data/sample/
+data/sample/core/
 ├── cataloging.csv # custom CSV data file
 └── ppsobjectsdata.csv # Past Perfect objects data file
 ```
@@ -90,9 +90,9 @@ For example:
 
 ```bash
 # procedure / object
-./import_procedures.sh data/sample/SampleCatalogingData.csv cataloging cataloging
+./import_procedures.sh data/sample/core/SampleCatalogingData.csv cataloging cataloging
 # NOTE: for media csv blob_uri field will attempt to create the image
-./import_procedures.sh data/sample/SampleMediaUrl.csv media1 media
+./import_procedures.sh data/sample/core/SampleMediaUrl.csv media1 media
 ```
 
 For authorities:
@@ -100,7 +100,7 @@ For authorities:
 ```
 # authority
 ./import_authorities.sh [FILE] [BATCH] [ID_COLUMN]
-./import_authorities.sh data/sample/SamplePerson.csv person1 termdisplayname
+./import_authorities.sh data/sample/core/SamplePerson.csv person1 termdisplayname
 ```
 
 Note: authoritiy csv files must contain both `authority_type` and `authority_subtype` fields.
@@ -150,7 +150,7 @@ docker-compose up
 # to run commands
 docker exec -it converter ./bin/rails c
 docker exec -it converter \
-  ./import_procedures.sh data/sample/SampleCatalogingData.csv cataloging cataloging
+  ./import_procedures.sh data/sample/core/SampleCatalogingData.csv cataloging cataloging
 docker exec -it converter ./bin/rake db:nuke
 ```
 
